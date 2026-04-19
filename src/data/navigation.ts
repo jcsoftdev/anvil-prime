@@ -12,4 +12,4 @@ export const navLinks: NavLink[] = [
   { label: 'Careers', href: '/careers' },
 ];
 
-export const ctaLink = { label: 'Contact Us', href: '/contact' };
+export const ctaLink: NavLink = { label: 'Contact Us', href: '/contact' };

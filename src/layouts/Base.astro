@@ -6,7 +6,7 @@ import { SITE_NAME } from '../utils/constants';
 
 interface Props extends SEOProps {}
 
-const seo = buildSEO(Astro.props);
+const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro.url.href });
 ---
 
 <!doctype html>
