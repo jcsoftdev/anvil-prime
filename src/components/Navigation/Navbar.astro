@@ -89,9 +89,11 @@ import { navLinks, ctaLink } from '../../data/navigation';
     const navLinks = navbar.querySelectorAll<HTMLElement>('.nav-link');
     const logo = navbar.querySelector<HTMLElement>('.nav-logo');
     const navToggle = navbar.querySelector<HTMLElement>('.nav-toggle');
+    const hasDarkHero = document.querySelector('[data-dark-hero]') !== null;
 
     const onScroll = () => {
       const scrolled = window.scrollY > 20;
+      const useDark = scrolled || !hasDarkHero;
       navbar.classList.toggle('bg-white/95', scrolled);
       navbar.classList.toggle('backdrop-blur-sm', scrolled);
       navbar.classList.toggle('shadow-sm', scrolled);
@@ -99,29 +101,29 @@ import { navLinks, ctaLink } from '../../data/navigation';
       navbar.classList.toggle('border-border/80', scrolled);
 
       navLinks.forEach(link => {
-        link.classList.toggle('text-white/80', !scrolled);
-        link.classList.toggle('hover:text-white', !scrolled);
-        link.classList.toggle('text-secondary', scrolled);
-        link.classList.toggle('hover:text-heading', scrolled);
+        link.classList.toggle('text-white/80', !useDark);
+        link.classList.toggle('hover:text-white', !useDark);
+        link.classList.toggle('text-secondary', useDark);
+        link.classList.toggle('hover:text-heading', useDark);
       });
 
       if (logo) {
-        logo.classList.toggle('text-white', !scrolled);
-        logo.classList.toggle('text-heading', scrolled);
+        logo.classList.toggle('text-white', !useDark);
+        logo.classList.toggle('text-heading', useDark);
         const m = logo.querySelector('span');
         if (m) {
-          m.classList.toggle('text-accent-bright', !scrolled);
-          m.classList.toggle('text-accent', scrolled);
+          m.classList.toggle('text-accent-bright', !useDark);
+          m.classList.toggle('text-accent', useDark);
         }
       }
 
       if (navToggle) {
-        navToggle.classList.toggle('text-white/80', !scrolled);
-        navToggle.classList.toggle('hover:text-white', !scrolled);
-        navToggle.classList.toggle('text-secondary', scrolled);
-        navToggle.classList.toggle('hover:text-heading', scrolled);
-        navToggle.classList.toggle('focus-visible:ring-white', !scrolled);
-        navToggle.classList.toggle('focus-visible:ring-accent', scrolled);
+        navToggle.classList.toggle('text-white/80', !useDark);
+        navToggle.classList.toggle('hover:text-white', !useDark);
+        navToggle.classList.toggle('text-secondary', useDark);
+        navToggle.classList.toggle('hover:text-heading', useDark);
+        navToggle.classList.toggle('focus-visible:ring-white', !useDark);
+        navToggle.classList.toggle('focus-visible:ring-accent', useDark);
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
