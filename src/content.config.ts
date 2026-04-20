@@ -10,7 +10,7 @@ const caseStudies = defineCollection({
     industry: z.string(),
     tag: z.string(),
     excerpt: z.string(),
-    date: z.string(),
+    date: z.coerce.date(),
     outcomes: z.array(z.string()),
     tech: z.array(z.string()),
   }),
@@ -22,7 +22,7 @@ const insights = defineCollection({
     title: z.string(),
     category: z.string(),
     excerpt: z.string(),
-    date: z.string(),
+    date: z.coerce.date(),
     readTime: z.string(),
     author: z.object({
       name: z.string(),
