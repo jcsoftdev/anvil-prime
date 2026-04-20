@@ -44,6 +44,8 @@ export const heroSlides: HeroSlide[] = [
 ];
 
 export function initHeroCarousel(rootNode: HTMLElement) {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const embla = EmblaCarousel(rootNode, {
     loop: true,
     duration: 30,
@@ -60,7 +62,6 @@ export function initHeroCarousel(rootNode: HTMLElement) {
       dot.classList.toggle('w-8', i === index);
       dot.classList.toggle('bg-white/40', i !== index);
       dot.classList.toggle('w-2', i !== index);
-      dot.setAttribute('aria-selected', String(i === index));
     });
   };
 
@@ -69,13 +70,14 @@ export function initHeroCarousel(rootNode: HTMLElement) {
       const content = slide.querySelector<HTMLElement>('[data-slide-content]');
       if (!content) return;
       if (i === index) {
+        if (prefersReduced) return;
         content.style.opacity = '0';
         content.style.transform = 'translateY(16px)';
-        requestAnimationFrame(() => {
+        requestAnimationFrame(() => requestAnimationFrame(() => {
           content.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
           content.style.opacity = '1';
           content.style.transform = 'translateY(0)';
-        });
+        }));
       }
     });
   };
@@ -119,12 +121,18 @@ export function initHeroCarousel(rootNode: HTMLElement) {
   });
 
   // Keyboard nav — only fires when focus is on or inside the carousel
-  document.addEventListener('keydown', e => {
+  const handleKeydown = (e: KeyboardEvent) => {
     const carousel = document.getElementById('hero-carousel');
     if (!carousel) return;
     if (!carousel.contains(document.activeElement) && document.activeElement !== carousel) return;
     if (e.key === 'ArrowLeft') embla.scrollPrev();
     if (e.key === 'ArrowRight') embla.scrollNext();
+  };
+  document.addEventListener('keydown', handleKeydown);
+
+  embla.on('destroy', () => {
+    stopAutoplay();
+    document.removeEventListener('keydown', handleKeydown);
   });
 
   updateDots(0);
