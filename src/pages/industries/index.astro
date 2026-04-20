@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navigation/Navbar.astro';
+import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
+
+const industries = [
+  {
+    title: 'Media & Entertainment',
+    href: '/industries/media-entertainment',
+    description: 'Media Supply Chain, Content Monetization, Audience Distribution',
+    tags: ['Streaming', 'Content Ops', 'Ad Tech'],
+  },
+  {
+    title: 'Banking, Financial Services & Insurance',
+    href: '/industries/banking-financial-services',
+    description: 'Neo/Hybrid Banking, Document Intelligence, Financial Workflows',
+    tags: ['Neo Banking', 'Compliance', 'Risk AI'],
+  },
+  {
+    title: 'Healthcare & Life Sciences',
+    href: '/industries/healthcare-life-sciences',
+    description: 'Preventative Health, Diagnostics, Research, Facility Operations',
+    tags: ['Clinical AI', 'HIPAA', 'Drug Discovery'],
+  },
+  {
+    title: 'Retail & CPG',
+    href: '/industries/retail-cpg',
+    description: 'Supply Chain Optimization, Forecasting, Omni-Channel Retail',
+    tags: ['Supply Chain', 'Demand AI', 'Omni-Channel'],
+  },
+];
+---
+
+<Base title="Industries" description="Applied AI solutions for Media, Banking, Healthcare, and Retail enterprises.">
+  <Navbar />
+  <main class="pt-24 pb-20">
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <ScrollReveal>
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Industries</span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-4 mb-6">Built for Your Vertical</h1>
+        <p class="text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
+          We go deep in four industries where AI creates the most durable competitive advantage.
+        </p>
+      </ScrollReveal>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="grid sm:grid-cols-2 gap-8">
+        {industries.map((ind, i) => {
+          const DELAYS = [0, 100, 200, 300] as const;
+          return (
+            <ScrollReveal delay={DELAYS[i]}>
+              <a href={ind.href} class="block h-full bg-base border border-border rounded-xl p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <h2 class="text-xl font-bold text-heading mb-3 group-hover:text-accent transition-colors">{ind.title}</h2>
+                <p class="text-secondary leading-relaxed mb-4">{ind.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {ind.tags.map(tag => (
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-accent-light text-accent text-xs font-medium">{tag}</span>
+                  ))}
+                </div>
+              </a>
+            </ScrollReveal>
+          );
+        })}
+      </div>
+    </div>
+  </main>
+</Base>

@@ -15,15 +15,43 @@ import { navLinks, ctaLink } from '../../data/navigation';
       </a>
 
       <!-- Desktop nav -->
-      <ul class="hidden lg:flex items-center gap-8 list-none m-0 p-0">
+      <ul class="hidden lg:flex items-center gap-6 list-none m-0 p-0">
         {navLinks.map(link => (
-          <li>
-            <a
-              href={link.href}
-              class="nav-link text-white/80 hover:text-white font-medium transition-colors duration-200 text-sm"
-            >
-              {link.label}
-            </a>
+          <li class={link.children ? 'relative group' : ''}>
+            {link.children ? (
+              <>
+                <button
+                  class="nav-link flex items-center gap-1 text-white/80 hover:text-white font-medium transition-colors duration-200 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  {link.label}
+                  <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block group-focus-within:block">
+                  <div class="bg-base rounded-xl shadow-lg border border-border w-72 py-2 overflow-hidden">
+                    {link.children.map(child => (
+                      <a
+                        href={child.href}
+                        class="block px-4 py-3 hover:bg-base-alt transition-colors"
+                      >
+                        <div class="font-semibold text-sm text-heading">{child.label}</div>
+                        <div class="text-xs text-muted mt-0.5 leading-relaxed">{child.description}</div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <a
+                href={link.href}
+                class="nav-link text-white/80 hover:text-white font-medium transition-colors duration-200 text-sm"
+              >
+                {link.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -57,16 +85,28 @@ import { navLinks, ctaLink } from '../../data/navigation';
     role="navigation"
     aria-label="Mobile navigation"
   >
-    <ul class="px-4 py-4 space-y-2 list-none m-0">
+    <ul class="px-4 py-4 space-y-1 list-none m-0">
       {navLinks.map(link => (
-        <li>
-          <a
-            href={link.href}
-            class="block px-4 py-2 rounded-md text-body hover:bg-base-alt hover:text-heading font-medium transition-colors"
-          >
-            {link.label}
-          </a>
-        </li>
+        <>
+          <li>
+            <a
+              href={link.href}
+              class="block px-4 py-2 rounded-md text-body hover:bg-base-alt hover:text-heading font-semibold transition-colors"
+            >
+              {link.label}
+            </a>
+          </li>
+          {link.children?.map(child => (
+            <li>
+              <a
+                href={child.href}
+                class="block px-6 py-1.5 rounded-md text-muted hover:bg-base-alt hover:text-heading text-sm transition-colors"
+              >
+                {child.label}
+              </a>
+            </li>
+          ))}
+        </>
       ))}
       <li class="pt-2">
         <Button href={ctaLink.href} variant="primary" size="md" class="w-full">

@@ -1,15 +1,27 @@
 ---
-import { navLinks } from '../../data/navigation';
 import { SITE_NAME, CONTACT_EMAIL } from '../../utils/constants';
 
 const currentYear = new Date().getFullYear();
+
+const whatWeDo = [
+  { label: 'Industry AI', href: '/services/industry-ai' },
+  { label: 'Workflows AI', href: '/services/workflows-ai' },
+  { label: 'SDLC AI', href: '/services/sdlc-ai' },
+];
+
+const industries = [
+  { label: 'Media & Entertainment', href: '/industries/media-entertainment' },
+  { label: 'Banking & Financial', href: '/industries/banking-financial-services' },
+  { label: 'Healthcare', href: '/industries/healthcare-life-sciences' },
+  { label: 'Retail & CPG', href: '/industries/retail-cpg' },
+];
 ---
 
 <footer class="bg-dark text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
       <!-- Brand -->
-      <div class="md:col-span-2">
+      <div class="md:col-span-1">
         <div class="font-bold text-xl mb-4">
           <span class="text-accent-dim">M</span>eridian Labs
         </div>
@@ -18,11 +30,25 @@ const currentYear = new Date().getFullYear();
         </p>
       </div>
 
-      <!-- Navigation -->
+      <!-- What We Do -->
       <div>
-        <h2 class="font-semibold text-faint text-sm uppercase tracking-wider mb-4">Company</h2>
+        <h2 class="font-semibold text-faint text-sm uppercase tracking-wider mb-4">What We Do</h2>
         <ul class="space-y-3 list-none m-0 p-0">
-          {navLinks.map(link => (
+          {whatWeDo.map(link => (
+            <li>
+              <a href={link.href} class="text-subtle hover:text-white text-sm transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Industries -->
+      <div>
+        <h2 class="font-semibold text-faint text-sm uppercase tracking-wider mb-4">Industries</h2>
+        <ul class="space-y-3 list-none m-0 p-0">
+          {industries.map(link => (
             <li>
               <a href={link.href} class="text-subtle hover:text-white text-sm transition-colors">
                 {link.label}

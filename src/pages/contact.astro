@@ -3,14 +3,17 @@ import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
 import ScrollReveal from '../components/Animations/ScrollReveal.astro';
 import { CONTACT_EMAIL } from '../utils/constants';
+
+const industries = ['Media & Entertainment', 'Banking, Financial Services & Insurance', 'Healthcare & Life Sciences', 'Retail & CPG', 'Other'];
+const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation', 'Advisory / Strategy', 'Not sure yet'];
 ---
 
-<Base title="Contact" description="Talk to the Meridian Labs team about your next project.">
+<Base title="Contact" description="Talk to the Meridian Labs team about your next AI project.">
   <Navbar />
   <main class="pt-24 pb-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <ScrollReveal>
-        <div class="text-center mb-16">
+        <div class="text-center mb-12">
           <span class="text-accent font-semibold text-sm uppercase tracking-wider">Contact</span>
           <h1 class="text-4xl font-bold text-heading mt-2 mb-4">Let's Talk</h1>
           <p class="text-secondary text-lg">Tell us about your project. We respond within one business day.</p>
@@ -20,100 +23,103 @@ import { CONTACT_EMAIL } from '../utils/constants';
       <ScrollReveal>
         <form
           id="contact-form"
-          class="bg-base border border-border rounded-2xl p-8 space-y-6 shadow-sm"
           data-form="contact"
+          class="bg-base border border-border rounded-2xl p-8 space-y-5 shadow-sm"
         >
-          <div class="grid sm:grid-cols-2 gap-6">
+          <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label class="block text-sm font-semibold text-body mb-2" for="name">Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
-                placeholder="Jane Smith"
-              />
+              <label class="block text-sm font-semibold text-body mb-1.5" for="first-name">First Name <span class="text-accent">*</span></label>
+              <input id="first-name" name="first_name" type="text" required placeholder="Jane"
+                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
             </div>
             <div>
-              <label class="block text-sm font-semibold text-body mb-2" for="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
-                placeholder="jane@company.com"
-              />
+              <label class="block text-sm font-semibold text-body mb-1.5" for="last-name">Last Name <span class="text-accent">*</span></label>
+              <input id="last-name" name="last_name" type="text" required placeholder="Smith"
+                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-2" for="company">Company</label>
-            <input
-              id="company"
-              name="company"
-              type="text"
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
-              placeholder="Acme Corp"
-            />
+            <label class="block text-sm font-semibold text-body mb-1.5" for="email">Email <span class="text-accent">*</span></label>
+            <input id="email" name="email" type="email" required placeholder="jane@company.com"
+              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold text-body mb-1.5" for="country">Country</label>
+              <input id="country" name="country" type="text" placeholder="United States"
+                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-body mb-1.5" for="company">Company</label>
+              <input id="company" name="company" type="text" placeholder="Acme Corp"
+                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+            </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-2" for="service">What do you need help with?</label>
-            <select
-              id="service"
-              name="service"
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
-            >
-              <option value="">Select a service...</option>
-              <option value="product-engineering">Product Engineering</option>
-              <option value="ai-ml">AI & Machine Learning</option>
-              <option value="cloud">Cloud & Platform Engineering</option>
-              <option value="staff-aug">Staff Augmentation</option>
-              <option value="other">Other / Not sure yet</option>
+            <label class="block text-sm font-semibold text-body mb-1.5" for="job-title">Job Title</label>
+            <input id="job-title" name="job_title" type="text" placeholder="VP of Engineering"
+              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-body mb-1.5" for="industry">Industry</label>
+            <select id="industry" name="industry"
+              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors">
+              <option value="">Select your industry...</option>
+              {industries.map(ind => <option value={ind}>{ind}</option>)}
             </select>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-2" for="message">Tell us more</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors resize-none"
-              placeholder="What are you building? What's the timeline? What's been tried already?"
-            />
+            <label class="block text-sm font-semibold text-body mb-1.5" for="interest">I'm interested in</label>
+            <select id="interest" name="interest"
+              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors">
+              <option value="">Select a service...</option>
+              {interests.map(i => <option value={i}>{i}</option>)}
+            </select>
           </div>
 
-          <button
-            type="submit"
-            class="w-full py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-          >
+          <div>
+            <label class="block text-sm font-semibold text-body mb-1.5" for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="What are you building? What's the challenge? What have you tried?"
+              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors resize-none" />
+          </div>
+
+          <div class="flex items-start gap-3">
+            <input id="terms" name="terms" type="checkbox" required
+              class="mt-1 h-4 w-4 rounded border-border-strong text-accent focus:ring-accent focus:ring-offset-0" />
+            <label for="terms" class="text-sm text-muted leading-relaxed">
+              I agree to the <a href="/privacy" class="text-accent hover:underline">Privacy Policy</a> and <a href="/terms" class="text-accent hover:underline">Terms of Service</a>.
+            </label>
+          </div>
+
+          <button type="submit"
+            class="w-full py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
             Send Message
           </button>
         </form>
 
         <p class="text-center text-muted text-sm mt-6">
-          Or email us directly at <a href={`mailto:${CONTACT_EMAIL}`} class="text-accent hover:underline">{CONTACT_EMAIL}</a>
+          Or email us at <a href={`mailto:${CONTACT_EMAIL}`} class="text-accent hover:underline">{CONTACT_EMAIL}</a>
         </p>
-
-        <script>
-          const form = document.getElementById('contact-form') as HTMLFormElement | null;
-          form?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = new FormData(form);
-            const name = data.get('name') || '';
-            const company = data.get('company') ? ` (${data.get('company')})` : '';
-            const service = data.get('service') || '';
-            const message = data.get('message') || '';
-            const subject = encodeURIComponent(`Project Inquiry from ${name}${company}`);
-            const body = encodeURIComponent(`Service: ${service}\n\n${message}`);
-            window.location.href = `mailto:hello@meridian-labs.com?subject=${subject}&body=${body}`;
-          });
-        </script>
       </ScrollReveal>
     </div>
   </main>
 </Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = `${data.get('first_name') || ''} ${data.get('last_name') || ''}`.trim();
+    const interest = data.get('interest') || '';
+    const notes = data.get('notes') || '';
+    const subject = encodeURIComponent(`Inquiry from ${name}`);
+    const body = encodeURIComponent(`Interest: ${interest}\n\n${notes}`);
+    window.location.href = `mailto:hello@meridian-labs.com?subject=${subject}&body=${body}`;
+  });
+</script>

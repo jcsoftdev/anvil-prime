@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navigation/Navbar.astro';
+import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
+import Button from '../../components/UI/Button.astro';
+
+const solutions = [
+  { title: 'Supply Chain Optimization', description: 'End-to-end supply chain visibility and AI-driven optimization from procurement to last-mile delivery.' },
+  { title: 'Demand Forecasting', description: 'ML models that predict demand at SKU-level across channels, reducing overstock and stockouts.' },
+  { title: 'Omni-Channel Retail', description: 'Unified customer intelligence across e-commerce, in-store, and marketplace channels.' },
+];
+---
+
+<Base title="Retail & CPG AI" description="Applied AI for supply chain optimization, demand forecasting, and omni-channel retail.">
+  <Navbar />
+  <main class="pt-24 pb-20">
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <ScrollReveal>
+        <a href="/industries" class="text-accent text-sm font-medium hover:underline">← Industries</a>
+        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-6 mb-6">Retail & CPG</h1>
+        <p class="text-xl text-secondary leading-relaxed max-w-2xl">
+          AI that turns data from your shelves, supply chain, and customers into a durable competitive edge.
+        </p>
+      </ScrollReveal>
+    </section>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="grid sm:grid-cols-3 gap-6">
+        {solutions.map((s, i) => {
+          const DELAYS = [0, 100, 200] as const;
+          return (
+            <ScrollReveal delay={DELAYS[i]}>
+              <div class="bg-base-alt rounded-xl p-6 border border-border h-full">
+                <h3 class="font-bold text-heading mb-2">{s.title}</h3>
+                <p class="text-secondary text-sm leading-relaxed">{s.description}</p>
+              </div>
+            </ScrollReveal>
+          );
+        })}
+      </div>
+    </section>
+    <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+      <ScrollReveal>
+        <Button href="/contact" variant="primary" size="lg">Talk to a Retail AI Expert</Button>
+      </ScrollReveal>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navigation/Navbar.astro';
+import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
+import Button from '../../components/UI/Button.astro';
+
+const useCases = [
+  { title: 'AI-Assisted Development', description: 'Agentic coding assistants embedded in your dev workflow — not just autocomplete, but full task execution.' },
+  { title: 'Automated Testing & QA', description: 'AI-generated test suites, regression detection, and continuous quality feedback loops.' },
+  { title: 'Intelligent Code Review', description: 'Automated review agents that catch security issues, performance regressions, and style violations.' },
+  { title: 'DevOps Acceleration', description: 'AI-driven CI/CD optimization, incident response, and deployment risk scoring.' },
+];
+---
+
+<Base title="SDLC AI" description="Accelerating software product engineering with agentic pods embedded across the full software development lifecycle.">
+  <Navbar />
+  <main class="pt-24 pb-20">
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <ScrollReveal>
+        <a href="/services" class="text-accent text-sm font-medium hover:underline">← What We Do</a>
+        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-6 mb-6">SDLC AI</h1>
+        <p class="text-xl text-secondary leading-relaxed max-w-2xl">
+          Accelerating software product engineering with agentic pods embedded across the full software development lifecycle.
+        </p>
+      </ScrollReveal>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="grid sm:grid-cols-2 gap-6">
+        {useCases.map((uc, i) => {
+          const DELAYS = [0, 100, 200, 300] as const;
+          return (
+            <ScrollReveal delay={DELAYS[i]}>
+              <div class="bg-base-alt rounded-xl p-6 border border-border">
+                <h3 class="font-bold text-heading mb-2">{uc.title}</h3>
+                <p class="text-secondary text-sm leading-relaxed">{uc.description}</p>
+              </div>
+            </ScrollReveal>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <ScrollReveal>
+        <h2 class="text-3xl font-bold text-heading mb-4">Ready to Accelerate Your Engineering with AI?</h2>
+        <p class="text-secondary text-lg mb-8">Tell us about your SDLC challenge. We'll scope an engagement in one call.</p>
+        <Button href="/contact" variant="primary" size="lg">Get in Touch</Button>
+      </ScrollReveal>
+    </section>
+  </main>
+</Base>
