@@ -24,22 +24,33 @@ const delayClass = delay > 0 ? `delay-${delay}` : '';
 </div>
 
 <script>
-  const reveals = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).style.animationPlayState = 'running';
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+  if (!prefersReduced) {
+    const reveals = document.querySelectorAll<HTMLElement>('[data-reveal]');
 
-  reveals.forEach(el => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
-  });
+    // Group elements by threshold so per-element threshold props work correctly
+    const byThreshold = new Map<number, HTMLElement[]>();
+    reveals.forEach(el => {
+      const t = parseFloat(el.dataset.threshold ?? '0.1');
+      if (!byThreshold.has(t)) byThreshold.set(t, []);
+      byThreshold.get(t)!.push(el);
+      el.style.animationPlayState = 'paused';
+    });
+
+    byThreshold.forEach((els, threshold) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              (entry.target as HTMLElement).style.animationPlayState = 'running';
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold }
+      );
+      els.forEach(el => observer.observe(el));
+    });
+  }
 </script>
