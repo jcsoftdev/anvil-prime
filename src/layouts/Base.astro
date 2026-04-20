@@ -47,6 +47,23 @@ const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Meridian Labs",
+      "url": "https://meridian-labs.com",
+      "logo": "https://meridian-labs.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@meridian-labs.com",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://linkedin.com/company/meridian-labs",
+        "https://github.com/meridian-labs"
+      ]
+    })} />
+
     <slot name="head" />
   </head>
   <body>
