@@ -1,6 +1,8 @@
 ---
 import ScrollReveal from '../Animations/ScrollReveal.astro';
 import { industries } from '../../data/industries';
+
+const DELAYS = [0, 100, 200, 300] as const;
 ---
 
 <section class="py-20 bg-slate-50" aria-label="Industries we serve">
@@ -19,9 +21,9 @@ import { industries } from '../../data/industries';
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
       {industries.map((industry, i) => (
-        <ScrollReveal delay={([0, 100, 200, 300, 0, 100, 200, 300][i] ?? 0) as 0 | 100 | 200 | 300}>
+        <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
           <div class="bg-white rounded-xl p-6 border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all duration-300 text-center group cursor-default">
-            <div class="text-4xl mb-3">{industry.icon}</div>
+            <div class="text-4xl mb-3" aria-hidden="true">{industry.icon}</div>
             <h3 class="font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">{industry.name}</h3>
             <p class="text-slate-500 text-sm leading-snug">{industry.description}</p>
           </div>
