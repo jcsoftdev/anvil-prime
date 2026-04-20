@@ -19,9 +19,8 @@ import { CONTACT_EMAIL } from '../utils/constants';
 
       <ScrollReveal>
         <form
+          id="contact-form"
           class="bg-white border border-slate-200 rounded-2xl p-8 space-y-6 shadow-sm"
-          action="/api/contact"
-          method="POST"
           data-form="contact"
         >
           <div class="grid sm:grid-cols-2 gap-6">
@@ -99,6 +98,21 @@ import { CONTACT_EMAIL } from '../utils/constants';
         <p class="text-center text-slate-500 text-sm mt-6">
           Or email us directly at <a href={`mailto:${CONTACT_EMAIL}`} class="text-indigo-600 hover:underline">{CONTACT_EMAIL}</a>
         </p>
+
+        <script>
+          const form = document.getElementById('contact-form') as HTMLFormElement | null;
+          form?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const name = data.get('name') || '';
+            const company = data.get('company') ? ` (${data.get('company')})` : '';
+            const service = data.get('service') || '';
+            const message = data.get('message') || '';
+            const subject = encodeURIComponent(`Project Inquiry from ${name}${company}`);
+            const body = encodeURIComponent(`Service: ${service}\n\n${message}`);
+            window.location.href = `mailto:hello@meridian-labs.com?subject=${subject}&body=${body}`;
+          });
+        </script>
       </ScrollReveal>
     </div>
   </main>
