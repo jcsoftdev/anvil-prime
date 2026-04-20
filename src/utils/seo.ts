@@ -6,6 +6,7 @@ export interface SEOProps {
   image?: string;
   canonical?: string;
   noindex?: boolean;
+  ogType?: 'website' | 'article';
 }
 
 export function buildSEO(props: SEOProps = {}) {
@@ -14,5 +15,12 @@ export function buildSEO(props: SEOProps = {}) {
   const image = props.image ?? `${SITE_URL}/og-default.png`;
   const canonical = props.canonical ?? SITE_URL;
 
-  return { title, description, image, canonical, noindex: props.noindex ?? false };
+  return {
+    title,
+    description,
+    image,
+    canonical,
+    noindex: props.noindex ?? false,
+    ogType: props.ogType ?? 'website',
+  };
 }

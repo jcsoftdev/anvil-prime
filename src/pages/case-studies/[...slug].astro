@@ -21,7 +21,7 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
 });
 ---
 
-<Base title={study.data.title} description={study.data.excerpt}>
+<Base title={study.data.title} description={study.data.excerpt} ogType="article">
   <Navbar />
   <main class="pt-24 pb-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,14 +40,14 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
       <!-- Content + Sidebar -->
       <div class="grid lg:grid-cols-3 gap-12">
         <div class="lg:col-span-2">
-          <div class="text-slate-700 leading-relaxed space-y-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_p]:mb-4">
+          <div class="text-slate-700 leading-relaxed [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-900 [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-slate-900 [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono">
             <Content />
           </div>
         </div>
 
         <aside class="space-y-8">
           <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
-            <h2 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Key Outcomes</h2>
+            <h3 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Key Outcomes</h3>
             <ul class="space-y-2 list-none m-0 p-0">
               {study.data.outcomes.map(outcome => (
                 <li class="flex items-start gap-2 text-sm text-slate-700">
@@ -59,7 +59,7 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
           </div>
 
           <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
-            <h2 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Tech Stack</h2>
+            <h3 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Tech Stack</h3>
             <div class="flex flex-wrap gap-2">
               {study.data.tech.map(tech => (
                 <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700">
@@ -70,7 +70,7 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
           </div>
 
           <div class="bg-indigo-600 rounded-xl p-6 text-white">
-            <h2 class="font-bold mb-2">Ready to see similar results?</h2>
+            <h3 class="font-bold mb-2">Ready to see similar results?</h3>
             <p class="text-indigo-200 text-sm mb-4">Talk to our team about your next project.</p>
             <a
               href="/contact"
@@ -80,9 +80,12 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
             </a>
           </div>
 
-          <div class="text-sm text-slate-400">
+          <time
+            datetime={study.data.date.toISOString().slice(0, 10)}
+            class="text-sm text-slate-400 block"
+          >
             Published {formattedDate}
-          </div>
+          </time>
         </aside>
       </div>
     </div>

@@ -21,7 +21,7 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
 });
 ---
 
-<Base title={post.data.title} description={post.data.excerpt}>
+<Base title={post.data.title} description={post.data.excerpt} ogType="article">
   <Navbar />
   <main class="pt-24 pb-20">
     <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,12 +36,12 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
             <span class="mx-2">·</span>
             <span>{post.data.author.role}</span>
           </div>
-          <span class="ml-auto">{formattedDate}</span>
+          <time datetime={post.data.date.toISOString().slice(0, 10)} class="ml-auto">{formattedDate}</time>
           <span>{post.data.readTime}</span>
         </div>
       </header>
 
-      <div class="text-slate-700 leading-relaxed space-y-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_p]:mb-4">
+      <div class="text-slate-700 leading-relaxed [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-900 [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-slate-900 [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono">
         <Content />
       </div>
     </article>
