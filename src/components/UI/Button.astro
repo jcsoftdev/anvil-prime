@@ -13,6 +13,7 @@ const {
   size = 'md',
   class: className = '',
   type = 'button',
+  ...rest
 } = Astro.props;
 
 const base = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
@@ -33,6 +34,6 @@ const classes = [base, variants[variant], sizes[size], className].join(' ');
 const Tag = href ? 'a' : 'button';
 ---
 
-<Tag {...(href ? { href } : { type })} class={classes}>
+<Tag {...(href ? { href } : { type })} class={classes} {...rest}>
   <slot />
 </Tag>

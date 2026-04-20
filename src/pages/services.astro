@@ -4,6 +4,8 @@ import Navbar from '../components/Navigation/Navbar.astro';
 import ScrollReveal from '../components/Animations/ScrollReveal.astro';
 import Button from '../components/UI/Button.astro';
 
+const DELAYS = [0, 100, 0, 100] as const;
+
 const services = [
   {
     name: 'Product Engineering',
@@ -43,25 +45,22 @@ const services = [
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
       <div class="grid lg:grid-cols-2 gap-8">
-        {services.map((service, i) => {
-          const DELAYS = [0, 100, 0, 100] as const;
-          return (
-            <ScrollReveal delay={DELAYS[i]}>
-              <div class="bg-white border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow h-full">
-                <h2 class="text-xl font-bold text-slate-900 mb-3">{service.name}</h2>
-                <p class="text-slate-600 mb-6 leading-relaxed">{service.description}</p>
-                <ul class="space-y-2 list-none m-0 p-0">
-                  {service.capabilities.map(cap => (
-                    <li class="flex items-center gap-2 text-sm text-slate-700">
-                      <span class="h-1.5 w-1.5 rounded-full bg-indigo-600 flex-none" aria-hidden="true" />
-                      {cap}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-          );
-        })}
+        {services.map((service, i) => (
+          <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
+            <div class="bg-white border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow h-full">
+              <h2 class="text-xl font-bold text-slate-900 mb-3">{service.name}</h2>
+              <p class="text-slate-600 mb-6 leading-relaxed">{service.description}</p>
+              <ul class="space-y-2 list-none m-0 p-0">
+                {service.capabilities.map(cap => (
+                  <li class="flex items-center gap-2 text-sm text-slate-700">
+                    <span class="h-1.5 w-1.5 rounded-full bg-indigo-600 flex-none" aria-hidden="true" />
+                    {cap}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
+        ))}
       </div>
 
       <ScrollReveal class="mt-16 text-center">

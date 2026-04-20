@@ -4,6 +4,8 @@ import Navbar from '../components/Navigation/Navbar.astro';
 import ScrollReveal from '../components/Animations/ScrollReveal.astro';
 import Button from '../components/UI/Button.astro';
 
+const DELAYS = [0, 100, 200, 300] as const;
+
 const values = [
   { name: 'Ownership', description: "We treat every project like it's our own product. No handoffs to nowhere." },
   { name: 'Craft', description: 'We care about the quality of what we build — not just whether it ships.' },
@@ -35,20 +37,17 @@ const values = [
           <h2 class="text-3xl font-bold text-slate-900 text-center mb-16">How We Work</h2>
         </ScrollReveal>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, i) => {
-            const DELAYS = [0, 100, 200, 300] as const;
-            return (
-              <ScrollReveal delay={DELAYS[i]}>
-                <div class="text-center">
-                  <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4" aria-hidden="true">
-                    <div class="w-6 h-6 bg-indigo-600 rounded" />
-                  </div>
-                  <h3 class="font-bold text-slate-900 mb-2">{value.name}</h3>
-                  <p class="text-slate-600 text-sm leading-relaxed">{value.description}</p>
+          {values.map((value, i) => (
+            <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                  <div class="w-6 h-6 bg-indigo-600 rounded" />
                 </div>
-              </ScrollReveal>
-            );
-          })}
+                <h3 class="font-bold text-slate-900 mb-2">{value.name}</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">{value.description}</p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>

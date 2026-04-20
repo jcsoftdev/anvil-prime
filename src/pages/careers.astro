@@ -34,7 +34,7 @@ const openRoles = [
 
       <div class="space-y-4">
         {openRoles.map((role, i) => (
-          <ScrollReveal delay={DELAYS[i]}>
+          <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
             <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 hover:shadow-md transition-shadow">
               <div>
                 <h3 class="font-bold text-slate-900 mb-2">{role.title}</h3>
@@ -44,7 +44,7 @@ const openRoles = [
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-medium">{role.location}</span>
                 </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm">
+              <Button href="/contact" variant="outline" size="sm" aria-label={`Apply for ${role.title}`}>
                 Apply
               </Button>
             </div>

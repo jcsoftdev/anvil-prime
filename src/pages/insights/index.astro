@@ -28,9 +28,9 @@ const DELAYS = [0, 100, 200] as const;
           <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
             <a
               href={`/insights/${post.id}`}
-              class="block h-full border border-slate-200 rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              class="block h-full border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div class="h-40 bg-gradient-to-br from-slate-100 to-indigo-50" aria-hidden="true" />
+              <div class="h-48 bg-gradient-to-br from-slate-100 to-indigo-50" aria-hidden="true" />
               <div class="p-6">
                 <Badge variant="accent" class="mb-3">{post.data.category}</Badge>
                 <h2 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors leading-snug">
