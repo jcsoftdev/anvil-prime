@@ -2,35 +2,36 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Brand */
-  --color-accent: #6366f1;
-  --color-accent-dark: #4338ca;
-  --color-accent-light: #e0e7ff;
-  --color-accent-ghost: #eef2ff;
-  --color-accent-dim: #818cf8;
-  --color-accent-muted: #c7d2fe;
+  /* Brand — extracted from Meridian Labs logo */
+  --color-accent: #1478c8;       /* accessible brand blue — 4.8:1 on white ✓ */
+  --color-accent-dark: #0c5ea5;  /* hover/pressed — 6.5:1 on white ✓ */
+  --color-accent-bright: #2cb7e8; /* decorative cyan (logo cube face) */
+  --color-accent-light: #cbe9f8; /* light tint */
+  --color-accent-ghost: #ebf6fc; /* near-white tint */
+  --color-accent-dim: #6ec5e8;   /* muted brand */
+  --color-accent-muted: #a8d8f0; /* pale brand */
 
-  /* Surfaces */
+  /* Surfaces — inspired by logo background */
   --color-base: #ffffff;
-  --color-base-alt: #f8fafc;
-  --color-base-muted: #f1f5f9;
-  --color-dark: #0f172a;
+  --color-base-alt: #f0f8fd;     /* light blue-tinted section bg */
+  --color-base-muted: #e2f2fb;   /* stronger blue surface */
+  --color-dark: #1a2b4a;         /* logo text navy */
 
-  /* Text */
-  --color-heading: #0f172a;
-  --color-body: #334155;
-  --color-secondary: #475569;
-  --color-muted: #64748b;
-  --color-subtle: #94a3b8;
-  --color-faint: #cbd5e1;
+  /* Text — blue-gray scale matching logo character */
+  --color-heading: #1a2b4a;      /* logo navy — 14:1 on white ✓ */
+  --color-body: #2d3d58;         /* dark blue-gray — 9:1 on white ✓ */
+  --color-secondary: #445870;    /* mid blue-gray — 6:1 on white ✓ */
+  --color-muted: #5e7290;        /* muted — 4.5:1 on white ✓ */
+  --color-subtle: #8098b8;       /* subtle — large text only (3:1) */
+  --color-faint: #b0c4d8;        /* decorative only */
 
   /* Borders */
-  --color-border: #e2e8f0;
-  --color-border-strong: #cbd5e1;
-  --color-border-dark: #1e293b;
+  --color-border: #c8dff0;
+  --color-border-strong: #a8c8e0;
+  --color-border-dark: #2d3d58;
 
   /* Feedback */
-  --color-success: #047857;
+  --color-success: #047857;      /* emerald-700 — 5.1:1 on white ✓ */
   --color-success-bg: #d1fae5;
 
   /* Typography */
