@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navigation/Navbar.astro';
+import ScrollReveal from '../components/Animations/ScrollReveal.astro';
+import Button from '../components/UI/Button.astro';
+
+const DELAYS = [0, 100, 200, 300] as const;
+
+const openRoles = [
+  { title: 'Senior Full-Stack Engineer', type: 'Full-time', location: 'Remote', team: 'Product Engineering' },
+  { title: 'Staff ML Engineer', type: 'Full-time', location: 'Remote', team: 'AI/ML' },
+  { title: 'Senior Cloud/Platform Engineer', type: 'Full-time', location: 'Remote', team: 'Cloud' },
+  { title: 'Engineering Manager', type: 'Full-time', location: 'Remote', team: 'Leadership' },
+];
+---
+
+<Base title="Careers" description="Join the Meridian Labs team. Senior-level roles in product engineering, AI/ML, and cloud.">
+  <Navbar />
+  <main class="pt-24 pb-20">
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <ScrollReveal>
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Careers</span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 mt-4 mb-6">Work That Matters</h1>
+        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+          We hire senior engineers and build teams that ship. Remote-first, async-friendly, high-trust.
+        </p>
+      </ScrollReveal>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <ScrollReveal>
+        <h2 class="text-2xl font-bold text-slate-900 mb-8">Open Roles</h2>
+      </ScrollReveal>
+
+      <div class="space-y-4">
+        {openRoles.map((role, i) => (
+          <ScrollReveal delay={DELAYS[i]}>
+            <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 hover:shadow-md transition-shadow">
+              <div>
+                <h3 class="font-bold text-slate-900 mb-2">{role.title}</h3>
+                <div class="flex flex-wrap gap-2">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">{role.team}</span>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">{role.type}</span>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-medium">{role.location}</span>
+                </div>
+              </div>
+              <Button href="/contact" variant="outline" size="sm">
+                Apply
+              </Button>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+
+      <ScrollReveal class="mt-12 text-center">
+        <p class="text-slate-600 mb-4">Don't see your role? We're always interested in exceptional people.</p>
+        <Button href="/contact" variant="ghost" size="md">Send us your resume</Button>
+      </ScrollReveal>
+    </div>
+  </main>
+</Base>

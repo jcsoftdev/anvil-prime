@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navigation/Navbar.astro';
+import ScrollReveal from '../components/Animations/ScrollReveal.astro';
+import Button from '../components/UI/Button.astro';
+
+const values = [
+  { name: 'Ownership', description: "We treat every project like it's our own product. No handoffs to nowhere." },
+  { name: 'Craft', description: 'We care about the quality of what we build — not just whether it ships.' },
+  { name: 'Transparency', description: "No surprises. Clients always know where things stand, especially when it's complicated." },
+  { name: 'Speed', description: 'We move fast without creating debt. Working software over perfect documentation.' },
+];
+---
+
+<Base title="About Us" description="Learn about Meridian Labs — who we are, what we believe, and how we work.">
+  <Navbar />
+  <main class="pt-24 pb-20">
+    <!-- Mission -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <ScrollReveal>
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">About Us</span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 mt-4 mb-6 leading-tight">
+          We're Engineers Who<br />Started a Company
+        </h1>
+        <p class="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          Meridian Labs was founded by engineers who got tired of consulting firms that over-promised and under-delivered. We built the firm we wanted to work with.
+        </p>
+      </ScrollReveal>
+    </section>
+
+    <!-- Values -->
+    <section class="bg-slate-50 py-20" aria-label="Our values">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <h2 class="text-3xl font-bold text-slate-900 text-center mb-16">How We Work</h2>
+        </ScrollReveal>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {values.map((value, i) => {
+            const DELAYS = [0, 100, 200, 300] as const;
+            return (
+              <ScrollReveal delay={DELAYS[i]}>
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                    <div class="w-6 h-6 bg-indigo-600 rounded" />
+                  </div>
+                  <h3 class="font-bold text-slate-900 mb-2">{value.name}</h3>
+                  <p class="text-slate-600 text-sm leading-relaxed">{value.description}</p>
+                </div>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <ScrollReveal>
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Want to Work Together?</h2>
+        <p class="text-slate-600 text-lg mb-8">Tell us about your project and we'll get back to you within one business day.</p>
+        <Button href="/contact" variant="primary" size="lg">Get in Touch</Button>
+      </ScrollReveal>
+    </section>
+  </main>
+</Base>

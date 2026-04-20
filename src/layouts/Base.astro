@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import { buildSEO } from '../utils/seo';
 import type { SEOProps } from '../utils/seo';
 import { SITE_NAME } from '../utils/constants';
+import Footer from '../components/Navigation/Footer.astro';
 
 interface Props extends SEOProps {}
 
@@ -50,5 +51,6 @@ const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro
   </head>
   <body>
     <slot />
+    <Footer />
   </body>
 </html>
