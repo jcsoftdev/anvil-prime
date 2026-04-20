@@ -35,11 +35,11 @@ const articles = [
 ];
 ---
 
-<div class="relative" id="insights-carousel-wrapper">
+<div class="relative" id="insights-carousel-wrapper" aria-roledescription="carousel" aria-label="Insights">
   <div class="overflow-hidden" id="insights-embla-viewport">
     <div class="flex gap-6 touch-pan-y">
-      {articles.map(article => (
-        <div class="flex-none w-[85%] sm:w-[45%] lg:w-[31%]">
+      {articles.map((article, i) => (
+        <div class="flex-none w-[85%] sm:w-[45%] lg:w-[31%]" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${articles.length}`}>
           <a
             href={article.href}
             class="block h-full border border-slate-200 rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
