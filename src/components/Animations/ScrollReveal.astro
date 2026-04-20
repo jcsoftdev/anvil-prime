@@ -1,0 +1,45 @@
+---
+interface Props {
+  animation?: 'fade-up' | 'fade-in' | 'slide-in-left';
+  delay?: 0 | 100 | 200 | 300 | 400;
+  threshold?: number;
+  class?: string;
+}
+const {
+  animation = 'fade-up',
+  delay = 0,
+  threshold = 0.1,
+  class: className = '',
+} = Astro.props;
+
+const delayClass = delay > 0 ? `delay-${delay}` : '';
+---
+
+<div
+  class={`animate-${animation} ${delayClass} ${className}`}
+  data-reveal
+  data-threshold={threshold}
+>
+  <slot />
+</div>
+
+<script>
+  const reveals = document.querySelectorAll<HTMLElement>('[data-reveal]');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  reveals.forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
