@@ -1,0 +1,25 @@
+---
+import CaseStudiesCarousel from '../Sliders/CaseStudiesCarousel.astro';
+import ScrollReveal from '../Animations/ScrollReveal.astro';
+import Button from '../UI/Button.astro';
+---
+
+<section class="py-20 bg-white" aria-label="Case studies">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ScrollReveal>
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
+        <div>
+          <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Case Studies</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">
+            Work We're Proud Of
+          </h2>
+        </div>
+        <Button href="/case-studies" variant="outline" size="sm">
+          View All
+        </Button>
+      </div>
+    </ScrollReveal>
+
+    <CaseStudiesCarousel />
+  </div>
+</section>

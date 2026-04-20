@@ -1,0 +1,96 @@
+---
+const caseStudies = [
+  {
+    title: 'AI-Powered Risk Platform',
+    client: 'Global FinTech',
+    industry: 'Fintech',
+    excerpt: 'Built a real-time ML risk scoring engine processing 50M transactions/day with <10ms latency.',
+    href: '/case-studies/ai-ml-platform',
+    tag: 'AI/ML',
+  },
+  {
+    title: 'Zero-Downtime Cloud Migration',
+    client: 'Enterprise Retailer',
+    industry: 'E-Commerce',
+    excerpt: 'Migrated a monolithic e-commerce platform to microservices with zero downtime and 60% cost reduction.',
+    href: '/case-studies/cloud-migration',
+    tag: 'Cloud',
+  },
+  {
+    title: 'Digital Health Platform',
+    client: 'Healthcare Network',
+    industry: 'Healthcare',
+    excerpt: 'Launched a HIPAA-compliant patient portal serving 2M users with 99.99% uptime.',
+    href: '/case-studies/digital-transformation',
+    tag: 'Healthcare',
+  },
+  {
+    title: 'Developer Experience Overhaul',
+    client: 'SaaS Startup',
+    industry: 'SaaS',
+    excerpt: 'Reduced CI/CD pipeline from 45 minutes to 4 minutes; increased deployment frequency 10x.',
+    href: '/case-studies/cloud-migration',
+    tag: 'DevOps',
+  },
+];
+---
+
+<div class="relative" id="cs-carousel-wrapper">
+  <div class="overflow-hidden" id="cs-embla-viewport">
+    <div class="flex gap-6 touch-pan-y">
+      {caseStudies.map(cs => (
+        <div class="flex-none w-[85%] sm:w-[45%] lg:w-[31%]">
+          <a
+            href={cs.href}
+            class="block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full group"
+          >
+            <div class="h-48 bg-gradient-to-br from-indigo-100 to-slate-100 relative">
+              <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold">
+                {cs.tag}
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs text-slate-500 font-medium uppercase tracking-wider mb-2">{cs.client} · {cs.industry}</div>
+              <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">{cs.title}</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">{cs.excerpt}</p>
+              <span class="text-indigo-600 text-sm font-semibold group-hover:underline">Read case study →</span>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="flex items-center justify-end gap-3 mt-8">
+    <button
+      id="cs-prev"
+      class="p-3 rounded-full border-2 border-slate-200 text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+      aria-label="Previous case study"
+      type="button"
+    >
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button
+      id="cs-next"
+      class="p-3 rounded-full border-2 border-slate-200 text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+      aria-label="Next case study"
+      type="button"
+    >
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  import { initCaseStudiesCarousel } from './CaseStudiesCarousel.client';
+  const viewport = document.getElementById('cs-embla-viewport') as HTMLElement;
+  const wrapper = document.getElementById('cs-carousel-wrapper') as HTMLElement;
+  if (viewport && wrapper) {
+    const embla = initCaseStudiesCarousel(viewport, wrapper);
+    document.addEventListener('astro:before-swap', () => embla.destroy(), { once: true });
+  }
+</script>

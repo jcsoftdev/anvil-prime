@@ -1,0 +1,25 @@
+---
+import InsightsCarousel from '../Sliders/InsightsCarousel.astro';
+import ScrollReveal from '../Animations/ScrollReveal.astro';
+import Button from '../UI/Button.astro';
+---
+
+<section class="py-20 bg-slate-50" aria-label="Insights and blog">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ScrollReveal>
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
+        <div>
+          <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Insights</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">
+            Thinking From the Field
+          </h2>
+        </div>
+        <Button href="/insights" variant="outline" size="sm">
+          All Articles
+        </Button>
+      </div>
+    </ScrollReveal>
+
+    <InsightsCarousel />
+  </div>
+</section>
