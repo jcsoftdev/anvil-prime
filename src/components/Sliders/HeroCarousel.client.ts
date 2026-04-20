@@ -92,8 +92,9 @@ export function initHeroCarousel(rootNode: HTMLElement) {
     animateSlide(index);
   });
 
-  rootNode.addEventListener('mouseenter', stopAutoplay);
-  rootNode.addEventListener('mouseleave', startAutoplay);
+  const carousel = document.getElementById('hero-carousel');
+  carousel?.addEventListener('mouseenter', stopAutoplay);
+  carousel?.addEventListener('mouseleave', startAutoplay);
 
   // Arrow buttons
   const prevBtn = document.getElementById('hero-prev');
