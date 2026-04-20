@@ -1,0 +1,33 @@
+---
+import ScrollReveal from '../Animations/ScrollReveal.astro';
+
+const stats = [
+  { value: '200+', label: 'Projects Delivered', description: 'Across 30 countries' },
+  { value: '95%', label: 'Client Retention', description: 'Year over year' },
+  { value: '12+', label: 'Years Experience', description: 'Building at scale' },
+  { value: '500+', label: 'Engineers', description: 'Senior-level talent' },
+];
+---
+
+<section class="py-20 bg-indigo-600" aria-label="Company stats">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ScrollReveal>
+      <h2 class="text-3xl font-bold text-white text-center mb-4">
+        Performance That Speaks for Itself
+      </h2>
+      <p class="text-indigo-200 text-center text-lg mb-16 max-w-2xl mx-auto">
+        We measure our success by our clients' outcomes — not hours billed.
+      </p>
+    </ScrollReveal>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((stat, i) => (
+        <ScrollReveal delay={[0, 100, 200, 300][i] as 0 | 100 | 200 | 300} class="text-center">
+          <div class="text-5xl font-bold text-white mb-2">{stat.value}</div>
+          <div class="text-lg font-semibold text-white mb-1">{stat.label}</div>
+          <div class="text-indigo-200 text-sm">{stat.description}</div>
+        </ScrollReveal>
+      ))}
+    </div>
+  </div>
+</section>
