@@ -4,6 +4,7 @@ interface Props {
   variant?: 'primary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   class?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const {
@@ -11,6 +12,7 @@ const {
   variant = 'primary',
   size = 'md',
   class: className = '',
+  type = 'button',
 } = Astro.props;
 
 const base = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
@@ -31,6 +33,6 @@ const classes = [base, variants[variant], sizes[size], className].join(' ');
 const Tag = href ? 'a' : 'button';
 ---
 
-<Tag href={href} class={classes}>
+<Tag {...(href ? { href } : { type })} class={classes}>
   <slot />
 </Tag>
