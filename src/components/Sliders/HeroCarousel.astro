@@ -1,0 +1,82 @@
+---
+import { heroSlides } from './HeroCarousel.client';
+---
+
+<div class="relative overflow-hidden" id="hero-carousel" aria-label="Hero slideshow" aria-roledescription="carousel">
+  <!-- Embla viewport -->
+  <div class="overflow-hidden h-full" id="hero-embla-viewport">
+    <div class="flex h-full touch-pan-y">
+      {heroSlides.map((slide, i) => (
+        <div
+          class={`relative flex-none w-full min-h-[600px] lg:min-h-[700px] bg-gradient-to-br ${slide.bgColor} flex items-center`}
+          role="group"
+          aria-label={`Slide ${i + 1} of ${heroSlides.length}`}
+          aria-roledescription="slide"
+          data-hero-slide
+        >
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+            <div data-slide-content>
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider mb-6">
+                {slide.tag}
+              </span>
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
+                {slide.headline}
+              </h1>
+              <p class="text-lg sm:text-xl text-white/70 max-w-xl mb-8 leading-relaxed">
+                {slide.subheadline}
+              </p>
+              <a
+                href={slide.cta.href}
+                class="inline-flex items-center px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors duration-200 text-base"
+              >
+                {slide.cta.label}
+                <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Arrow navigation -->
+  <button
+    id="hero-prev"
+    class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+    aria-label="Previous slide"
+  >
+    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  <button
+    id="hero-next"
+    class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+    aria-label="Next slide"
+  >
+    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Dot indicators -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2" role="tablist" aria-label="Slide indicators">
+    {heroSlides.map((_, i) => (
+      <button
+        data-hero-dot
+        role="tab"
+        aria-label={`Go to slide ${i + 1}`}
+        aria-selected={i === 0 ? 'true' : 'false'}
+        class={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${i === 0 ? 'w-8 bg-white' : 'w-2 bg-white/40'}`}
+      />
+    ))}
+  </div>
+</div>
+
+<script>
+  import { initHeroCarousel } from './HeroCarousel.client';
+  const root = document.getElementById('hero-embla-viewport') as HTMLElement;
+  if (root) initHeroCarousel(root);
+</script>
