@@ -17,9 +17,9 @@ const DELAYS = [0, 100, 200] as const;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <ScrollReveal>
         <div class="text-center mb-16">
-          <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Insights</span>
-          <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 mt-2 mb-4">Thinking From the Field</h1>
-          <p class="text-slate-600 text-lg max-w-2xl mx-auto">Perspectives on technology, engineering, and building products that last.</p>
+          <span class="text-accent font-semibold text-sm uppercase tracking-wider">Insights</span>
+          <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-2 mb-4">Thinking From the Field</h1>
+          <p class="text-secondary text-lg max-w-2xl mx-auto">Perspectives on technology, engineering, and building products that last.</p>
         </div>
       </ScrollReveal>
 
@@ -28,16 +28,16 @@ const DELAYS = [0, 100, 200] as const;
           <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
             <a
               href={`/insights/${post.id}`}
-              class="block h-full border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
+              class="block h-full border border-border rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div class="h-48 bg-gradient-to-br from-slate-100 to-indigo-50" aria-hidden="true" />
+              <div class="h-48 bg-gradient-to-br from-slate-100 to-accent-ghost" aria-hidden="true" />
               <div class="p-6">
                 <Badge variant="accent" class="mb-3">{post.data.category}</Badge>
-                <h2 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors leading-snug">
+                <h2 class="text-lg font-bold text-heading mb-2 group-hover:text-accent transition-colors leading-snug">
                   {post.data.title}
                 </h2>
-                <p class="text-slate-500 text-sm leading-relaxed mb-4">{post.data.excerpt}</p>
-                <div class="flex items-center justify-between text-xs text-slate-400">
+                <p class="text-muted text-sm leading-relaxed mb-4">{post.data.excerpt}</p>
+                <div class="flex items-center justify-between text-xs text-subtle">
                   <span>{post.data.author.name}</span>
                   <span>{post.data.readTime}</span>
                 </div>

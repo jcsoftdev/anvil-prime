@@ -44,12 +44,12 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
     <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <header class="mb-12">
         <Badge variant="accent" class="mb-4">{post.data.category}</Badge>
-        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight mb-6">
+        <h1 class="text-4xl sm:text-5xl font-bold text-heading leading-tight mb-6">
           {post.data.title}
         </h1>
-        <div class="flex items-center gap-4 text-slate-500 text-sm border-t border-b border-slate-200 py-4">
+        <div class="flex items-center gap-4 text-muted text-sm border-t border-b border-border py-4">
           <div>
-            <span class="font-semibold text-slate-700">{post.data.author.name}</span>
+            <span class="font-semibold text-body">{post.data.author.name}</span>
             <span class="mx-2">·</span>
             <span>{post.data.author.role}</span>
           </div>
@@ -58,7 +58,7 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
         </div>
       </header>
 
-      <div class="text-slate-700 leading-relaxed [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-900 [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-slate-900 [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono">
+      <div class="text-body leading-relaxed [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-heading [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-heading [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-heading [&_code]:bg-base-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono">
         <Content />
       </div>
     </article>

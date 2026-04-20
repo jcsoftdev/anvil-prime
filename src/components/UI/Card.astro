@@ -10,7 +10,7 @@ const hoverClasses = hover ? 'hover:shadow-lg hover:-translate-y-1 transition-al
 ---
 <Tag
   {...(href ? { href } : {})}
-  class={`bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden ${hoverClasses} ${className}`}
+  class={`bg-base rounded-xl border border-border shadow-sm overflow-hidden ${hoverClasses} ${className}`}
 >
   <slot />
 </Tag>

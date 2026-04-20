@@ -20,31 +20,31 @@ const values = [
     <!-- Mission -->
     <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
       <ScrollReveal>
-        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">About Us</span>
-        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 mt-4 mb-6 leading-tight">
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">About Us</span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-4 mb-6 leading-tight">
           We're Engineers Who<br />Started a Company
         </h1>
-        <p class="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+        <p class="text-xl text-secondary leading-relaxed max-w-2xl mx-auto">
           Meridian Labs was founded by engineers who got tired of consulting firms that over-promised and under-delivered. We built the firm we wanted to work with.
         </p>
       </ScrollReveal>
     </section>
 
     <!-- Values -->
-    <section class="bg-slate-50 py-20" aria-label="Our values">
+    <section class="bg-base-alt py-20" aria-label="Our values">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 class="text-3xl font-bold text-slate-900 text-center mb-16">How We Work</h2>
+          <h2 class="text-3xl font-bold text-heading text-center mb-16">How We Work</h2>
         </ScrollReveal>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {values.map((value, i) => (
             <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
               <div class="text-center">
-                <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4" aria-hidden="true">
-                  <div class="w-6 h-6 bg-indigo-600 rounded" />
+                <div class="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                  <div class="w-6 h-6 bg-accent rounded" />
                 </div>
-                <h3 class="font-bold text-slate-900 mb-2">{value.name}</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">{value.description}</p>
+                <h3 class="font-bold text-heading mb-2">{value.name}</h3>
+                <p class="text-secondary text-sm leading-relaxed">{value.description}</p>
               </div>
             </ScrollReveal>
           ))}
@@ -55,8 +55,8 @@ const values = [
     <!-- CTA -->
     <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
       <ScrollReveal>
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Want to Work Together?</h2>
-        <p class="text-slate-600 text-lg mb-8">Tell us about your project and we'll get back to you within one business day.</p>
+        <h2 class="text-3xl font-bold text-heading mb-4">Want to Work Together?</h2>
+        <p class="text-secondary text-lg mb-8">Tell us about your project and we'll get back to you within one business day.</p>
         <Button href="/contact" variant="primary" size="lg">Get in Touch</Button>
       </ScrollReveal>
     </section>

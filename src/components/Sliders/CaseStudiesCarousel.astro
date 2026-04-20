@@ -34,18 +34,18 @@ const caseStudies = [
         <div class="flex-none w-[85%] sm:w-[45%] lg:w-[31%]" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${caseStudies.length}`}>
           <a
             href={cs.href}
-            class="block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full group"
+            class="block bg-base border border-border rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full group"
           >
-            <div class="h-48 bg-gradient-to-br from-indigo-100 to-slate-100 relative">
-              <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold">
+            <div class="h-48 bg-gradient-to-br from-accent-light to-slate-100 relative">
+              <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-accent text-white text-xs font-semibold">
                 {cs.tag}
               </span>
             </div>
             <div class="p-6">
-              <div class="text-xs text-slate-500 font-medium uppercase tracking-wider mb-2">{cs.client} · {cs.industry}</div>
-              <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">{cs.title}</h3>
-              <p class="text-slate-600 text-sm leading-relaxed mb-4">{cs.excerpt}</p>
-              <span class="text-indigo-600 text-sm font-semibold group-hover:underline">Read case study →</span>
+              <div class="text-xs text-muted font-medium uppercase tracking-wider mb-2">{cs.client} · {cs.industry}</div>
+              <h3 class="text-lg font-bold text-heading mb-3 group-hover:text-accent transition-colors">{cs.title}</h3>
+              <p class="text-secondary text-sm leading-relaxed mb-4">{cs.excerpt}</p>
+              <span class="text-accent text-sm font-semibold group-hover:underline">Read case study →</span>
             </div>
           </a>
         </div>
@@ -56,7 +56,7 @@ const caseStudies = [
   <div class="flex items-center justify-end gap-3 mt-8">
     <button
       id="cs-prev"
-      class="p-3 rounded-full border-2 border-slate-200 text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+      class="p-3 rounded-full border-2 border-border text-secondary hover:border-accent hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       aria-label="Previous case study"
       type="button"
     >
@@ -66,7 +66,7 @@ const caseStudies = [
     </button>
     <button
       id="cs-next"
-      class="p-3 rounded-full border-2 border-slate-200 text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+      class="p-3 rounded-full border-2 border-border text-secondary hover:border-accent hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       aria-label="Next case study"
       type="button"
     >

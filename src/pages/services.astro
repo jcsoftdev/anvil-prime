@@ -35,9 +35,9 @@ const services = [
   <main class="pt-24 pb-20">
     <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
       <ScrollReveal>
-        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Services</span>
-        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 mt-4 mb-6">What We Do</h1>
-        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Services</span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-4 mb-6">What We Do</h1>
+        <p class="text-xl text-secondary max-w-2xl mx-auto">
           We work across the full technology stack — from strategy to shipping — wherever you need us most.
         </p>
       </ScrollReveal>
@@ -47,13 +47,13 @@ const services = [
       <div class="grid lg:grid-cols-2 gap-8">
         {services.map((service, i) => (
           <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
-            <div class="bg-white border border-slate-200 rounded-xl p-8 hover:shadow-md transition-shadow h-full">
-              <h2 class="text-xl font-bold text-slate-900 mb-3">{service.name}</h2>
-              <p class="text-slate-600 mb-6 leading-relaxed">{service.description}</p>
+            <div class="bg-base border border-border rounded-xl p-8 hover:shadow-md transition-shadow h-full">
+              <h2 class="text-xl font-bold text-heading mb-3">{service.name}</h2>
+              <p class="text-secondary mb-6 leading-relaxed">{service.description}</p>
               <ul class="space-y-2 list-none m-0 p-0">
                 {service.capabilities.map(cap => (
-                  <li class="flex items-center gap-2 text-sm text-slate-700">
-                    <span class="h-1.5 w-1.5 rounded-full bg-indigo-600 flex-none" aria-hidden="true" />
+                  <li class="flex items-center gap-2 text-sm text-body">
+                    <span class="h-1.5 w-1.5 rounded-full bg-accent flex-none" aria-hidden="true" />
                     {cap}
                   </li>
                 ))}

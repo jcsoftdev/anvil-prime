@@ -5,15 +5,15 @@ import { industries } from '../../data/industries';
 const DELAYS = [0, 100, 200, 300] as const;
 ---
 
-<section class="py-20 bg-slate-50" aria-label="Industries we serve">
+<section class="py-20 bg-base-alt" aria-label="Industries we serve">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <ScrollReveal>
       <div class="text-center mb-16">
-        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Industries</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4">
+        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Industries</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-heading mt-2 mb-4">
           Built for Every Vertical
         </h2>
-        <p class="text-slate-600 text-lg max-w-2xl mx-auto">
+        <p class="text-secondary text-lg max-w-2xl mx-auto">
           We've shipped production software across the most demanding and regulated industries in the world.
         </p>
       </div>
@@ -22,10 +22,10 @@ const DELAYS = [0, 100, 200, 300] as const;
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
       {industries.map((industry, i) => (
         <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
-          <div class="bg-white rounded-xl p-6 border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all duration-300 text-center group cursor-default">
+          <div class="bg-base rounded-xl p-6 border border-border hover:border-accent-dim hover:shadow-md transition-all duration-300 text-center group cursor-default">
             <div class="text-4xl mb-3" aria-hidden="true">{industry.icon}</div>
-            <h3 class="font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">{industry.name}</h3>
-            <p class="text-slate-500 text-sm leading-snug">{industry.description}</p>
+            <h3 class="font-semibold text-heading mb-1 group-hover:text-accent transition-colors">{industry.name}</h3>
+            <p class="text-muted text-sm leading-snug">{industry.description}</p>
           </div>
         </ScrollReveal>
       ))}

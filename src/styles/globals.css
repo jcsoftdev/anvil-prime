@@ -1,6 +1,42 @@
-@import './variables.css';
 @import './animations.css';
 @import 'tailwindcss';
+
+@theme {
+  /* Brand */
+  --color-accent: #6366f1;
+  --color-accent-dark: #4338ca;
+  --color-accent-light: #e0e7ff;
+  --color-accent-ghost: #eef2ff;
+  --color-accent-dim: #818cf8;
+  --color-accent-muted: #c7d2fe;
+
+  /* Surfaces */
+  --color-base: #ffffff;
+  --color-base-alt: #f8fafc;
+  --color-base-muted: #f1f5f9;
+  --color-dark: #0f172a;
+
+  /* Text */
+  --color-heading: #0f172a;
+  --color-body: #334155;
+  --color-secondary: #475569;
+  --color-muted: #64748b;
+  --color-subtle: #94a3b8;
+  --color-faint: #cbd5e1;
+
+  /* Borders */
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-border-dark: #1e293b;
+
+  /* Feedback */
+  --color-success: #047857;
+  --color-success-bg: #d1fae5;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Cal Sans', 'Inter', sans-serif;
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -13,8 +49,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-text);
-  background: var(--color-surface);
+  color: var(--color-heading);
+  background: var(--color-base);
   margin: 0;
 }
 

@@ -10,8 +10,8 @@ import { navLinks, ctaLink } from '../../data/navigation';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <nav class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 font-bold text-xl text-slate-900" aria-label="Meridian Labs home">
-        <span class="text-indigo-600">M</span>eridian Labs
+      <a href="/" class="flex items-center gap-2 font-bold text-xl text-heading" aria-label="Meridian Labs home">
+        <span class="text-accent">M</span>eridian Labs
       </a>
 
       <!-- Desktop nav -->
@@ -20,7 +20,7 @@ import { navLinks, ctaLink } from '../../data/navigation';
           <li>
             <a
               href={link.href}
-              class="text-slate-600 hover:text-slate-900 font-medium transition-colors duration-200 text-sm"
+              class="text-secondary hover:text-heading font-medium transition-colors duration-200 text-sm"
             >
               {link.label}
             </a>
@@ -36,7 +36,7 @@ import { navLinks, ctaLink } from '../../data/navigation';
 
         <button
           id="mobile-menu-toggle"
-          class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+          class="lg:hidden p-2 rounded-md text-secondary hover:text-heading hover:bg-base-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label="Toggle mobile menu"
           aria-expanded="false"
           aria-controls="mobile-menu"
@@ -53,7 +53,7 @@ import { navLinks, ctaLink } from '../../data/navigation';
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="lg:hidden hidden bg-white border-t border-slate-200 shadow-lg"
+    class="lg:hidden hidden bg-base border-t border-border shadow-lg"
     role="navigation"
     aria-label="Mobile navigation"
   >
@@ -62,7 +62,7 @@ import { navLinks, ctaLink } from '../../data/navigation';
         <li>
           <a
             href={link.href}
-            class="block px-4 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-slate-900 font-medium transition-colors"
+            class="block px-4 py-2 rounded-md text-body hover:bg-base-alt hover:text-heading font-medium transition-colors"
           >
             {link.label}
           </a>
@@ -88,9 +88,9 @@ import { navLinks, ctaLink } from '../../data/navigation';
   if (navbar && toggle && menu && hamburgerIcon && closeIcon) {
     const onScroll = () => {
       if (window.scrollY > 20) {
-        navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-slate-200/80');
+        navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border/80');
       } else {
-        navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-slate-200/80');
+        navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border/80');
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });

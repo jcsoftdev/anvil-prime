@@ -34,20 +34,20 @@ const articles = [
         <div class="flex-none w-[85%] sm:w-[45%] lg:w-[31%]" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${articles.length}`}>
           <a
             href={article.href}
-            class="block h-full border border-slate-200 rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+            class="block h-full border border-border rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
           >
-            <div class="h-40 bg-gradient-to-br from-slate-100 to-indigo-50" aria-hidden="true" />
+            <div class="h-40 bg-gradient-to-br from-slate-100 to-accent-ghost" aria-hidden="true" />
             <div class="p-6">
               <div class="flex items-center gap-2 mb-3">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-accent-light text-accent-dark text-xs font-semibold">
                   {article.category}
                 </span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors leading-snug">
+              <h3 class="text-base font-bold text-heading mb-2 group-hover:text-accent transition-colors leading-snug">
                 {article.title}
               </h3>
-              <p class="text-slate-500 text-sm leading-relaxed mb-4">{article.excerpt}</p>
-              <div class="flex items-center justify-between text-xs text-slate-400">
+              <p class="text-muted text-sm leading-relaxed mb-4">{article.excerpt}</p>
+              <div class="flex items-center justify-between text-xs text-subtle">
                 <span>{article.date}</span>
                 <span>{article.readTime}</span>
               </div>
@@ -61,7 +61,7 @@ const articles = [
   <div class="flex items-center justify-end gap-3 mt-8">
     <button
       id="insights-prev"
-      class="p-3 rounded-full border-2 border-slate-200 text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+      class="p-3 rounded-full border-2 border-border text-secondary hover:border-accent hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       aria-label="Previous insight"
       type="button"
     >
@@ -71,7 +71,7 @@ const articles = [
     </button>
     <button
       id="insights-next"
-      class="p-3 rounded-full border-2 border-slate-200 text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+      class="p-3 rounded-full border-2 border-border text-secondary hover:border-accent hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       aria-label="Next insight"
       type="button"
     >
