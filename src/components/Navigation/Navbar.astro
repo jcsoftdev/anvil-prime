@@ -10,8 +10,8 @@ import { navLinks, ctaLink } from '../../data/navigation';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <nav class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 font-bold text-xl text-heading" aria-label="Meridian Labs home">
-        <span class="text-accent">M</span>eridian Labs
+      <a href="/" class="flex items-center gap-2 font-bold text-xl text-white nav-logo" aria-label="Meridian Labs home">
+        <span class="text-accent-bright">M</span>eridian Labs
       </a>
 
       <!-- Desktop nav -->
@@ -20,7 +20,7 @@ import { navLinks, ctaLink } from '../../data/navigation';
           <li>
             <a
               href={link.href}
-              class="text-secondary hover:text-heading font-medium transition-colors duration-200 text-sm"
+              class="nav-link text-white/80 hover:text-white font-medium transition-colors duration-200 text-sm"
             >
               {link.label}
             </a>
@@ -36,7 +36,7 @@ import { navLinks, ctaLink } from '../../data/navigation';
 
         <button
           id="mobile-menu-toggle"
-          class="lg:hidden p-2 rounded-md text-secondary hover:text-heading hover:bg-base-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          class="lg:hidden p-2 rounded-md text-white/80 hover:text-white nav-toggle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           aria-label="Toggle mobile menu"
           aria-expanded="false"
           aria-controls="mobile-menu"
@@ -86,11 +86,42 @@ import { navLinks, ctaLink } from '../../data/navigation';
   const closeIcon = document.getElementById('close-icon');
 
   if (navbar && toggle && menu && hamburgerIcon && closeIcon) {
+    const navLinks = navbar.querySelectorAll<HTMLElement>('.nav-link');
+    const logo = navbar.querySelector<HTMLElement>('.nav-logo');
+    const navToggle = navbar.querySelector<HTMLElement>('.nav-toggle');
+
     const onScroll = () => {
-      if (window.scrollY > 20) {
-        navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border/80');
-      } else {
-        navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border/80');
+      const scrolled = window.scrollY > 20;
+      navbar.classList.toggle('bg-white/95', scrolled);
+      navbar.classList.toggle('backdrop-blur-sm', scrolled);
+      navbar.classList.toggle('shadow-sm', scrolled);
+      navbar.classList.toggle('border-b', scrolled);
+      navbar.classList.toggle('border-border/80', scrolled);
+
+      navLinks.forEach(link => {
+        link.classList.toggle('text-white/80', !scrolled);
+        link.classList.toggle('hover:text-white', !scrolled);
+        link.classList.toggle('text-secondary', scrolled);
+        link.classList.toggle('hover:text-heading', scrolled);
+      });
+
+      if (logo) {
+        logo.classList.toggle('text-white', !scrolled);
+        logo.classList.toggle('text-heading', scrolled);
+        const m = logo.querySelector('span');
+        if (m) {
+          m.classList.toggle('text-accent-bright', !scrolled);
+          m.classList.toggle('text-accent', scrolled);
+        }
+      }
+
+      if (navToggle) {
+        navToggle.classList.toggle('text-white/80', !scrolled);
+        navToggle.classList.toggle('hover:text-white', !scrolled);
+        navToggle.classList.toggle('text-secondary', scrolled);
+        navToggle.classList.toggle('hover:text-heading', scrolled);
+        navToggle.classList.toggle('focus-visible:ring-white', !scrolled);
+        navToggle.classList.toggle('focus-visible:ring-accent', scrolled);
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
