@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navigation/Navbar.astro';
+import Badge from '../../components/UI/Badge.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const formattedDate = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Base title={post.data.title} description={post.data.excerpt}>
+  <Navbar />
+  <main class="pt-24 pb-20">
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-12">
+        <Badge variant="accent" class="mb-4">{post.data.category}</Badge>
+        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight mb-6">
+          {post.data.title}
+        </h1>
+        <div class="flex items-center gap-4 text-slate-500 text-sm border-t border-b border-slate-200 py-4">
+          <div>
+            <span class="font-semibold text-slate-700">{post.data.author.name}</span>
+            <span class="mx-2">·</span>
+            <span>{post.data.author.role}</span>
+          </div>
+          <span class="ml-auto">{formattedDate}</span>
+          <span>{post.data.readTime}</span>
+        </div>
+      </header>
+
+      <div class="text-slate-700 leading-relaxed space-y-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_p]:mb-4">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Base>

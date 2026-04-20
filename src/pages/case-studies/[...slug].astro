@@ -1,0 +1,90 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navigation/Navbar.astro';
+import Badge from '../../components/UI/Badge.astro';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('case-studies');
+  return studies.map(study => ({
+    params: { slug: study.id },
+    props: { study },
+  }));
+}
+
+const { study } = Astro.props;
+const { Content } = await render(study);
+const formattedDate = study.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Base title={study.data.title} description={study.data.excerpt}>
+  <Navbar />
+  <main class="pt-24 pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="flex items-center gap-3 mb-4">
+          <Badge variant="accent">{study.data.tag}</Badge>
+          <span class="text-slate-400 text-sm">{study.data.industry}</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight mb-4">
+          {study.data.title}
+        </h1>
+        <p class="text-xl text-slate-600">{study.data.excerpt}</p>
+      </header>
+
+      <!-- Content + Sidebar -->
+      <div class="grid lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <div class="text-slate-700 leading-relaxed space-y-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_p]:mb-4">
+            <Content />
+          </div>
+        </div>
+
+        <aside class="space-y-8">
+          <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+            <h2 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Key Outcomes</h2>
+            <ul class="space-y-2 list-none m-0 p-0">
+              {study.data.outcomes.map(outcome => (
+                <li class="flex items-start gap-2 text-sm text-slate-700">
+                  <span class="text-emerald-500 mt-0.5" aria-hidden="true">✓</span>
+                  {outcome}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+            <h2 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Tech Stack</h2>
+            <div class="flex flex-wrap gap-2">
+              {study.data.tech.map(tech => (
+                <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="bg-indigo-600 rounded-xl p-6 text-white">
+            <h2 class="font-bold mb-2">Ready to see similar results?</h2>
+            <p class="text-indigo-200 text-sm mb-4">Talk to our team about your next project.</p>
+            <a
+              href="/contact"
+              class="inline-flex items-center px-4 py-2 bg-white text-indigo-600 font-semibold rounded-lg text-sm hover:bg-indigo-50 transition-colors"
+            >
+              Get in Touch
+            </a>
+          </div>
+
+          <div class="text-sm text-slate-400">
+            Published {formattedDate}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</Base>
