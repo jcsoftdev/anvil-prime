@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
 import ScrollReveal from '../components/Animations/ScrollReveal.astro';
 import { CONTACT_EMAIL } from '../utils/constants';
+import { Image } from 'astro:assets';
+import contactBg from '../assets/images/contact.jpg';
 
 const industries = ['Media & Entertainment', 'Banking, Financial Services & Insurance', 'Healthcare & Life Sciences', 'Retail & CPG', 'Other'];
 const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation', 'Advisory / Strategy', 'Not sure yet'];
@@ -11,14 +13,27 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
 <Base title="Contact" description="Talk to the Anvil Prime team about your next AI project.">
   <Navbar />
   <main class="pt-24 pb-20">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ScrollReveal>
-        <div class="text-center mb-12">
-          <span class="text-accent font-semibold text-sm uppercase tracking-wider">Contact</span>
-          <h1 class="text-4xl font-bold text-heading mt-2 mb-4">Let's Talk</h1>
-          <p class="text-secondary text-lg">Tell us about your project. We respond within one business day.</p>
-        </div>
-      </ScrollReveal>
+    <section class="relative overflow-hidden bg-slate-900">
+      <Image
+        src={contactBg}
+        alt=""
+        aria-hidden="true"
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        width={1920}
+        height={1080}
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-slate-900/65" />
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <span class="text-accent-bright font-semibold text-sm uppercase tracking-wider">Contact</span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-white mt-4 mb-4">Let's Talk</h1>
+        <p class="text-xl text-white/70 max-w-2xl mx-auto">Tell us about your project. We respond within one business day.</p>
+      </div>
+    </section>
+
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
 
       <ScrollReveal>
         <form
