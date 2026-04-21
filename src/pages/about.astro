@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
 import ScrollReveal from '../components/Animations/ScrollReveal.astro';
 import Button from '../components/UI/Button.astro';
+import { Image } from 'astro:assets';
+import aboutBg from '../assets/images/about.jpg';
 
 const DELAYS = [0, 100, 200, 300] as const;
 
@@ -18,16 +20,30 @@ const values = [
   <Navbar />
   <main class="pt-24 pb-20">
     <!-- Mission -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-      <ScrollReveal>
-        <span class="text-accent font-semibold text-sm uppercase tracking-wider">About Us</span>
-        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-4 mb-6 leading-tight">
-          We're Engineers Who<br />Started a Company
-        </h1>
-        <p class="text-xl text-secondary leading-relaxed max-w-2xl mx-auto">
-          Anvil Prime was founded by engineers who got tired of consulting firms that over-promised and under-delivered. We built the firm we wanted to work with.
-        </p>
-      </ScrollReveal>
+    <section class="relative overflow-hidden bg-slate-900">
+      <Image
+        src={aboutBg}
+        alt=""
+        aria-hidden="true"
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        width={1920}
+        height={1080}
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-slate-900/65" />
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+        <ScrollReveal>
+          <span class="text-accent-bright font-semibold text-sm uppercase tracking-wider">About Us</span>
+          <h1 class="text-4xl sm:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
+            We're Engineers Who<br />Started a Company
+          </h1>
+          <p class="text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
+            Anvil Prime was founded by engineers who got tired of consulting firms that over-promised and under-delivered. We built the firm we wanted to work with.
+          </p>
+        </ScrollReveal>
+      </div>
     </section>
 
     <!-- Values -->
