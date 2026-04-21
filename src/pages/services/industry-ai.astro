@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
 import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
 import Button from '../../components/UI/Button.astro';
+import { Image } from 'astro:assets';
+import industryAiBg from '../../assets/images/service-industry-ai.jpg';
 
 const useCases = [
   { title: 'Vertical-Specific Models', description: 'Foundation models fine-tuned on domain data — medical records, financial filings, media metadata.' },
@@ -15,14 +17,28 @@ const useCases = [
 <Base title="Industry AI" description="Applied AI solutions for Media, Banking, Healthcare, and Retail enterprises.">
   <Navbar />
   <main class="pt-24 pb-20">
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <ScrollReveal>
-        <a href="/services" class="text-accent text-sm font-medium hover:underline">← What We Do</a>
-        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-6 mb-6">Industry AI</h1>
-        <p class="text-xl text-secondary leading-relaxed max-w-2xl">
-          Transforming industry-specific use cases with Applied AI solutions that are built for your vertical — not generic demos repackaged as products.
-        </p>
-      </ScrollReveal>
+    <section class="relative overflow-hidden bg-slate-900">
+      <Image
+        src={industryAiBg}
+        alt=""
+        aria-hidden="true"
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        width={1920}
+        height={1080}
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-slate-900/65" />
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <ScrollReveal>
+          <a href="/services" class="text-accent-bright text-sm font-medium hover:underline">← What We Do</a>
+          <h1 class="text-4xl sm:text-5xl font-bold text-white mt-6 mb-6">Industry AI</h1>
+          <p class="text-xl text-white/70 leading-relaxed max-w-2xl">
+            Transforming industry-specific use cases with Applied AI solutions that are built for your vertical — not generic demos repackaged as products.
+          </p>
+        </ScrollReveal>
+      </div>
     </section>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
