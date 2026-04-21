@@ -1,4 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import insight0Img from '../../assets/images/insight-ai-enterprise.jpg';
+import insight1Img from '../../assets/images/insight-cloud-native.jpg';
+import insight2Img from '../../assets/images/insight-engineering-culture.jpg';
+
+const insightImages = [insight0Img, insight1Img, insight2Img];
+
 const articles = [
   {
     title: 'The Future of AI in Enterprise Software',
@@ -36,7 +43,19 @@ const articles = [
             href={article.href}
             class="block h-full border border-border rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
           >
-            <div class="h-40 bg-gradient-to-br from-slate-100 to-accent-ghost" aria-hidden="true" />
+            <div class="h-40 relative overflow-hidden">
+              <Image
+                src={insightImages[i]}
+                alt=""
+                aria-hidden="true"
+                widths={[400, 800]}
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 31vw"
+                width={800}
+                height={320}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
             <div class="p-6">
               <div class="flex items-center gap-2 mb-3">
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-accent-light text-accent-dark text-xs font-semibold">
