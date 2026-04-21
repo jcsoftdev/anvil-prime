@@ -1,5 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import { heroSlides } from './HeroCarousel.client';
+import slide0Bg from '../../assets/images/hero-consulting.jpg';
+import slide1Bg from '../../assets/images/hero-ai.jpg';
+import slide2Bg from '../../assets/images/hero-cloud.jpg';
+import slide3Bg from '../../assets/images/hero-team.jpg';
+
+const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
 ---
 
 <div class="relative overflow-hidden" id="hero-carousel" aria-label="Hero slideshow" aria-roledescription="carousel">
@@ -10,13 +17,26 @@ import { heroSlides } from './HeroCarousel.client';
         const Heading = i === 0 ? 'h1' : 'h2';
         return (
           <div
-            class={`relative flex-none w-full min-h-[600px] lg:min-h-[700px] bg-gradient-to-br ${slide.bgColor} flex items-center`}
+            class={`relative flex-none w-full min-h-[600px] lg:min-h-[700px] bg-gradient-to-br ${slide.bgColor} bg-slate-900 flex items-center overflow-hidden`}
             role="group"
             aria-label={`Slide ${i + 1} of ${heroSlides.length}`}
             aria-roledescription="slide"
             data-hero-slide
           >
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+            <Image
+              src={slideBgs[i]}
+              alt=""
+              aria-hidden="true"
+              widths={[768, 1280, 1920]}
+              sizes="100vw"
+              width={1920}
+              height={1080}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+            />
+            <div class="absolute inset-0 bg-slate-900/65" />
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
               <div data-slide-content>
                 <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider mb-6">
                   {slide.tag}
