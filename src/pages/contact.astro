@@ -8,7 +8,7 @@ const industries = ['Media & Entertainment', 'Banking, Financial Services & Insu
 const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation', 'Advisory / Strategy', 'Not sure yet'];
 ---
 
-<Base title="Contact" description="Talk to the Meridian Labs team about your next AI project.">
+<Base title="Contact" description="Talk to the Anvil Prime team about your next AI project.">
   <Navbar />
   <main class="pt-24 pb-20">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -120,6 +120,6 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
     const notes = data.get('notes') || '';
     const subject = encodeURIComponent(`Inquiry from ${name}`);
     const body = encodeURIComponent(`Interest: ${interest}\n\n${notes}`);
-    window.location.href = `mailto:hello@meridian-labs.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@anvilprime.com?subject=${subject}&body=${body}`;
   });
 </script>

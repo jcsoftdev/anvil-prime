@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Brand — extracted from Meridian Labs logo */
+  /* Brand — extracted from Anvil Prime logo */
   --color-accent: #1478c8;       /* accessible brand blue — 4.8:1 on white ✓ */
   --color-accent-dark: #0c5ea5;  /* hover/pressed — 6.5:1 on white ✓ */
   --color-accent-bright: #2cb7e8; /* decorative cyan (logo cube face) */
