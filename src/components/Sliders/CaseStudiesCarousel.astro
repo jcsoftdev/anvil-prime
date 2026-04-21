@@ -1,4 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import cs0Img from '../../assets/images/cs-fintech.jpg';
+import cs1Img from '../../assets/images/cs-cloud.jpg';
+import cs2Img from '../../assets/images/cs-healthcare.jpg';
+
+const csImages = [cs0Img, cs1Img, cs2Img];
+
 const caseStudies = [
   {
     title: 'AI-Powered Risk Platform',
@@ -36,7 +43,18 @@ const caseStudies = [
             href={cs.href}
             class="block bg-base border border-border rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full group"
           >
-            <div class="h-48 bg-gradient-to-br from-accent-light to-slate-100 relative">
+            <div class="h-48 relative overflow-hidden">
+              <Image
+                src={csImages[i]}
+                alt=""
+                aria-hidden="true"
+                widths={[400, 800]}
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 31vw"
+                width={800}
+                height={384}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
               <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-accent text-white text-xs font-semibold">
                 {cs.tag}
               </span>
