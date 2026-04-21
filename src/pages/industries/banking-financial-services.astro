@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
 import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
 import Button from '../../components/UI/Button.astro';
+import { Image } from 'astro:assets';
+import bankingBg from '../../assets/images/industry-banking.jpg';
 
 const solutions = [
   { title: 'Neo/Hybrid Banking', description: 'Core banking AI for digital-first banks and traditional institutions building hybrid digital products.' },
@@ -14,14 +16,28 @@ const solutions = [
 <Base title="Banking, Financial Services & Insurance AI" description="Applied AI for neo-banking, document intelligence, and financial workflows.">
   <Navbar />
   <main class="pt-24 pb-20">
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <ScrollReveal>
-        <a href="/industries" class="text-accent text-sm font-medium hover:underline">← Industries</a>
-        <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-6 mb-6">Banking, Financial Services & Insurance</h1>
-        <p class="text-xl text-secondary leading-relaxed max-w-2xl">
-          From neo-banking infrastructure to document intelligence — AI that meets the compliance bar while moving at startup speed.
-        </p>
-      </ScrollReveal>
+    <section class="relative overflow-hidden bg-slate-900">
+      <Image
+        src={bankingBg}
+        alt=""
+        aria-hidden="true"
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        width={1920}
+        height={1080}
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-slate-900/65" />
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <ScrollReveal>
+          <a href="/industries" class="text-accent-bright text-sm font-medium hover:underline">← Industries</a>
+          <h1 class="text-4xl sm:text-5xl font-bold text-white mt-6 mb-6">Banking, Financial Services & Insurance</h1>
+          <p class="text-xl text-white/70 leading-relaxed max-w-2xl">
+            From neo-banking infrastructure to document intelligence — AI that meets the compliance bar while moving at startup speed.
+          </p>
+        </ScrollReveal>
+      </div>
     </section>
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
       <div class="grid sm:grid-cols-3 gap-6">
