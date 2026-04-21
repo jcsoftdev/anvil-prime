@@ -60,8 +60,8 @@ Key points:
 - `alt=""` + `aria-hidden="true"` — decorative images, hidden from screen readers
 - `widths={[400, 800]}` + responsive `sizes` — appropriate for card dimensions (not full-viewport)
 - `loading="lazy"` — cards are below the fold
-- `width`/`height` set aspect ratio for Astro's optimizer; `object-cover` fills the fixed-height container
-- The tag badge `<span class="absolute top-4 left-4 ...">` in CaseStudies stays on top (z-index stacking already works since it's positioned after the `<Image>`)
+- `width={800}` + `height` tell Astro's optimizer the OUTPUT dimensions to generate. The rendered size is controlled by CSS (`w-full h-full object-cover`). `height={384}` (2× the `h-48` 192px container) and `height={320}` (2× the `h-40` 160px container) give retina-quality output at a 2:1-ish crop ratio — appropriate for landscape photo sources. These values do not need to match source image native dimensions.
+- The tag badge `<span class="absolute top-4 left-4 ...">` in CaseStudies renders above the `<Image>` because the parent `<div class="... relative">` establishes a stacking context, and `absolute` children stack above in-flow siblings by default.
 - No overlay needed — cards are light-background, text is below the image
 
 ## HeroCarousel Pattern Note
@@ -82,7 +82,7 @@ const csImages = [cs0Img, cs1Img, cs2Img];
 
 ## Image Manifest
 
-All 6 images downloaded to `/src/assets/images/` before implementation.
+The 6 images below must be downloaded to `/src/assets/images/` as the first implementation step (before any component changes). They do not exist yet — this is a prerequisite, not a completed step.
 
 | File | Card | Type | Theme |
 |------|------|------|-------|
