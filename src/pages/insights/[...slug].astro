@@ -1,8 +1,10 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
 import Badge from '../../components/UI/Badge.astro';
+import { insightImages } from '../../data/post-images';
 
 export async function getStaticPaths() {
   const posts = await getCollection('insights');
@@ -47,6 +49,17 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
         <h1 class="text-4xl sm:text-5xl font-bold text-heading leading-tight mb-6">
           {post.data.title}
         </h1>
+        {insightImages[post.id] && (
+          <div class="rounded-xl overflow-hidden mb-8 h-64 sm:h-80">
+            <Image
+              src={insightImages[post.id]}
+              alt={post.data.title}
+              class="w-full h-full object-cover"
+              widths={[800, 1200]}
+              sizes="(min-width: 768px) 768px, 100vw"
+            />
+          </div>
+        )}
         <div class="flex items-center gap-4 text-muted text-sm border-t border-b border-border py-4">
           <div>
             <span class="font-semibold text-body">{post.data.author.name}</span>

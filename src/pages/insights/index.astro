@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
 import Badge from '../../components/UI/Badge.astro';
 import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
+import { insightImages } from '../../data/post-images';
 
 const posts = (await getCollection('insights')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -30,7 +32,17 @@ const DELAYS = [0, 100, 200] as const;
               href={`/insights/${post.id}`}
               class="block h-full border border-border rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div class="h-48 bg-gradient-to-br from-slate-100 to-accent-ghost" aria-hidden="true" />
+              <div class="h-48 relative overflow-hidden">
+                {insightImages[post.id] && (
+                  <Image
+                    src={insightImages[post.id]}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    widths={[400, 800]}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                )}
+              </div>
               <div class="p-6">
                 <Badge variant="accent" class="mb-3">{post.data.category}</Badge>
                 <h2 class="text-lg font-bold text-heading mb-2 group-hover:text-accent transition-colors leading-snug">
