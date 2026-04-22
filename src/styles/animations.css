@@ -65,3 +65,68 @@
     opacity: 1;
   }
 }
+
+/* ============================================================
+   Scroll-Driven Animations (CSS-only, progressive enhancement)
+   ============================================================ */
+
+/* @property must be at top level — not inside @supports */
+@property --grad-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 135deg;
+}
+
+@keyframes grad-rotate {
+  to { --grad-angle: 315deg; }
+}
+
+/* Gradient fallback: requires @property support (Chrome 85+, Safari 16.4+, FF 128+).
+   .bg-accent stays on the element as the static fallback for unsupported browsers. */
+@supports (background: linear-gradient(var(--grad-angle, 135deg), red, blue)) {
+  .performance-gradient {
+    background: linear-gradient(var(--grad-angle, 135deg), #1478c8, #0c5ea5);
+    animation: grad-rotate 8s linear infinite alternate;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  /* Navbar scroll shadow — #navbar is the actual element ID in Navbar.astro.
+     Coexists with the existing JS shadow-sm toggle: both apply box-shadow,
+     CSS animation wins specificity for the custom value. */
+  @keyframes nav-shadow {
+    from { box-shadow: none; }
+    to   { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12); }
+  }
+
+  #navbar {
+    animation: nav-shadow linear both;
+    animation-timeline: scroll();
+    animation-range: 0px 80px;
+  }
+
+  /* Section heading underline grow — add .section-heading class to h2 elements
+     in section headers to opt in. */
+  @keyframes underline-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .section-heading::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: var(--color-accent);
+    transform-origin: left;
+    animation: underline-grow linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+/* Reduced motion: disable all scroll-driven animations */
+@media (prefers-reduced-motion: reduce) {
+  #navbar { animation: none; }
+  .section-heading::after { animation: none; transform: scaleX(1); }
+  .performance-gradient { animation: none; }
+}
