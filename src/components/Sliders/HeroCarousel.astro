@@ -130,3 +130,12 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
     document.addEventListener('astro:before-swap', () => embla.destroy(), { once: true });
   }
 </script>
+
+<script>
+  import { initHeroCanvas } from '../Animations/HeroCanvas.client';
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+  if (canvas) {
+    const cleanup = initHeroCanvas(canvas);
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  }
+</script>
