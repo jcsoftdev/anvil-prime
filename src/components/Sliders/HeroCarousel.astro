@@ -139,3 +139,16 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
     document.addEventListener('astro:before-swap', cleanup, { once: true });
   }
 </script>
+
+<script>
+  import { initTextScramble } from '../Animations/TextScramble.client';
+  const firstSlide = document.querySelector('[data-hero-slide]');
+  const h1 = firstSlide?.querySelector('h1') as HTMLElement | null;
+  if (h1) initTextScramble(h1);
+</script>
+
+<script>
+  import { initSvgDraw } from '../Animations/SvgDraw.client';
+  const svg = document.querySelector('[data-svg-draw]') as SVGElement | null;
+  if (svg) initSvgDraw(svg);
+</script>
