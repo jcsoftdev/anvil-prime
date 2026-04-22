@@ -35,8 +35,8 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
   };
 
   const animateDots = () => {
-    const cx = canvas.offsetWidth / 2;
-    const cy = canvas.offsetHeight / 2;
+    const cx = logicalW / 2;
+    const cy = logicalH / 2;
     const maxDist = Math.sqrt(cx * cx + cy * cy);
     dots.forEach(dot => {
       const dist = Math.sqrt((dot.x - cx) ** 2 + (dot.y - cy) ** 2);
@@ -71,6 +71,7 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
     const h = canvas.offsetHeight;
     logicalW = w;
     logicalH = h;
+    // Assigning canvas.width/height resets the transform matrix — scale is not cumulative here
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.scale(dpr, dpr);
