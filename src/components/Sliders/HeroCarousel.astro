@@ -10,7 +10,7 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
 ---
 
 <div class="relative overflow-hidden" id="hero-carousel" aria-label="Hero slideshow" aria-roledescription="carousel">
-  <!-- Canvas dot grid: absolute sibling of Embla viewport, z-index below photo overlay -->
+  <!-- Canvas dot grid: absolute sibling of Embla viewport, above overlay (z-1), below content (z-10) -->
   <canvas
     id="hero-canvas"
     aria-hidden="true"

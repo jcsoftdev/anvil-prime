@@ -9,11 +9,13 @@ interface Dot {
 export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
   if (reducedMotion) return () => {};
 
-  const ctx = canvas.getContext('2d')!;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return () => {};
+
   const spacing = 24;
   let dots: Dot[] = [];
-  let rafId: number;
-  let hidden = false;
+  let rafId = 0;
+  let resizeTimer = 0;
 
   const buildDots = () => {
     gsap.killTweensOf(dots);
@@ -47,15 +49,13 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
   };
 
   const draw = () => {
-    if (!hidden) {
-      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
-      dots.forEach(dot => {
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(44, 183, 232, ${dot.alpha})`;
-        ctx.fill();
-      });
-    }
+    ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+    dots.forEach(dot => {
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(44, 183, 232, ${dot.alpha})`;
+      ctx.fill();
+    });
     rafId = requestAnimationFrame(draw);
   };
 
@@ -69,21 +69,31 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
     buildDots();
   };
 
-  const onVisibility = () => { hidden = document.hidden; };
+  // Cancel RAF on hide, resume on show — no wasted ticks in background tabs
+  const onVisibility = () => {
+    if (document.hidden) {
+      cancelAnimationFrame(rafId);
+    } else {
+      rafId = requestAnimationFrame(draw);
+    }
+  };
   document.addEventListener('visibilitychange', onVisibility);
 
-  const ro = new ResizeObserver(resize);
+  // Debounce resize to avoid rebuilding thousands of tweens on every drag frame
+  const ro = new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(resize, 150);
+  });
   ro.observe(canvas);
 
-  // requestIdleCallback is not in TypeScript's default DOM lib — use setTimeout(0)
-  // which is equivalent here (defers canvas init past the first paint).
   setTimeout(() => {
     resize();
-    draw();
+    rafId = requestAnimationFrame(draw);
   }, 0);
 
   return () => {
     cancelAnimationFrame(rafId);
+    clearTimeout(resizeTimer);
     gsap.killTweensOf(dots);
     ro.disconnect();
     document.removeEventListener('visibilitychange', onVisibility);
