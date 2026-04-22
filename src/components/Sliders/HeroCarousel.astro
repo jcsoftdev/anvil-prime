@@ -10,6 +10,13 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
 ---
 
 <div class="relative overflow-hidden" id="hero-carousel" aria-label="Hero slideshow" aria-roledescription="carousel">
+  <!-- Canvas dot grid: absolute sibling of Embla viewport, z-index below photo overlay -->
+  <canvas
+    id="hero-canvas"
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full pointer-events-none"
+    style="z-index: 1;"
+  ></canvas>
   <!-- Embla viewport -->
   <div class="overflow-hidden h-full" id="hero-embla-viewport">
     <div class="flex h-full touch-pan-y">
@@ -44,6 +51,25 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
                 <Heading class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
                   {slide.headline}
                 </Heading>
+                {i === 0 && (
+                  <svg
+                    aria-hidden="true"
+                    width="200"
+                    height="8"
+                    viewBox="0 0 200 8"
+                    style="visibility: hidden; margin-bottom: 1.5rem; display: block;"
+                    data-svg-draw
+                  >
+                    <path
+                      d="M0,4 Q50,0 100,4 T200,4"
+                      fill="none"
+                      stroke="#2cb7e8"
+                      stroke-width="2"
+                      stroke-dasharray="230"
+                      stroke-dashoffset="230"
+                    />
+                  </svg>
+                )}
                 <p class="text-lg sm:text-xl text-white/70 max-w-xl mb-8 leading-relaxed">
                   {slide.subheadline}
                 </p>
