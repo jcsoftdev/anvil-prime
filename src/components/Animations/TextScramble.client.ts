@@ -2,10 +2,11 @@ import { gsap, reducedMotion } from '../../lib/gsap.client';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
 
-export function initTextScramble(el: HTMLElement): void {
-  if (reducedMotion) return;
+export function initTextScramble(el: HTMLElement): () => void {
+  if (reducedMotion) return () => {};
 
   const original = el.textContent ?? '';
+  if (el.childElementCount > 0) return () => {};
   const duration = 0.9; // seconds
 
   let startTime: number | null = null;
@@ -34,4 +35,5 @@ export function initTextScramble(el: HTMLElement): void {
   };
 
   gsap.ticker.add(tick);
+  return () => gsap.ticker.remove(tick);
 }
