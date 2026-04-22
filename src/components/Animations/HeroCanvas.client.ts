@@ -16,9 +16,12 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
   let dots: Dot[] = [];
   let rafId = 0;
   let resizeTimer = 0;
+  let logicalW = 0;
+  let logicalH = 0;
 
   const buildDots = () => {
-    gsap.killTweensOf(dots);
+    cancelAnimationFrame(rafId);
+    dots.forEach(dot => gsap.killTweensOf(dot));
     dots = [];
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
@@ -28,6 +31,7 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
       }
     }
     animateDots();
+    rafId = requestAnimationFrame(draw);
   };
 
   const animateDots = () => {
@@ -49,13 +53,15 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
   };
 
   const draw = () => {
-    ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+    ctx.clearRect(0, 0, logicalW, logicalH);
+    ctx.fillStyle = 'rgb(44, 183, 232)';
     dots.forEach(dot => {
       ctx.beginPath();
       ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(44, 183, 232, ${dot.alpha})`;
+      ctx.globalAlpha = dot.alpha;
       ctx.fill();
     });
+    ctx.globalAlpha = 1;
     rafId = requestAnimationFrame(draw);
   };
 
@@ -63,6 +69,8 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
     const dpr = window.devicePixelRatio || 1;
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
+    logicalW = w;
+    logicalH = h;
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.scale(dpr, dpr);
@@ -88,13 +96,12 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
 
   setTimeout(() => {
     resize();
-    rafId = requestAnimationFrame(draw);
   }, 0);
 
   return () => {
     cancelAnimationFrame(rafId);
     clearTimeout(resizeTimer);
-    gsap.killTweensOf(dots);
+    dots.forEach(dot => gsap.killTweensOf(dot));
     ro.disconnect();
     document.removeEventListener('visibilitychange', onVisibility);
   };
