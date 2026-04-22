@@ -81,8 +81,9 @@
   to { --grad-angle: 315deg; }
 }
 
-/* Gradient fallback: requires @property support (Chrome 85+, Safari 16.4+, FF 128+).
-   .bg-accent stays on the element as the static fallback for unsupported browsers. */
+/* Animated gradient using @property for angle interpolation.
+   On browsers without @property support, the gradient renders statically at 135deg — acceptable fallback.
+   .bg-accent on the element remains as the solid-color fallback if gradients unsupported entirely. */
 @supports (background: linear-gradient(var(--grad-angle, 135deg), red, blue)) {
   .performance-gradient {
     background: linear-gradient(var(--grad-angle, 135deg), #1478c8, #0c5ea5);
@@ -121,6 +122,11 @@
     animation: underline-grow linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 40%;
+  }
+
+  /* Center-aligned headings: grow underline from center outward */
+  .text-center.section-heading::after {
+    transform-origin: center;
   }
 }
 
