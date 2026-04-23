@@ -31,7 +31,7 @@ import { industries } from '../../data/industries';
     <!-- 3-col grid using border-as-gap technique -->
     <div id="industries-grid" class="ind-grid" style="gap: 0; border: 1px solid #c8dff0; background: #c8dff0;">
       {industries.map((industry) => (
-        <div data-industry-card style="background: #fff; padding: 40px; position: relative; min-height: 320px;">
+        <div data-industry-card style="background: #fff; padding: 40px; position: relative; min-height: 320px; opacity: 0; transform: translateY(24px);">
           <!-- Top cyan hover bar -->
           <div data-ap-hover style="position: absolute; top: 0; left: 0; width: 48px; height: 2px; background: #2cb7e8; opacity: 0;"></div>
 
@@ -88,10 +88,9 @@ import { industries } from '../../data/industries';
   const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-industry-card]'));
 
   if (reducedMotion) {
-    // already visible, no animation needed
+    // cards are pre-hidden via inline style — show immediately
+    cards.forEach(card => { card.style.opacity = '1'; card.style.transform = 'none'; });
   } else {
-    gsap.set(cards, { opacity: 0, y: 24 }); // initial hidden state
-
     const trigger = ScrollTrigger.create({
       trigger: grid,
       start: 'top 80%',
