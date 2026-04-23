@@ -41,5 +41,8 @@ const stats = [
 <script>
   import { initCountUp } from '../Animations/CountUp.client';
   const section = document.querySelector('section[aria-label="Company stats"]') as HTMLElement | null;
-  if (section) initCountUp(section);
+  if (section) {
+    const cleanup = initCountUp(section);
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  }
 </script>
