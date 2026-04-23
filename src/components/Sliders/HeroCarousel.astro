@@ -162,5 +162,8 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
 <script>
   import { initHeroParallax } from '../Animations/Parallax.client';
   const carousel = document.getElementById('hero-carousel') as HTMLElement | null;
-  if (carousel) initHeroParallax(carousel);
+  if (carousel) {
+    const st = initHeroParallax(carousel);
+    if (st) document.addEventListener('astro:before-swap', () => st.kill(), { once: true });
+  }
 </script>
