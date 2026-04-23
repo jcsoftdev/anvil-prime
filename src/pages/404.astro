@@ -1,19 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
-import Button from '../components/UI/Button.astro';
 ---
 
 <Base title="Page Not Found" noindex>
   <Navbar />
-  <main class="pt-24 min-h-[80vh] flex items-center">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
-      <div class="text-8xl font-bold text-slate-100 mb-4" aria-hidden="true">404</div>
-      <h1 class="text-3xl font-bold text-heading mb-4">Page not found</h1>
-      <p class="text-secondary text-lg mb-8">
+  <main class="pt-20 min-h-[80vh] flex items-center" style="background: #060b17;">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center py-20 w-full">
+      <div
+        class="font-display font-semibold leading-none mb-8 select-none"
+        aria-hidden="true"
+        style="font-size: clamp(140px, 20vw, 280px); background: linear-gradient(to bottom, white, rgba(255,255,255,0.2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+      >
+        404
+      </div>
+      <h1 class="font-display font-semibold text-white mb-4" style="font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.02em;">Page not found</h1>
+      <p class="text-[17px] leading-relaxed mb-8 max-w-md mx-auto" style="color: rgba(255,255,255,0.65);">
         The page you're looking for doesn't exist or has been moved.
       </p>
-      <Button href="/" variant="primary" size="lg">Go Home</Button>
+      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-colors" style="background: #1478c8;">
+        Go Home
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+      </a>
     </div>
   </main>
 </Base>

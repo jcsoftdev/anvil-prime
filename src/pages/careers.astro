@@ -1,12 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
-import ScrollReveal from '../components/Animations/ScrollReveal.astro';
-import Button from '../components/UI/Button.astro';
-import { Image } from 'astro:assets';
-import careersBg from '../assets/images/careers.jpg';
-
-const DELAYS = [0, 100, 200, 300] as const;
 
 const openRoles = [
   { title: 'Senior Full-Stack Engineer', type: 'Full-time', location: 'Remote', team: 'Product Engineering' },
@@ -18,60 +12,58 @@ const openRoles = [
 
 <Base title="Careers" description="Join the Anvil Prime team. Senior-level roles in product engineering, AI/ML, and cloud.">
   <Navbar />
-  <main class="pt-24 pb-20">
-    <section class="relative overflow-hidden bg-slate-900">
-      <Image
-        src={careersBg}
-        alt=""
-        aria-hidden="true"
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        width={1920}
-        height={1080}
-        class="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-slate-900/65" />
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <ScrollReveal>
-          <span class="text-accent-bright font-semibold text-sm uppercase tracking-wider">Careers</span>
-          <h1 class="text-4xl sm:text-5xl font-bold text-white mt-4 mb-6">Work That Matters</h1>
-          <p class="text-xl text-white/70 max-w-2xl mx-auto">
-            We hire senior engineers and build teams that ship. Remote-first, async-friendly, high-trust.
-          </p>
-        </ScrollReveal>
+  <main class="pt-20" style="background: #060b17;">
+
+    <!-- Page Header -->
+    <section style="background: #060b17; padding: 160px 0 100px; position: relative; overflow: hidden;">
+      <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
+      <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2.5 mb-6" style="color: #2cb7e8;">
+          <span style="opacity:0.7">01</span>
+          <span class="inline-block w-6 h-px bg-current opacity-50"></span>
+          <span>Careers</span>
+        </div>
+        <h1 class="font-display font-semibold text-white leading-tight" style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0 0 24px;">Work That Matters</h1>
+        <p class="text-[17px] leading-relaxed max-w-2xl" style="color: rgba(255,255,255,0.65);">
+          We hire senior engineers and build teams that ship. Remote-first, async-friendly, high-trust.
+        </p>
       </div>
     </section>
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-      <ScrollReveal>
-        <h2 class="text-2xl font-bold text-heading mb-8">Open Roles</h2>
-      </ScrollReveal>
+    <!-- Open Roles -->
+    <section style="background: #0b1322; padding: 100px 0;">
+      <div class="max-w-4xl mx-auto px-6 lg:px-12">
+        <h2 class="font-display font-semibold text-white mb-10" style="font-size: clamp(20px, 2.5vw, 28px); letter-spacing: -0.02em;">Open Roles</h2>
 
-      <div class="space-y-4">
-        {openRoles.map((role, i) => (
-          <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
-            <div class="bg-base border border-border rounded-xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 hover:shadow-md transition-shadow">
+        <div class="space-y-4">
+          {openRoles.map((role) => (
+            <div class="relative border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style="background: #1a2b4a; border-color: rgba(255,255,255,0.08); padding: 28px 32px;">
               <div>
-                <h3 class="font-bold text-heading mb-2">{role.title}</h3>
+                <h3 class="font-display font-semibold text-white mb-3" style="font-size: 18px;">{role.title}</h3>
                 <div class="flex flex-wrap gap-2">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-base-muted text-secondary text-xs font-medium">{role.team}</span>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-base-muted text-secondary text-xs font-medium">{role.type}</span>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-success-bg text-success text-xs font-medium">{role.location}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">{role.team}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">{role.type}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">{role.location}</span>
                 </div>
               </div>
-              <Button href="/contact" variant="outline" size="sm" aria-label={`Apply for ${role.title}`}>
-                Apply
-              </Button>
+              <a href="/contact" aria-label={`Apply for ${role.title}`}
+                class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border text-white hover:bg-white/10 transition-colors shrink-0"
+                style="border-color: rgba(255,255,255,0.3);">
+                Apply &rarr;
+              </a>
             </div>
-          </ScrollReveal>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <ScrollReveal class="mt-12 text-center">
-        <p class="text-secondary mb-4">Don't see your role? We're always interested in exceptional people.</p>
-        <Button href="/contact" variant="ghost" size="md">Send us your resume</Button>
-      </ScrollReveal>
-    </div>
+        <div class="mt-12 text-center">
+          <p class="text-[15px] mb-5" style="color: rgba(255,255,255,0.65);">Don't see your role? We're always interested in exceptional people.</p>
+          <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border text-white hover:bg-white/10 transition-colors" style="border-color: rgba(255,255,255,0.3);">
+            Send us your resume
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 </Base>

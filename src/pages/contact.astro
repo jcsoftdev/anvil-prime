@@ -1,10 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
-import ScrollReveal from '../components/Animations/ScrollReveal.astro';
 import { CONTACT_EMAIL } from '../utils/constants';
-import { Image } from 'astro:assets';
-import contactBg from '../assets/images/contact.jpg';
 
 const industries = ['Media & Entertainment', 'Banking, Financial Services & Insurance', 'Healthcare & Life Sciences', 'Retail & CPG', 'Other'];
 const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation', 'Advisory / Strategy', 'Not sure yet'];
@@ -12,116 +9,124 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
 
 <Base title="Contact" description="Talk to the Anvil Prime team about your next AI project.">
   <Navbar />
-  <main class="pt-24 pb-20">
-    <section class="relative overflow-hidden bg-slate-900">
-      <Image
-        src={contactBg}
-        alt=""
-        aria-hidden="true"
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        width={1920}
-        height={1080}
-        class="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-slate-900/65" />
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        <span class="text-accent-bright font-semibold text-sm uppercase tracking-wider">Contact</span>
-        <h1 class="text-4xl sm:text-5xl font-bold text-white mt-4 mb-4">Let's Talk</h1>
-        <p class="text-xl text-white/70 max-w-2xl mx-auto">Tell us about your project. We respond within one business day.</p>
+  <main class="pt-20" style="background: #060b17;">
+
+    <!-- Page Header -->
+    <section style="background: #060b17; padding: 160px 0 100px; position: relative; overflow: hidden;">
+      <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
+      <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2.5 mb-6" style="color: #2cb7e8;">
+          <span style="opacity:0.7">01</span>
+          <span class="inline-block w-6 h-px bg-current opacity-50"></span>
+          <span>Contact</span>
+        </div>
+        <h1 class="font-display font-semibold text-white leading-tight" style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0 0 24px;">Let's Talk</h1>
+        <p class="text-[17px] leading-relaxed max-w-2xl" style="color: rgba(255,255,255,0.65);">Tell us about your project. We respond within one business day.</p>
       </div>
     </section>
 
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-
-      <ScrollReveal>
+    <!-- Form Section -->
+    <section style="background: #0b1322; padding: 80px 0 100px;">
+      <div class="max-w-2xl mx-auto px-6 lg:px-12">
         <form
           id="contact-form"
           data-form="contact"
-          class="bg-base border border-border rounded-2xl p-8 space-y-5 shadow-sm"
+          class="space-y-5"
+          style="border: 1px solid rgba(255,255,255,0.08); padding: 48px;"
         >
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label class="block text-sm font-semibold text-body mb-1.5" for="first-name">First Name <span class="text-accent">*</span></label>
+              <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="first-name" style="color: rgba(255,255,255,0.55);">First Name <span style="color: #2cb7e8;">*</span></label>
               <input id="first-name" name="first_name" type="text" required placeholder="Jane"
-                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+                class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);" />
             </div>
             <div>
-              <label class="block text-sm font-semibold text-body mb-1.5" for="last-name">Last Name <span class="text-accent">*</span></label>
+              <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="last-name" style="color: rgba(255,255,255,0.55);">Last Name <span style="color: #2cb7e8;">*</span></label>
               <input id="last-name" name="last_name" type="text" required placeholder="Smith"
-                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+                class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);" />
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-1.5" for="email">Email <span class="text-accent">*</span></label>
+            <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="email" style="color: rgba(255,255,255,0.55);">Email <span style="color: #2cb7e8;">*</span></label>
             <input id="email" name="email" type="email" required placeholder="jane@company.com"
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+              class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);" />
           </div>
 
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label class="block text-sm font-semibold text-body mb-1.5" for="country">Country</label>
+              <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="country" style="color: rgba(255,255,255,0.55);">Country</label>
               <input id="country" name="country" type="text" placeholder="United States"
-                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+                class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);" />
             </div>
             <div>
-              <label class="block text-sm font-semibold text-body mb-1.5" for="company">Company</label>
+              <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="company" style="color: rgba(255,255,255,0.55);">Company</label>
               <input id="company" name="company" type="text" placeholder="Acme Corp"
-                class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+                class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);" />
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-1.5" for="job-title">Job Title</label>
+            <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="job-title" style="color: rgba(255,255,255,0.55);">Job Title</label>
             <input id="job-title" name="job_title" type="text" placeholder="VP of Engineering"
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors" />
+              class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);" />
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-1.5" for="industry">Industry</label>
+            <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="industry" style="color: rgba(255,255,255,0.55);">Industry</label>
             <select id="industry" name="industry"
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors">
-              <option value="">Select your industry...</option>
-              {industries.map(ind => <option value={ind}>{ind}</option>)}
+              class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);">
+              <option value="" style="background: #0b1322;">Select your industry...</option>
+              {industries.map(ind => <option value={ind} style="background: #0b1322;">{ind}</option>)}
             </select>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-1.5" for="interest">I'm interested in</label>
+            <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="interest" style="color: rgba(255,255,255,0.55);">I'm interested in</label>
             <select id="interest" name="interest"
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors">
-              <option value="">Select a service...</option>
-              {interests.map(i => <option value={i}>{i}</option>)}
+              class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);">
+              <option value="" style="background: #0b1322;">Select a service...</option>
+              {interests.map(i => <option value={i} style="background: #0b1322;">{i}</option>)}
             </select>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-body mb-1.5" for="notes">Additional Notes</label>
+            <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="notes" style="color: rgba(255,255,255,0.55);">Additional Notes</label>
             <textarea id="notes" name="notes" rows="4" placeholder="What are you building? What's the challenge? What have you tried?"
-              class="w-full px-4 py-3 rounded-lg border border-border-strong text-heading placeholder-subtle focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors resize-none" />
+              class="w-full px-4 py-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8] resize-none"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);" />
           </div>
 
           <div class="flex items-start gap-3">
             <input id="terms" name="terms" type="checkbox" required
-              class="mt-1 h-4 w-4 rounded border-border-strong text-accent focus:ring-accent focus:ring-offset-0" />
-            <label for="terms" class="text-sm text-muted leading-relaxed">
-              I agree to the <a href="/privacy" class="text-accent hover:underline">Privacy Policy</a> and <a href="/terms" class="text-accent hover:underline">Terms of Service</a>.
+              class="mt-1 h-4 w-4 focus:ring-[#2cb7e8] focus:ring-offset-0"
+              style="accent-color: #1478c8;" />
+            <label for="terms" class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">
+              I agree to the <a href="/privacy" style="color: #2cb7e8;" class="hover:underline">Privacy Policy</a> and <a href="/terms" style="color: #2cb7e8;" class="hover:underline">Terms of Service</a>.
             </label>
           </div>
 
           <button type="submit"
-            class="w-full py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+            class="w-full py-4 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+            style="background: #1478c8;">
             Send Message
           </button>
         </form>
 
-        <p class="text-center text-muted text-sm mt-6">
-          Or email us at <a href={`mailto:${CONTACT_EMAIL}`} class="text-accent hover:underline">{CONTACT_EMAIL}</a>
+        <p class="text-center text-sm mt-6" style="color: rgba(255,255,255,0.45);">
+          Or email us at <a href={`mailto:${CONTACT_EMAIL}`} style="color: #2cb7e8;" class="hover:underline">{CONTACT_EMAIL}</a>
         </p>
-      </ScrollReveal>
-    </div>
+      </div>
+    </section>
+
   </main>
 </Base>
 

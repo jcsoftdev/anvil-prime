@@ -1,12 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
-import ScrollReveal from '../components/Animations/ScrollReveal.astro';
-import Button from '../components/UI/Button.astro';
-import { Image } from 'astro:assets';
-import aboutBg from '../assets/images/about.jpg';
-
-const DELAYS = [0, 100, 200, 300] as const;
 
 const values = [
   { name: 'Ownership', description: "We treat every project like it's our own product. No handoffs to nowhere." },
@@ -18,63 +12,53 @@ const values = [
 
 <Base title="About Us" description="Learn about Anvil Prime — who we are, what we believe, and how we work.">
   <Navbar />
-  <main class="pt-24 pb-20">
-    <!-- Mission -->
-    <section class="relative overflow-hidden bg-slate-900">
-      <Image
-        src={aboutBg}
-        alt=""
-        aria-hidden="true"
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        width={1920}
-        height={1080}
-        class="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-slate-900/65" />
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <ScrollReveal>
-          <span class="text-accent-bright font-semibold text-sm uppercase tracking-wider">About Us</span>
-          <h1 class="text-4xl sm:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
-            We're Engineers Who<br />Started a Company
-          </h1>
-          <p class="text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
-            Anvil Prime was founded by engineers who got tired of consulting firms that over-promised and under-delivered. We built the firm we wanted to work with.
-          </p>
-        </ScrollReveal>
+  <main class="pt-20" style="background: #060b17;">
+
+    <!-- Page Header -->
+    <section style="background: #060b17; padding: 160px 0 100px; position: relative; overflow: hidden;">
+      <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
+      <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2.5 mb-6" style="color: #2cb7e8;">
+          <span style="opacity:0.7">01</span>
+          <span class="inline-block w-6 h-px bg-current opacity-50"></span>
+          <span>About</span>
+        </div>
+        <h1 class="font-display font-semibold text-white leading-tight" style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0 0 24px;">
+          We're Engineers Who<br />Started a Company
+        </h1>
+        <p class="text-[17px] leading-relaxed max-w-2xl" style="color: rgba(255,255,255,0.65);">
+          Anvil Prime was founded by engineers who got tired of consulting firms that over-promised and under-delivered. We built the firm we wanted to work with.
+        </p>
       </div>
     </section>
 
     <!-- Values -->
-    <section class="bg-base-alt py-20" aria-label="Our values">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal>
-          <h2 class="text-3xl font-bold text-heading text-center mb-16">How We Work</h2>
-        </ScrollReveal>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, i) => (
-            <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
-              <div class="text-center">
-                <div class="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center mx-auto mb-4" aria-hidden="true">
-                  <div class="w-6 h-6 bg-accent rounded" />
-                </div>
-                <h3 class="font-bold text-heading mb-2">{value.name}</h3>
-                <p class="text-secondary text-sm leading-relaxed">{value.description}</p>
-              </div>
-            </ScrollReveal>
+    <section style="background: #0b1322; padding: 100px 0;" aria-label="Our values">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <h2 class="font-display font-semibold text-white text-center mb-16" style="font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.02em;">How We Work</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {values.map((value) => (
+            <div class="relative border" style="background: #0b1322; border-color: rgba(255,255,255,0.08); padding: 32px;">
+              <div class="absolute top-0 left-0 h-0.5" style="width: 48px; background: #2cb7e8;"></div>
+              <h3 class="font-display font-semibold text-white mb-3" style="font-size: 18px;">{value.name}</h3>
+              <p class="text-[14px] leading-relaxed" style="color: rgba(255,255,255,0.65);">{value.description}</p>
+            </div>
           ))}
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-      <ScrollReveal>
-        <h2 class="text-3xl font-bold text-heading mb-4">Want to Work Together?</h2>
-        <p class="text-secondary text-lg mb-8">Tell us about your project and we'll get back to you within one business day.</p>
-        <Button href="/contact" variant="primary" size="lg">Get in Touch</Button>
-      </ScrollReveal>
+    <section style="background: #060b17; padding: 100px 0;">
+      <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+        <h2 class="font-display font-semibold text-white mb-4" style="font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.02em;">Want to Work Together?</h2>
+        <p class="text-[17px] leading-relaxed mb-8" style="color: rgba(255,255,255,0.65);">Tell us about your project and we'll get back to you within one business day.</p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border text-white hover:bg-white/10 transition-colors" style="border-color: rgba(255,255,255,0.3);">
+          Get in Touch
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </a>
+      </div>
     </section>
+
   </main>
 </Base>
