@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
+import { Image } from 'astro:assets';
+import servicesBg from '../../assets/images/services.jpg';
 
 const services = [
   {
@@ -31,9 +33,22 @@ const services = [
   <Navbar />
   <main class="pt-20" style="background: #060b17;">
 
-    <section style="background: #060b17; padding: 160px 0 100px; position: relative; overflow: hidden;">
+    <section class="relative overflow-hidden" style="background: #060b17;">
+      <Image
+        src={servicesBg}
+        alt=""
+        aria-hidden="true"
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        width={1920}
+        height={1080}
+        class="absolute inset-0 w-full h-full object-cover"
+        style="opacity: 0.12;"
+        loading="eager"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(6,11,23,0.3) 0%, rgba(6,11,23,0.7) 100%);"></div>
       <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
-      <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 py-28 sm:py-36 lg:py-44">
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2.5 mb-6" style="color: #2cb7e8;">
           <span style="opacity:0.7">03</span>
           <span class="inline-block w-6 h-px bg-current opacity-50"></span>
@@ -46,9 +61,9 @@ const services = [
       </div>
     </section>
 
-    <section style="background: #0b1322; padding: 80px 0;">
-      <div class="max-w-7xl mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-3 gap-6">
+    <section class="py-16 sm:py-20 lg:py-24" style="background: #0b1322;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service) => (
             <a href={service.href} class="group flex flex-col border transition-transform duration-200 hover:-translate-y-1 relative" style="border-color: rgba(255,255,255,0.08); background: #0b1322; padding: 36px; text-decoration: none; color: inherit;">
               <div class="absolute top-0 left-0 h-0.5 transition-all duration-300" style="width: 48px; background: #2cb7e8;" data-accent-bar></div>
@@ -69,8 +84,8 @@ const services = [
       </div>
     </section>
 
-    <section style="background: #060b17; padding: 80px 0;">
-      <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+    <section class="py-16 sm:py-20" style="background: #060b17;">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
         <h2 class="font-display font-semibold text-white mb-4" style="font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.03em;">Ready to build?</h2>
         <p class="text-[16px] mb-8" style="color: rgba(255,255,255,0.65);">Tell us about your project.</p>
         <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-colors" style="background: #1478c8;">
