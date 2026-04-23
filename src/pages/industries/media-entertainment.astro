@@ -1,10 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
-import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
-import Button from '../../components/UI/Button.astro';
-import { Image } from 'astro:assets';
-import mediaBg from '../../assets/images/industry-media.jpg';
 
 const solutions = [
   { title: 'Media Supply Chain', description: 'AI-powered ingest, transcoding, quality control, and distribution workflows for video and audio content at scale.' },
@@ -15,49 +11,46 @@ const solutions = [
 
 <Base title="Media & Entertainment AI" description="Applied AI for media supply chain, content monetization, and audience distribution.">
   <Navbar />
-  <main class="pt-24 pb-20">
-    <section class="relative overflow-hidden bg-slate-900">
-      <Image
-        src={mediaBg}
-        alt=""
-        aria-hidden="true"
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        width={1920}
-        height={1080}
-        class="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-slate-900/65" />
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <ScrollReveal>
-          <a href="/industries" class="text-accent-bright text-sm font-medium hover:underline">← Industries</a>
-          <h1 class="text-4xl sm:text-5xl font-bold text-white mt-6 mb-6">Media & Entertainment</h1>
-          <p class="text-xl text-white/70 leading-relaxed max-w-2xl">
-            From content supply chains to audience monetization — we build AI systems that help media companies scale what works and cut what doesn't.
-          </p>
-        </ScrollReveal>
+  <main class="pt-20" style="background: #060b17;">
+
+    <section style="background: #060b17; padding: 160px 0 100px; position: relative; overflow: hidden;">
+      <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
+      <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+        <a href="/industries" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2 mb-8" style="color: #2cb7e8; opacity: 0.8; text-decoration: none;">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+          Industries
+        </a>
+        <h1 class="font-display font-semibold text-white leading-tight" style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0 0 24px;">Media & Entertainment</h1>
+        <p class="text-[17px] leading-relaxed max-w-2xl" style="color: rgba(255,255,255,0.65);">
+          From content supply chains to audience monetization — we build AI systems that help media companies scale what works and cut what doesn't.
+        </p>
       </div>
     </section>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div class="grid sm:grid-cols-3 gap-6">
-        {solutions.map((s, i) => {
-          const DELAYS = [0, 100, 200] as const;
-          return (
-            <ScrollReveal delay={DELAYS[i]}>
-              <div class="bg-base-alt rounded-xl p-6 border border-border h-full">
-                <h3 class="font-bold text-heading mb-2">{s.title}</h3>
-                <p class="text-secondary text-sm leading-relaxed">{s.description}</p>
-              </div>
-            </ScrollReveal>
-          );
-        })}
+
+    <section style="background: #0b1322; padding: 80px 0;">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {solutions.map((s) => (
+            <div class="border p-8" style="background: #0b1322; border-color: rgba(255,255,255,0.08);">
+              <div class="h-0.5 mb-6" style="width: 32px; background: #2cb7e8;"></div>
+              <h3 class="font-display font-semibold text-white mb-3" style="font-size: 18px;">{s.title}</h3>
+              <p class="text-[14px] leading-relaxed" style="color: rgba(255,255,255,0.65);">{s.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-    <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-      <ScrollReveal>
-        <Button href="/contact" variant="primary" size="lg">Talk to a Media AI Expert</Button>
-      </ScrollReveal>
+
+    <section style="background: #060b17; padding: 80px 0;">
+      <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+        <h2 class="font-display font-semibold text-white mb-4" style="font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.03em;">Ready to build?</h2>
+        <p class="text-[16px] mb-8" style="color: rgba(255,255,255,0.65);">Tell us about your project.</p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-colors" style="background: #1478c8;">
+          Talk to a Media AI Expert
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </a>
+      </div>
     </section>
+
   </main>
 </Base>
