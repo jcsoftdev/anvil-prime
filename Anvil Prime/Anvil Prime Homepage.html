@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anvil Prime — Homepage Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: Inter, system-ui, sans-serif; color: #1a2b4a; background: #fff; }
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  button { font-family: Inter, system-ui, sans-serif; }
+  ::selection { background: #2cb7e8; color: #0b1322; }
+  .ap-root.dark { background: #0b1322; color: #e7eef9; }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="components/tokens.jsx"></script>
+<script type="text/babel" src="components/nav.jsx"></script>
+<script type="text/babel" src="components/hero.jsx"></script>
+<script type="text/babel" src="components/sections.jsx"></script>
+<script type="text/babel" src="components/tweaks.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="components/compare.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "heroVariant": "bold",
+  "accentLevel": "medium",
+  "statsTreatment": "massive",
+  "dividerStyle": "overlap",
+  "navMode": "minimal",
+  "typeScale": 0.85,
+  "dark": true,
+  "view": "homepage"
+}/*EDITMODE-END*/;
+
+function App() {
+  const [state, setState] = React.useState(TWEAK_DEFAULTS);
+  const [tweaksOn, setTweaksOn] = React.useState(false);
+
+  // Tweaks host protocol
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      if (!e.data) return;
+      if (e.data.type === '__activate_edit_mode') setTweaksOn(true);
+      if (e.data.type === '__deactivate_edit_mode') setTweaksOn(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const setKey = (k, v) => {
+    const next = { ...state, [k]: v };
+    setState(next);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*');
+  };
+
+  const dark = state.dark;
+  const onDarkHero = state.heroVariant !== 'premium' || dark;
+
+  return (
+    <div className={`ap-root ${dark ? 'dark' : ''}`} data-screen-label="Anvil Prime — Homepage" style={{ background: dark ? '#0b1322' : '#fff' }}>
+      {state.view === 'compare' ? (
+        <div style={{ height: '100vh' }}>
+          <CompareView state={state} />
+        </div>
+      ) : (
+        <>
+          <Nav dark={onDarkHero} navMode={state.navMode} darkMode={dark} onToggleDark={() => setKey('dark', !dark)} />
+          <HeroCarousel
+            variant={state.heroVariant}
+            accentLevel={state.accentLevel}
+            typeScale={state.typeScale}
+            dark={dark}
+          />
+          <IndustriesGrid dark={dark} />
+          <CaseCarousel dark={dark} />
+          <StatsSection treatment={state.statsTreatment} dark={dark} />
+          <InsightsCarousel dark={dark} />
+          <CTAStrip dark={dark} />
+          <Footer dark={dark} />
+        </>
+      )}
+
+      <Tweaks state={state} setKey={setKey} visible={tweaksOn} />
+
+      {/* floating view switcher when tweaks off */}
+      {!tweaksOn && (
+        <div style={{
+          position: 'fixed', bottom: 20, right: 20, zIndex: 100,
+          background: 'rgba(11,19,34,0.92)', color: '#e7eef9',
+          border: '1px solid rgba(255,255,255,0.12)', padding: 4, display: 'flex', gap: 0,
+          fontFamily: 'Inter, sans-serif', fontSize: 12, backdropFilter: 'blur(8px)',
+        }}>
+          {[['homepage', 'Homepage'], ['compare', 'Compare heroes']].map(([v, l]) => (
+            <button key={v} onClick={() => setKey('view', v)} style={{
+              background: state.view === v ? '#2cb7e8' : 'transparent',
+              color: state.view === v ? '#0b1322' : '#e7eef9',
+              border: 'none', padding: '8px 14px', cursor: 'pointer', fontWeight: 500, fontSize: 12,
+            }}>{l}</button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
