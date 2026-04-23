@@ -26,9 +26,9 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
   <Navbar />
 
   <!-- Hero Header -->
-  <section style="background: #060b17; padding: 140px 0 60px; position: relative; overflow: hidden;">
+  <section class="relative overflow-hidden" style="background: #060b17;">
     <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.04) 1px,transparent 1px); background-size: 48px 48px;"></div>
-    <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 py-28 sm:py-32 lg:py-36">
       <a href="/case-studies" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2 mb-8" style="opacity:0.8; color: #2cb7e8; text-decoration: none;">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
         Case Studies
@@ -41,8 +41,8 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
 
   <!-- Hero Image -->
   {caseStudyImages[study.id] && (
-    <div class="max-w-4xl mx-auto px-6 lg:px-12" style="background: #060b17; margin-top: -1px;">
-      <div class="overflow-hidden" style="height: 320px;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12" style="background: #060b17; margin-top: -1px;">
+      <div class="overflow-hidden h-48 sm:h-64 lg:h-80">
         <Image
           src={caseStudyImages[study.id]}
           alt={study.data.title}
@@ -55,9 +55,9 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
   )}
 
   <!-- Content + Sidebar -->
-  <section style="background: #0b1322; padding: 80px 0 120px;">
-    <div class="max-w-4xl mx-auto px-6 lg:px-12">
-      <div class="grid lg:grid-cols-3 gap-12">
+  <section class="py-12 sm:py-16 lg:py-20" style="background: #0b1322;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
         <!-- Article prose -->
         <div class="lg:col-span-2">
           <div class="prose-dark text-[15px] leading-relaxed [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-white [&_h2]:text-xl [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-white [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:text-white [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:font-mono" style="color: rgba(255,255,255,0.7);">
@@ -66,7 +66,7 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
         </div>
 
         <!-- Sidebar -->
-        <aside class="space-y-6">
+        <aside class="space-y-4 sm:space-y-6">
           <!-- Key Outcomes -->
           <div class="border p-6" style="background: #1a2b4a; border-color: rgba(255,255,255,0.08);">
             <h3 class="font-mono text-[11px] tracking-[0.16em] uppercase mb-4" style="color: #2cb7e8;">Key Outcomes</h3>

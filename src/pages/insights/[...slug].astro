@@ -43,9 +43,9 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
   <Navbar />
   <main style="background: #060b17;">
     <!-- Hero header -->
-    <section style="background: #060b17; padding: 140px 0 60px; position: relative; overflow: hidden;">
+    <section class="relative overflow-hidden" style="background: #060b17;">
       <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.04) 1px,transparent 1px); background-size: 48px 48px;"></div>
-      <div class="max-w-3xl mx-auto px-6 lg:px-12 relative">
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 py-28 sm:py-32 lg:py-36">
         <a href="/insights" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2 mb-8" style="color: #2cb7e8; opacity:0.8;">
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
           Insights
@@ -63,16 +63,16 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
 
     <!-- Hero image -->
     {insightImages[post.id] && (
-      <div class="max-w-3xl mx-auto px-6 lg:px-12" style="margin-top: 40px;">
-        <div class="overflow-hidden" style="height: 280px;">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div class="overflow-hidden h-48 sm:h-64 lg:h-80">
           <Image src={insightImages[post.id]} alt={post.data.title} class="w-full h-full object-cover opacity-70" widths={[800, 1200]} sizes="(min-width: 768px) 768px, 100vw" />
         </div>
       </div>
     )}
 
     <!-- Content section -->
-    <section style="background: #0b1322; padding: 80px 0 120px;">
-      <div class="max-w-3xl mx-auto px-6 lg:px-12">
+    <section class="py-12 sm:py-16 lg:py-20" style="background: #0b1322;">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12">
         <div class="prose-dark text-[15px] leading-relaxed [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-white [&_h2]:text-xl [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-white [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:text-white" style="color: rgba(255,255,255,0.7);">
           <Content />
         </div>
