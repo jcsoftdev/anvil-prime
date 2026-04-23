@@ -40,9 +40,10 @@ const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
@@ -71,3 +72,15 @@ const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro
     <Footer />
   </body>
 </html>
+
+<script>
+  import { initMagneticButtons } from '../components/Animations/MagneticButton.client';
+
+  function setup() {
+    const cleanup = initMagneticButtons();
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  }
+
+  setup();
+  document.addEventListener('astro:after-swap', setup);
+</script>

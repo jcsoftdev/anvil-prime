@@ -1,133 +1,195 @@
 ---
-import { Image } from 'astro:assets';
-import { heroSlides } from './HeroCarousel.client';
-import slide0Bg from '../../assets/images/hero-consulting.jpg';
-import slide1Bg from '../../assets/images/hero-ai.jpg';
-import slide2Bg from '../../assets/images/hero-cloud.jpg';
-import slide3Bg from '../../assets/images/hero-team.jpg';
+interface HeroSlide {
+  kpi: string;
+  kpiLabel: string;
+  eyebrowNum: string;
+  sector: string;
+  title: string;
+  sub: string;
+  client: string;
+  result: string;
+  duration: string;
+  team: string;
+}
 
-const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    kpi: '$2.4B',
+    kpiLabel: 'in client value delivered since 2019',
+    eyebrowNum: '01',
+    sector: 'Financial services',
+    title: 'We build the systems\nthat run the enterprise.',
+    sub: 'Anvil Prime is the partner Fortune 500 teams call when the stakes are existential and the timeline is impossible. AI platforms, cloud migrations, and digital engineering — delivered with industrial precision.',
+    client: 'Northgate Bank',
+    result: '38% reduction in settlement latency across 14 markets.',
+    duration: '18 months, 2 phases',
+    team: '36 engineers · 6 leads',
+  },
+  {
+    kpi: '340M',
+    kpiLabel: 'transactions/day on platforms we built',
+    eyebrowNum: '02',
+    sector: 'Healthcare',
+    title: 'Forge what the\nmarket cannot copy.',
+    sub: 'Proprietary advantage takes more than slides. It takes hardened platforms, measured outcomes, and teams who ship. We spend 6–18 months embedded — then leave it running.',
+    client: 'Meridian Health',
+    result: 'Claims triage AI reviewing 1.2M records per hour.',
+    duration: '9 months, 1 phase',
+    team: '24 engineers · 4 leads',
+  },
+  {
+    kpi: '99.997%',
+    kpiLabel: 'uptime across 47 mission-critical systems',
+    eyebrowNum: '03',
+    sector: 'Energy & industrial',
+    title: 'Precision engineering\nfor the AI era.',
+    sub: 'Edge compute, LLM orchestration, zero-trust security. We operate where uptime is measured in nines and compliance is a contract, not a slogan.',
+    client: 'Cascade Grid',
+    result: 'Predictive outage model across 4,200 substations.',
+    duration: '14 months, 3 phases',
+    team: '38 engineers · 8 leads',
+  },
+];
 ---
 
-<div class="relative overflow-hidden" id="hero-carousel" aria-label="Hero slideshow" aria-roledescription="carousel">
-  <!-- Canvas dot grid: absolute sibling of Embla viewport, above overlay (z-1), below content (z-10) -->
-  <canvas
-    id="hero-canvas"
-    aria-hidden="true"
-    class="absolute inset-0 w-full h-full pointer-events-none"
-    style="z-index: 1;"
-  ></canvas>
-  <!-- Embla viewport -->
-  <div class="overflow-hidden h-full" id="hero-embla-viewport">
-    <div class="flex h-full touch-pan-y">
-      {heroSlides.map((slide, i) => {
-        const Heading = i === 0 ? 'h1' : 'h2';
-        return (
-          <div
-            class={`relative flex-none w-full min-h-[600px] lg:min-h-[700px] bg-gradient-to-br ${slide.bgColor} bg-slate-900 flex items-center overflow-hidden`}
-            role="group"
-            aria-label={`Slide ${i + 1} of ${heroSlides.length}`}
-            aria-roledescription="slide"
-            data-hero-slide
-          >
-            <Image
-              src={slideBgs[i]}
-              alt=""
-              aria-hidden="true"
-              widths={[768, 1280, 1920]}
-              sizes="100vw"
-              width={1920}
-              height={1080}
-              class="absolute inset-0 w-full h-full object-cover"
-              loading={i === 0 ? 'eager' : 'lazy'}
-              fetchpriority={i === 0 ? 'high' : undefined}
-            />
-            <div class="absolute inset-0 bg-slate-900/65" />
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
-              <div data-slide-content>
-                <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider mb-6">
-                  {slide.tag}
-                </span>
-                <Heading class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mb-6">
-                  {slide.headline}
+<section
+  id="hero-carousel"
+  aria-label="Hero slideshow"
+  style="position: relative; background: #060b17; color: #fff; overflow: hidden;"
+>
+  <!-- Background textures -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 56px 56px; pointer-events: none;"></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(rgba(44,183,232,0.28) 1.4px, transparent 1.4px); background-size: 28px 28px; pointer-events: none;"></div>
+  <!-- Grain overlay -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; opacity: 0.08; mix-blend-mode: overlay; pointer-events: none; background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>&quot;);"></div>
+
+  <!-- Canvas dot grid (animation, positioned above textures, below content) -->
+  <canvas id="hero-canvas" aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;"></canvas>
+
+  <!-- Slides container -->
+  <div style="position: relative; z-index: 2; min-height: 720px;">
+    {HERO_SLIDES.map((slide, i) => {
+      const Heading = i === 0 ? 'h1' : 'h2';
+      return (
+        <div
+          data-hero-slide
+          role="group"
+          aria-label={`Slide ${i + 1} of ${HERO_SLIDES.length}`}
+          aria-roledescription="slide"
+          style={i === 0 ? '' : 'display: none;'}
+        >
+          <div style="max-width: 1440px; margin: 0 auto; padding: 80px 48px 60px;">
+            <!-- Top row: eyebrow + metadata -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
+              <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #2cb7e8; display: flex; align-items: center; gap: 10px;">
+                <span style="opacity: 0.7;">{slide.eyebrowNum}</span>
+                <span style="width: 24px; height: 1px; background: currentColor; opacity: 0.5; display: inline-block;"></span>
+                <span>{slide.sector}</span>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-align: right; line-height: 1.6;">
+                Case 04 of 47<br/>
+                <span style="color: #2cb7e8;">Live engagement</span>
+              </div>
+            </div>
+
+            <!-- Massive KPI number -->
+            <div data-kpi style="position: relative; margin-bottom: 24px;">
+              <div style="font-family: var(--font-display); font-size: clamp(140px, 22vw, 380px); line-height: 0.82; letter-spacing: -0.06em; font-weight: 600; background: linear-gradient(180deg, #fff 0%, #fff 60%, #2cb7e8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; white-space: nowrap;" aria-hidden="true">
+                {slide.kpi}
+              </div>
+              <!-- cyan rule under number -->
+              <div style="position: absolute; bottom: 12px; left: 0; height: 2px; width: 62%; background: #2cb7e8; opacity: 0.8;"></div>
+            </div>
+
+            <!-- 2-col below number -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-end">
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #2cb7e8; margin-bottom: 16px;">{slide.kpiLabel}</div>
+                <Heading data-slide-content style="font-family: var(--font-display); font-size: 52px; line-height: 1.02; letter-spacing: -0.03em; font-weight: 600; margin: 0; white-space: pre-line; color: #fff;">
+                  {slide.title}
                 </Heading>
-                {i === 0 && (
-                  <svg
-                    aria-hidden="true"
-                    width="200"
-                    height="8"
-                    viewBox="0 0 200 8"
-                    style="visibility: hidden; margin-bottom: 1.5rem; display: block;"
-                    data-svg-draw
-                  >
-                    <path
-                      d="M0,4 Q50,0 100,4 T200,4"
-                      fill="none"
-                      stroke="#2cb7e8"
-                      stroke-width="2"
-                      stroke-dasharray="230"
-                      stroke-dashoffset="230"
-                    />
-                  </svg>
-                )}
-                <p class="text-lg sm:text-xl text-white/70 max-w-xl mb-8 leading-relaxed">
-                  {slide.subheadline}
-                </p>
-                <a
-                  href={slide.cta.href}
-                  class="inline-flex items-center px-8 py-4 bg-base text-heading font-semibold rounded-lg hover:bg-base-muted transition-colors duration-200 text-base"
-                >
-                  {slide.cta.label}
-                  <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+              </div>
+              <div>
+                <p style="font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.75); margin-bottom: 28px;">{slide.sub}</p>
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                  <a href="/case-studies" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: #2cb7e8; color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 15px; text-decoration: none; border-radius: 2px; border: 1.5px solid #2cb7e8; transition: background 0.15s;">
+                    See our work
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                  </a>
+                  <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: transparent; color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 15px; text-decoration: none; border-radius: 2px; border: 1.5px solid rgba(255,255,255,0.35); transition: background 0.15s, border-color 0.15s;">
+                    Book a consult
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Spec row -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12" style="margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55);">
+              <div>
+                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; CLIENT</span><br/>
+                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.client}</span>
+              </div>
+              <div>
+                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; OUTCOME</span><br/>
+                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.result}</span>
+              </div>
+              <div>
+                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; DURATION</span><br/>
+                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.duration}</span>
+              </div>
+              <div>
+                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; TEAM</span><br/>
+                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.team}</span>
               </div>
             </div>
           </div>
-        );
-      })}
+        </div>
+      );
+    })}
+  </div>
+
+  <!-- Slide controls (bottom-right) -->
+  <div style="position: absolute; bottom: 32px; right: 48px; z-index: 5; display: flex; align-items: center; gap: 16px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.7);">
+    <span id="hero-counter">01 / 03</span>
+    <div style="display: flex; gap: 6px;" aria-label="Slide indicators">
+      {HERO_SLIDES.map((_, i) => (
+        <button
+          data-hero-dot
+          aria-label={`Go to slide ${i + 1}`}
+          style={`width: ${i === 0 ? 28 : 10}px; height: 2px; background: ${i === 0 ? '#2cb7e8' : 'rgba(255,255,255,0.3)'}; border: none; cursor: pointer; transition: all 0.25s; padding: 0;`}
+        />
+      ))}
+    </div>
+    <div style="display: flex; gap: 4px;">
+      <button id="hero-prev" aria-label="Previous slide" style="width: 32px; height: 32px; background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+      </button>
+      <button id="hero-next" aria-label="Next slide" style="width: 32px; height: 32px; background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+      </button>
     </div>
   </div>
 
-  <!-- Arrow navigation -->
-  <button
-    id="hero-prev"
-    class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-    aria-label="Previous slide"
+  <!-- SVG draw decoration (shown on slide 0 only) -->
+  <svg
+    aria-hidden="true"
+    width="200"
+    height="8"
+    viewBox="0 0 200 8"
+    style="visibility: hidden; position: absolute; left: 48px; bottom: 32px; z-index: 5;"
+    data-svg-draw
   >
-    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-    </svg>
-  </button>
-  <button
-    id="hero-next"
-    class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-    aria-label="Next slide"
-  >
-    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-    </svg>
-  </button>
+    <path d="M0,4 Q50,0 100,4 T200,4" fill="none" stroke="#2cb7e8" stroke-width="2" stroke-dasharray="230" stroke-dashoffset="230"/>
+  </svg>
+</section>
 
-  <!-- Dot indicators -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2" aria-label="Slide indicators">
-    {heroSlides.map((_, i) => (
-      <button
-        data-hero-dot
-        aria-label={`Go to slide ${i + 1}`}
-        class={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${i === 0 ? 'w-8 bg-white' : 'w-2 bg-white/40'}`}
-      />
-    ))}
-  </div>
-</div>
-
+<!-- Animation scripts (all kept from previous implementation) -->
 <script>
   import { initHeroCarousel } from './HeroCarousel.client';
-  const root = document.getElementById('hero-embla-viewport') as HTMLElement;
+  const root = document.getElementById('hero-carousel') as HTMLElement | null;
   if (root) {
-    const embla = initHeroCarousel(root);
-    document.addEventListener('astro:before-swap', () => embla.destroy(), { once: true });
+    const stop = initHeroCarousel(root);
+    document.addEventListener('astro:before-swap', stop, { once: true });
   }
 </script>
 
@@ -143,9 +205,9 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
 <script>
   import { initTextScramble } from '../Animations/TextScramble.client';
   const firstSlide = document.querySelector('[data-hero-slide]');
-  const h1 = firstSlide?.querySelector('h1') as HTMLElement | null;
-  if (h1) {
-    const cleanup = initTextScramble(h1);
+  const heading = firstSlide?.querySelector('h1') as HTMLElement | null;
+  if (heading) {
+    const cleanup = initTextScramble(heading);
     document.addEventListener('astro:before-swap', cleanup, { once: true });
   }
 </script>

@@ -6,7 +6,10 @@ export function initHeroParallax(carousel: HTMLElement): ScrollTrigger | undefin
 
   const images = carousel.querySelectorAll<HTMLImageElement>('[data-hero-slide] img');
   const contents = carousel.querySelectorAll<HTMLElement>('[data-slide-content]');
-  if (!images.length || !contents.length) return;
+  const kpis = carousel.querySelectorAll<HTMLElement>('[data-kpi]');
+
+  // Require at least content or KPIs to animate
+  if (!contents.length && !kpis.length) return;
 
   return ScrollTrigger.create({
     trigger: carousel,
@@ -14,10 +17,15 @@ export function initHeroParallax(carousel: HTMLElement): ScrollTrigger | undefin
     end: 'bottom top',
     scrub: true,
     onUpdate: (self) => {
-      const yImages = self.progress * window.innerHeight * 0.4;
-      const yContent = self.progress * window.innerHeight * 0.15;
-      gsap.set(images, { y: yImages });
-      gsap.set(contents, { y: yContent });
+      if (images.length) {
+        gsap.set(Array.from(images), { y: self.progress * window.innerHeight * 0.4 });
+      }
+      if (contents.length) {
+        gsap.set(Array.from(contents), { y: self.progress * window.innerHeight * 0.15 });
+      }
+      if (kpis.length) {
+        gsap.set(Array.from(kpis), { y: self.progress * window.innerHeight * 0.25 });
+      }
     },
   });
 }

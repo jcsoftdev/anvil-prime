@@ -34,9 +34,16 @@
   --color-success: #047857;      /* emerald-700 — 5.1:1 on white ✓ */
   --color-success-bg: #d1fae5;
 
+  /* Dark surfaces */
+  --color-ink: #0b1322;
+  --color-ink-alt: #101a33;
+  --color-ink-deep: #0f1a30;
+  --color-ink-line: #22304d;
+
   /* Typography */
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Cal Sans', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 @layer base {

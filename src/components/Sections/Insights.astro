@@ -1,25 +1,127 @@
 ---
-import InsightsCarousel from '../Sliders/InsightsCarousel.astro';
-import ScrollReveal from '../Animations/ScrollReveal.astro';
-import Button from '../UI/Button.astro';
+import { Image } from 'astro:assets';
+import insight0Img from '../../assets/images/insight-ai-enterprise.jpg';
+import insight1Img from '../../assets/images/insight-cloud-native.jpg';
+import insight2Img from '../../assets/images/insight-engineering-culture.jpg';
+
+const insightImages = [insight0Img, insight1Img, insight2Img];
+
+const articles = [
+  {
+    tag: 'Field note',
+    date: 'Apr 2026',
+    title: 'Why most enterprise AI pilots stall at month 9 — and how to design past it.',
+    author: 'M. Okoro, Principal',
+    href: '/insights/future-of-ai',
+  },
+  {
+    tag: 'Whitepaper',
+    date: 'Mar 2026',
+    title: 'FinOps at petabyte scale: the 6 anti-patterns we see in every audit.',
+    author: 'S. Vasquez, VP Cloud',
+    href: '/insights/cloud-native-patterns',
+  },
+  {
+    tag: 'Case brief',
+    date: 'Feb 2026',
+    title: 'Inside the Northgate settlement rebuild: 38% faster, 0 regressions.',
+    author: 'D. Patel, Lead',
+    href: '/insights/engineering-culture',
+  },
+];
 ---
 
-<section class="py-20 bg-base-alt" aria-label="Insights and blog">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <ScrollReveal>
-      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
-        <div>
-          <span class="text-accent font-semibold text-sm uppercase tracking-wider">Insights</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-heading mt-2">
-            Thinking From the Field
-          </h2>
-        </div>
-        <Button href="/insights" variant="outline" size="sm">
-          All Articles
-        </Button>
-      </div>
-    </ScrollReveal>
+<section class="relative overflow-hidden" aria-label="Insights and blog" style="background: #101a33; padding: 140px 0;">
+  <!-- Diagonal top divider (from blue stats section) -->
+  <svg class="absolute top-0 left-0 right-0 w-full" style="height: 80px; display: block;" preserveAspectRatio="none" viewBox="0 0 100 10" aria-hidden="true">
+    <polygon points="0,0 100,0 100,10 0,4" fill="#1478c8" />
+  </svg>
 
-    <InsightsCarousel />
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+    <!-- Header row -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-15 gap-6" style="margin-bottom: 60px;">
+      <div>
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-accent-bright flex items-center gap-2.5 mb-6">
+          <span style="opacity:0.7">04</span>
+          <span class="inline-block w-6 h-px bg-current opacity-50"></span>
+          <span>Insights</span>
+        </div>
+        <h2
+          class="font-display font-semibold text-white leading-tight"
+          style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0;"
+        >
+          What we're learning.
+        </h2>
+      </div>
+      <a
+        href="/insights"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-bright transition-colors shrink-0"
+      >
+        All insights
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- 3-col cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {articles.map((article, i) => (
+        <a
+          href={article.href}
+          class="group flex flex-col border transition-transform duration-200 hover:-translate-y-1 relative"
+          style="border-color: rgba(255,255,255,0.08); background: #0b1322; min-height: 460px; text-decoration: none; color: inherit;"
+        >
+          <!-- Cyan accent bar — expands on hover -->
+          <div
+            class="absolute top-0 left-0 h-0.5 bg-accent-bright transition-all duration-300"
+            style="width: 48px;"
+            data-accent-bar
+          ></div>
+
+          <!-- Image -->
+          <div class="h-48 overflow-hidden relative">
+            <Image
+              src={insightImages[i]}
+              alt=""
+              aria-hidden="true"
+              widths={[400, 800]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              width={800}
+              height={384}
+              class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Content -->
+          <div class="p-7 flex flex-col flex-1">
+            <div class="flex justify-between font-mono text-[10px] tracking-[0.16em] uppercase mb-4">
+              <span class="text-accent">{article.tag}</span>
+              <span style="color: rgba(255,255,255,0.45);">{article.date}</span>
+            </div>
+            <h3
+              class="font-display font-semibold text-white mb-auto"
+              style="font-size: 22px; letter-spacing: -0.02em; line-height: 1.2;"
+            >
+              {article.title}
+            </h3>
+            <div class="mt-6 text-[13px]" style="color: rgba(255,255,255,0.5);">
+              — {article.author}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
   </div>
 </section>
+
+<script>
+  // Expand accent bar on card hover
+  document.querySelectorAll<HTMLElement>('[data-accent-bar]').forEach(bar => {
+    const card = bar.closest('a');
+    if (!card) return;
+    card.addEventListener('mouseenter', () => { bar.style.width = '100%'; });
+    card.addEventListener('mouseleave', () => { bar.style.width = '48px'; });
+  });
+</script>

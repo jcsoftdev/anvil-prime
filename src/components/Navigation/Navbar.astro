@@ -1,200 +1,217 @@
 ---
-import Button from '../UI/Button.astro';
-import { navLinks, ctaLink } from '../../data/navigation';
 ---
 
-<header
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-  id="navbar"
->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <nav class="flex items-center justify-between h-16 lg:h-20">
-      <!-- Logo -->
-      <a href="/" class="font-bold text-xl text-white nav-logo" aria-label="Anvil Prime home">
-        <span class="text-accent-bright">A</span>nvil Prime
-      </a>
+<header id="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+  <div style="max-width: 1440px; margin: 0 auto; padding: 0 48px; display: flex; align-items: center; height: 80px;">
 
-      <!-- Desktop nav -->
-      <ul class="hidden lg:flex items-center gap-6 list-none m-0 p-0">
-        {navLinks.map(link => (
-          <li class={link.children ? 'relative group' : ''}>
-            {link.children ? (
-              <>
-                <button
-                  class="nav-link flex items-center gap-1 text-white/80 hover:text-white font-medium transition-colors duration-200 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                >
-                  {link.label}
-                  <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block group-focus-within:block">
-                  <div class="bg-base rounded-xl shadow-lg border border-border w-72 py-2 overflow-hidden">
-                    {link.children.map(child => (
-                      <a
-                        href={child.href}
-                        class="block px-4 py-3 hover:bg-base-alt transition-colors"
-                      >
-                        <div class="font-semibold text-sm text-heading">{child.label}</div>
-                        <div class="text-xs text-muted mt-0.5 leading-relaxed">{child.description}</div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </>
-            ) : (
-              <a
-                href={link.href}
-                class="nav-link text-white/80 hover:text-white font-medium transition-colors duration-200 text-sm"
-              >
-                {link.label}
-              </a>
-            )}
-          </li>
-        ))}
-      </ul>
+    <!-- Logo -->
+    <a href="/" aria-label="Anvil Prime home" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none; flex-shrink: 0;">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" stroke="white" stroke-width="1.5"/>
+        <rect x="6" y="6" width="20" height="20" fill="#1478c8"/>
+        <rect x="6" y="6" width="20" height="4" fill="#2cb7e8"/>
+        <line x1="1" y1="1" x2="31" y2="31" stroke="#2cb7e8" stroke-width="1" opacity="0.5"/>
+      </svg>
+      <span style="font-family: var(--font-display); font-size: 19px; font-weight: 600; letter-spacing: -0.02em; line-height: 1;">
+        Anvil<span style="color: #2cb7e8;">Prime</span>
+      </span>
+    </a>
 
-      <!-- CTA + Hamburger -->
-      <div class="flex items-center gap-4">
-        <Button href={ctaLink.href} variant="primary" size="sm" class="hidden lg:inline-flex">
-          {ctaLink.label}
-        </Button>
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex" style="align-items: center; gap: 4px; margin-left: 12px;" aria-label="Main navigation">
 
+      <!-- Services dropdown -->
+      <div class="group" style="position: relative;">
         <button
-          id="mobile-menu-toggle"
-          class="lg:hidden p-2 rounded-md text-white/80 hover:text-white nav-toggle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          aria-label="Toggle mobile menu"
+          style="background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer; font-family: var(--font-sans); font-size: 14px; font-weight: 500; padding: 10px 14px; display: flex; align-items: center; gap: 6px;"
+          class="hover:text-white transition-colors"
+          aria-haspopup="true"
           aria-expanded="false"
-          aria-controls="mobile-menu"
         >
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          Services
+          <svg class="transition-transform group-hover:rotate-180" width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
+        <div class="absolute hidden group-hover:block group-focus-within:block" style="top: 100%; left: 0; padding-top: 12px;">
+          <div style="position: relative; background: #0f1a30; border: 1px solid rgba(255,255,255,0.1); min-width: 380px; box-shadow: 0 24px 60px rgba(0,0,0,0.5);">
+            <span aria-hidden="true" style="position: absolute; top: -1px; left: 0; width: 48px; height: 2px; background: #2cb7e8;"></span>
+            <a href="/services/ai-data-platforms" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">AI &amp; Data Platforms</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Production LLM systems, MLOps, governance</div>
+            </a>
+            <a href="/services/cloud-modernization" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">Cloud Modernization</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Migration, FinOps, platform engineering</div>
+            </a>
+            <a href="/services/digital-engineering" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">Digital Engineering</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Product builds, design systems, delivery</div>
+            </a>
+            <a href="/services/cybersecurity" style="display: block; padding: 12px 14px; color: white; text-decoration: none;" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">Cybersecurity</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Zero-trust, compliance, incident response</div>
+            </a>
+          </div>
+        </div>
       </div>
+
+      <!-- Industries dropdown -->
+      <div class="group" style="position: relative;">
+        <button
+          style="background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer; font-family: var(--font-sans); font-size: 14px; font-weight: 500; padding: 10px 14px; display: flex; align-items: center; gap: 6px;"
+          class="hover:text-white transition-colors"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Industries
+          <svg class="transition-transform group-hover:rotate-180" width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="absolute hidden group-hover:block group-focus-within:block" style="top: 100%; left: 0; padding-top: 12px;">
+          <div style="position: relative; background: #0f1a30; border: 1px solid rgba(255,255,255,0.1); min-width: 380px; box-shadow: 0 24px 60px rgba(0,0,0,0.5);">
+            <span aria-hidden="true" style="position: absolute; top: -1px; left: 0; width: 48px; height: 2px; background: #2cb7e8;"></span>
+            <a href="/industries/financial-services" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">Financial Services</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Banks, insurers, capital markets</div>
+            </a>
+            <a href="/industries/healthcare-life-sciences" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">Healthcare &amp; Life Sciences</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Payers, providers, biotech</div>
+            </a>
+            <a href="/industries/energy-industrial" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">Energy &amp; Industrial</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Utilities, manufacturing, supply chain</div>
+            </a>
+            <a href="/industries/public-sector" style="display: block; padding: 12px 14px; color: white; text-decoration: none;" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: white;">Public Sector</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Federal, state, defense</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simple nav links -->
+      <a href="/case-studies" style="color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; padding: 10px 14px; text-decoration: none;" class="hover:text-white transition-colors">
+        Case Studies
+      </a>
+      <a href="/insights" style="color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; padding: 10px 14px; text-decoration: none;" class="hover:text-white transition-colors">
+        Insights
+      </a>
+      <a href="/about" style="color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; padding: 10px 14px; text-decoration: none;" class="hover:text-white transition-colors">
+        About
+      </a>
     </nav>
+
+    <!-- Right side -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-left: auto;">
+      <a
+        href="/client-login"
+        class="hidden lg:inline-flex hover:text-white hover:border-white/50 transition-colors"
+        style="background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 600; padding: 8px 16px; text-decoration: none;"
+      >
+        Client login
+      </a>
+      <a
+        href="/contact"
+        data-magnetic
+        class="hidden lg:inline-flex hover:bg-[#1478c8] transition-colors"
+        style="background: #2cb7e8; color: white; font-size: 14px; font-weight: 600; padding: 8px 20px; text-decoration: none; border-radius: 2px;"
+      >
+        Start a project →
+      </a>
+
+      <!-- Hamburger -->
+      <button
+        id="mobile-menu-toggle"
+        class="lg:hidden"
+        style="background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer; padding: 8px;"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
   </div>
 
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="lg:hidden hidden bg-base border-t border-border shadow-lg"
+    class="hidden lg:hidden"
+    style="background: #0b1322; border-top: 1px solid rgba(255,255,255,0.1);"
     role="navigation"
     aria-label="Mobile navigation"
   >
-    <ul class="px-4 py-4 space-y-1 list-none m-0">
-      {navLinks.map(link => (
-        <>
-          <li>
-            <a
-              href={link.href}
-              class="block px-4 py-2 rounded-md text-body hover:bg-base-alt hover:text-heading font-semibold transition-colors"
-            >
-              {link.label}
-            </a>
-          </li>
-          {link.children?.map(child => (
-            <li>
-              <a
-                href={child.href}
-                class="block px-6 py-1.5 rounded-md text-muted hover:bg-base-alt hover:text-heading text-sm transition-colors"
-              >
-                {child.label}
-              </a>
-            </li>
-          ))}
-        </>
-      ))}
-      <li class="pt-2">
-        <Button href={ctaLink.href} variant="primary" size="md" class="w-full">
-          {ctaLink.label}
-        </Button>
-      </li>
-    </ul>
+    <div style="padding: 16px 24px 24px;">
+      <a href="/services" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Services</a>
+      <a href="/services/ai-data-platforms" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">AI &amp; Data Platforms</a>
+      <a href="/services/cloud-modernization" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Cloud Modernization</a>
+      <a href="/services/digital-engineering" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Digital Engineering</a>
+      <a href="/services/cybersecurity" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.06);">Cybersecurity</a>
+
+      <a href="/industries" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Industries</a>
+      <a href="/industries/financial-services" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Financial Services</a>
+      <a href="/industries/healthcare-life-sciences" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Healthcare &amp; Life Sciences</a>
+      <a href="/industries/energy-industrial" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Energy &amp; Industrial</a>
+      <a href="/industries/public-sector" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.06);">Public Sector</a>
+
+      <a href="/case-studies" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Case Studies</a>
+      <a href="/insights" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Insights</a>
+      <a href="/about" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">About</a>
+
+      <div style="margin-top: 20px;">
+        <a
+          href="/contact"
+          style="display: block; width: 100%; text-align: center; background: #2cb7e8; color: white; font-size: 15px; font-weight: 600; padding: 14px 20px; text-decoration: none; border-radius: 2px; box-sizing: border-box;"
+        >
+          Start a project →
+        </a>
+      </div>
+    </div>
   </div>
 </header>
 
 <script>
-  // Scroll detection for navbar background
   const navbar = document.getElementById('navbar');
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  const hamburgerIcon = document.getElementById('hamburger-icon');
-  const closeIcon = document.getElementById('close-icon');
 
-  if (navbar && toggle && menu && hamburgerIcon && closeIcon) {
-    const navLinks = navbar.querySelectorAll<HTMLElement>('.nav-link');
-    const logo = navbar.querySelector<HTMLElement>('.nav-logo');
-    const navToggle = navbar.querySelector<HTMLElement>('.nav-toggle');
-    const hasDarkHero = document.querySelector('[data-dark-hero]') !== null;
-
+  if (navbar) {
     const onScroll = () => {
       const scrolled = window.scrollY > 20;
-      const useDark = scrolled || !hasDarkHero;
-      navbar.classList.toggle('bg-white/95', scrolled);
-      navbar.classList.toggle('backdrop-blur-sm', scrolled);
-      navbar.classList.toggle('shadow-sm', scrolled);
-      navbar.classList.toggle('border-b', scrolled);
-      navbar.classList.toggle('border-border/80', scrolled);
-
-      navLinks.forEach(link => {
-        link.classList.toggle('text-white/80', !useDark);
-        link.classList.toggle('hover:text-white', !useDark);
-        link.classList.toggle('text-secondary', useDark);
-        link.classList.toggle('hover:text-heading', useDark);
-      });
-
-      if (logo) {
-        logo.classList.toggle('text-white', !useDark);
-        logo.classList.toggle('text-heading', useDark);
-        const m = logo.querySelector('span');
-        if (m) {
-          m.classList.toggle('text-accent-bright', !useDark);
-          m.classList.toggle('text-accent', useDark);
-        }
-      }
-
-      if (navToggle) {
-        navToggle.classList.toggle('text-white/80', !useDark);
-        navToggle.classList.toggle('hover:text-white', !useDark);
-        navToggle.classList.toggle('text-secondary', useDark);
-        navToggle.classList.toggle('hover:text-heading', useDark);
-        navToggle.classList.toggle('focus-visible:ring-white', !useDark);
-        navToggle.classList.toggle('focus-visible:ring-accent', useDark);
-      }
+      navbar.style.background = scrolled ? 'rgba(11, 19, 34, 0.88)' : 'transparent';
+      navbar.style.backdropFilter = scrolled ? 'blur(14px)' : 'none';
+      (navbar.style as CSSStyleDeclaration & { WebkitBackdropFilter: string }).WebkitBackdropFilter = scrolled ? 'blur(14px)' : 'none';
+      navbar.style.borderBottom = scrolled ? '1px solid rgba(255,255,255,0.1)' : '1px solid transparent';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
 
-    // Mobile menu toggle
+  if (toggle && menu) {
+    let open = false;
     toggle.addEventListener('click', () => {
-      const isOpen = !menu.classList.contains('hidden');
-      menu.classList.toggle('hidden');
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-      hamburgerIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
+      open = !open;
+      menu.classList.toggle('hidden', !open);
+      toggle.setAttribute('aria-expanded', String(open));
     });
-
-    // Close mobile menu on nav link click
     menu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
+        open = false;
         menu.classList.add('hidden');
         toggle.setAttribute('aria-expanded', 'false');
-        hamburgerIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
       });
     });
-
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      if (e.key === 'Escape' && open) {
+        open = false;
         menu.classList.add('hidden');
         toggle.setAttribute('aria-expanded', 'false');
-        hamburgerIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        toggle.focus();
       }
     });
   }
