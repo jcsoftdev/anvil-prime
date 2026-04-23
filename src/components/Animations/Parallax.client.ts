@@ -1,4 +1,4 @@
-import { gsap, ScrollTrigger, reducedMotion } from '../../lib/gsap.client';
+import { gsap, reducedMotion, ScrollTrigger } from '../../lib/gsap.client';
 
 export function initHeroParallax(carousel: HTMLElement): void {
   if (reducedMotion) return;
