@@ -68,6 +68,12 @@
     max-width: 100%;
   }
 
+  /* Astro's <Image widths> wraps in <picture>. Make it layout-transparent
+     so w-full h-full object-cover on the inner <img> works correctly. */
+  picture {
+    display: contents;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
