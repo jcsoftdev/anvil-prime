@@ -4,10 +4,10 @@ import ScrollReveal from '../Animations/ScrollReveal.astro';
 const DELAYS = [0, 100, 200, 300] as const;
 
 const stats = [
-  { value: '200+', label: 'Projects Delivered', description: 'Across 30 countries' },
-  { value: '95%', label: 'Client Retention', description: 'Year over year' },
-  { value: '12+', label: 'Years Experience', description: 'Building at scale' },
-  { value: '500+', label: 'Engineers', description: 'Senior-level talent' },
+  { value: '200+', countTo: 200, suffix: '+', label: 'Projects Delivered', description: 'Across 30 countries' },
+  { value: '95%',  countTo: 95,  suffix: '%', label: 'Client Retention',   description: 'Year over year' },
+  { value: '12+',  countTo: 12,  suffix: '+', label: 'Years Experience',   description: 'Building at scale' },
+  { value: '500+', countTo: 500, suffix: '+', label: 'Engineers',          description: 'Senior-level talent' },
 ];
 ---
 
@@ -25,7 +25,11 @@ const stats = [
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
       {stats.map((stat, i) => (
         <ScrollReveal delay={DELAYS[i]} class="text-center">
-          <div class="text-5xl font-bold text-white mb-2">{stat.value}</div>
+          <div
+            class="text-5xl font-bold text-white mb-2"
+            data-count-to={stat.countTo}
+            data-count-suffix={stat.suffix}
+          >{stat.value}</div>
           <div class="text-lg font-semibold text-white mb-1">{stat.label}</div>
           <div class="text-accent-muted text-sm">{stat.description}</div>
         </ScrollReveal>
@@ -33,3 +37,9 @@ const stats = [
     </div>
   </div>
 </section>
+
+<script>
+  import { initCountUp } from '../Animations/CountUp.client';
+  const section = document.querySelector('section[aria-label="Company stats"]') as HTMLElement | null;
+  if (section) initCountUp(section);
+</script>
