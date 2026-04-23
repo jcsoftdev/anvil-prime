@@ -1,46 +1,36 @@
 ---
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import cs0Img from '../../assets/images/cs-fintech.jpg';
-import cs1Img from '../../assets/images/cs-cloud.jpg';
-import cs2Img from '../../assets/images/cs-healthcare.jpg';
+import csFintechImg from '../../assets/images/cs-fintech.jpg';
+import csCloudImg from '../../assets/images/cs-cloud.jpg';
+import csHealthcareImg from '../../assets/images/cs-healthcare.jpg';
 
-const csImages = [cs0Img, cs1Img, cs2Img];
+const imageMap: Record<string, typeof csFintechImg> = {
+  'ai-ml-platform': csFintechImg,
+  'cloud-migration': csCloudImg,
+  'digital-transformation': csHealthcareImg,
+};
 
-const cases = [
-  {
-    tag: 'Financial · 18 mo',
-    client: 'Northgate Bank',
-    title: 'Rebuilt real-time settlement across 14 markets.',
-    excerpt: 'A 36-engineer team embedded for 18 months — from architecture review through production handoff. Delivered under budget, two months ahead of target.',
-    kpi: '38%',
-    kpiLabel: 'lower latency',
-    href: '/case-studies/ai-ml-platform',
-  },
-  {
-    tag: 'Healthcare · 9 mo',
-    client: 'Meridian Health',
-    title: 'Claims triage AI processing 1.2M records per hour.',
-    excerpt: 'Built a production LLM pipeline on top of existing EHR infrastructure. HIPAA-compliant, audited, and running across 3 health systems today.',
-    kpi: '$112M',
-    kpiLabel: 'saved annually',
-    href: '/case-studies/cloud-migration',
-  },
-  {
-    tag: 'Energy · 14 mo',
-    client: 'Cascade Grid',
-    title: 'Predictive outage model across 4,200 substations.',
-    excerpt: 'End-to-end ML system from sensor data ingestion through model serving. Reduces unplanned outage risk by 60% across the western interconnect.',
-    kpi: '99.997%',
-    kpiLabel: 'uptime',
-    href: '/case-studies/digital-transformation',
-  },
-];
+const entries = (await getCollection('case-studies')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const cases = entries.map(entry => ({
+  tag: `${entry.data.industry} · ${entry.data.tag}`,
+  client: entry.data.client,
+  title: entry.data.title,
+  excerpt: entry.data.excerpt,
+  kpi: entry.data.kpi ?? entry.data.outcomes[0] ?? '',
+  kpiLabel: entry.data.kpiLabel ?? '',
+  href: `/case-studies/${entry.id}`,
+  image: imageMap[entry.id] ?? csFintechImg,
+}));
 ---
 
 <section class="relative" aria-label="Case studies" id="case-studies-section" style="background: #0b1322; padding: 140px 0;">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <!-- Header row -->
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-15 gap-6" style="margin-bottom: 60px;">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6" style="margin-bottom: 60px;">
       <div>
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-accent-bright flex items-center gap-2.5 mb-6">
           <span style="opacity:0.7">02</span>
@@ -58,14 +48,14 @@ const cases = [
         href="/case-studies"
         class="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-bright transition-colors shrink-0"
       >
-        All 47 case studies
+        All case studies
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
         </svg>
       </a>
     </div>
 
-    <!-- Featured card — large, changes on tab click -->
+    <!-- Featured card -->
     <div
       class="border grid grid-cols-1 lg:grid-cols-[1.4fr_1fr]"
       style="border-color: rgba(255,255,255,0.1); min-height: 520px;"
@@ -73,13 +63,13 @@ const cases = [
     >
       <!-- Image col -->
       <div class="relative overflow-hidden min-h-[280px] lg:min-h-auto" style="background: #1478c8;" id="cs-img-col">
-        {csImages.map((img, i) => (
+        {cases.map((cs, i) => (
           <div
             class={`absolute inset-0 transition-opacity duration-300 ${i === 0 ? '' : 'opacity-0'}`}
             data-cs-img={i}
           >
             <Image
-              src={img}
+              src={cs.image}
               alt=""
               aria-hidden="true"
               widths={[600, 1200]}
@@ -89,13 +79,10 @@ const cases = [
               class="w-full h-full object-cover opacity-30"
               loading={i === 0 ? 'eager' : 'lazy'}
             />
-            <!-- Grid lines on image -->
             <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 48px 48px;"></div>
-            <!-- Left cyan bar -->
             <div class="absolute top-0 left-0 w-0.5 h-20 bg-accent-bright"></div>
-            <!-- Tag -->
             <div class="absolute bottom-8 left-8 font-mono text-[11px] tracking-[0.18em] uppercase text-white/80">
-              {cases[i].tag}
+              {cs.tag}
             </div>
           </div>
         ))}
@@ -121,7 +108,7 @@ const cases = [
             </div>
           ))}
         </div>
-        <!-- KPI + CTA (changes per case) -->
+        <!-- KPI + CTA -->
         <div>
           <div class="pt-6 mb-7" style="border-top: 1px solid rgba(255,255,255,0.1);">
             {cases.map((cs, i) => (
@@ -139,7 +126,7 @@ const cases = [
             ))}
           </div>
           <a
-            href={cases[0].href}
+            href={cases[0]?.href ?? '/case-studies'}
             class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border text-white hover:bg-white/8 transition-colors rounded-sm"
             style="border-color: rgba(255,255,255,0.3);"
             id="cs-read-link"
@@ -163,9 +150,9 @@ const cases = [
           class="text-left border-r last:border-0 transition-colors duration-150 relative"
           style={`border-color: rgba(255,255,255,0.1); padding: 24px; background: ${i === 0 ? 'rgba(255,255,255,0.04)' : 'transparent'}; cursor: pointer;`}
           data-cs-tab={i}
+          data-cs-href={cs.href}
           aria-selected={i === 0 ? 'true' : 'false'}
         >
-          <!-- Active indicator bar -->
           <div
             class="absolute top-0 left-0 right-0 h-0.5 bg-accent-bright transition-opacity"
             style={`opacity: ${i === 0 ? '1' : '0'};`}
@@ -191,8 +178,6 @@ const cases = [
   const bars = document.querySelectorAll<HTMLElement>('[data-cs-tab-bar]');
   const readLink = document.getElementById('cs-read-link') as HTMLAnchorElement | null;
 
-  const hrefs = ['/case-studies/ai-ml-platform', '/case-studies/cloud-migration', '/case-studies/digital-transformation'];
-
   function switchTo(idx: number) {
     imgs.forEach((el, i) => { el.style.opacity = i === idx ? '1' : '0'; });
     contents.forEach((el, i) => { el.classList.toggle('hidden', i !== idx); });
@@ -202,7 +187,7 @@ const cases = [
       tab.style.background = i === idx ? 'rgba(255,255,255,0.04)' : 'transparent';
       tab.setAttribute('aria-selected', i === idx ? 'true' : 'false');
     });
-    if (readLink) readLink.href = hrefs[idx] ?? '#';
+    if (readLink) readLink.href = tabs[idx]?.dataset.csHref ?? '#';
   }
 
   tabs.forEach((tab, i) => {

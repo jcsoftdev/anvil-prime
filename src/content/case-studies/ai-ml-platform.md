@@ -10,6 +10,8 @@ outcomes:
   - <10ms average scoring latency
   - 42% reduction in fraudulent transactions
   - $12M annual savings in fraud losses
+kpi: "42%"
+kpiLabel: "fraud reduction"
 tech:
   - Python
   - PyTorch

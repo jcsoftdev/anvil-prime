@@ -13,6 +13,8 @@ const caseStudies = defineCollection({
     date: z.coerce.date(),
     outcomes: z.array(z.string()),
     tech: z.array(z.string()),
+    kpi: z.string().optional(),
+    kpiLabel: z.string().optional(),
   }),
 });
 

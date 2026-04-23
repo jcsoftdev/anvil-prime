@@ -1,34 +1,28 @@
 ---
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import insight0Img from '../../assets/images/insight-ai-enterprise.jpg';
-import insight1Img from '../../assets/images/insight-cloud-native.jpg';
-import insight2Img from '../../assets/images/insight-engineering-culture.jpg';
+import insightAiImg from '../../assets/images/insight-ai-enterprise.jpg';
+import insightCloudImg from '../../assets/images/insight-cloud-native.jpg';
+import insightEngineeringImg from '../../assets/images/insight-engineering-culture.jpg';
 
-const insightImages = [insight0Img, insight1Img, insight2Img];
+const imageMap: Record<string, typeof insightAiImg> = {
+  'future-of-ai': insightAiImg,
+  'cloud-native-patterns': insightCloudImg,
+  'engineering-culture': insightEngineeringImg,
+};
 
-const articles = [
-  {
-    tag: 'Field note',
-    date: 'Apr 2026',
-    title: 'Why most enterprise AI pilots stall at month 9 — and how to design past it.',
-    author: 'M. Okoro, Principal',
-    href: '/insights/future-of-ai',
-  },
-  {
-    tag: 'Whitepaper',
-    date: 'Mar 2026',
-    title: 'FinOps at petabyte scale: the 6 anti-patterns we see in every audit.',
-    author: 'S. Vasquez, VP Cloud',
-    href: '/insights/cloud-native-patterns',
-  },
-  {
-    tag: 'Case brief',
-    date: 'Feb 2026',
-    title: 'Inside the Northgate settlement rebuild: 38% faster, 0 regressions.',
-    author: 'D. Patel, Lead',
-    href: '/insights/engineering-culture',
-  },
-];
+const entries = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const articles = entries.map(entry => ({
+  tag: entry.data.category,
+  date: entry.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+  title: entry.data.title,
+  author: `${entry.data.author.name}, ${entry.data.author.role}`,
+  href: `/insights/${entry.id}`,
+  image: imageMap[entry.id] ?? insightAiImg,
+}));
 ---
 
 <section class="relative overflow-hidden" aria-label="Insights and blog" style="background: #101a33; padding: 140px 0;">
@@ -39,7 +33,7 @@ const articles = [
 
   <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
     <!-- Header row -->
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-15 gap-6" style="margin-bottom: 60px;">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6" style="margin-bottom: 60px;">
       <div>
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-accent-bright flex items-center gap-2.5 mb-6">
           <span style="opacity:0.7">04</span>
@@ -66,7 +60,7 @@ const articles = [
 
     <!-- 3-col cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {articles.map((article, i) => (
+      {articles.map((article) => (
         <a
           href={article.href}
           class="group flex flex-col border transition-transform duration-200 hover:-translate-y-1 relative"
@@ -82,7 +76,7 @@ const articles = [
           <!-- Image -->
           <div class="h-48 overflow-hidden relative">
             <Image
-              src={insightImages[i]}
+              src={article.image}
               alt=""
               aria-hidden="true"
               widths={[400, 800]}
@@ -117,7 +111,6 @@ const articles = [
 </section>
 
 <script>
-  // Expand accent bar on card hover
   document.querySelectorAll<HTMLElement>('[data-accent-bar]').forEach(bar => {
     const card = bar.closest('a');
     if (!card) return;

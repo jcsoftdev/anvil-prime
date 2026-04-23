@@ -10,6 +10,8 @@ outcomes:
   - 60% reduction in infrastructure costs
   - 10x increase in deployment frequency
   - 99.99% uptime SLA achieved
+kpi: "60%"
+kpiLabel: "cost reduction"
 tech:
   - AWS ECS
   - Terraform

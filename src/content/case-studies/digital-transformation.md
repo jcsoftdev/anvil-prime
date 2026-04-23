@@ -10,6 +10,8 @@ outcomes:
   - 99.99% uptime in first year
   - HIPAA and SOC2 Type II certified
   - NPS score of 72
+kpi: "99.99%"
+kpiLabel: "uptime SLA"
 tech:
   - React
   - Node.js
