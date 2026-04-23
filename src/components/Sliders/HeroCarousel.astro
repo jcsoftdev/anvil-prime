@@ -144,11 +144,17 @@ const slideBgs = [slide0Bg, slide1Bg, slide2Bg, slide3Bg];
   import { initTextScramble } from '../Animations/TextScramble.client';
   const firstSlide = document.querySelector('[data-hero-slide]');
   const h1 = firstSlide?.querySelector('h1') as HTMLElement | null;
-  if (h1) initTextScramble(h1);
+  if (h1) {
+    const cleanup = initTextScramble(h1);
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  }
 </script>
 
 <script>
   import { initSvgDraw } from '../Animations/SvgDraw.client';
   const svg = document.querySelector('[data-svg-draw]') as SVGElement | null;
-  if (svg) initSvgDraw(svg);
+  if (svg) {
+    const cleanup = initSvgDraw(svg);
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  }
 </script>
