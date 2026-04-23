@@ -3,7 +3,6 @@ import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
-import Badge from '../../components/UI/Badge.astro';
 import { caseStudyImages } from '../../data/post-images';
 
 export async function getStaticPaths() {
@@ -25,83 +24,91 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
 
 <Base title={study.data.title} description={study.data.excerpt} ogType="article">
   <Navbar />
-  <main class="pt-24 pb-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <header class="mb-12">
-        <div class="flex items-center gap-3 mb-4">
-          <Badge variant="accent">{study.data.tag}</Badge>
-          <span class="text-subtle text-sm">{study.data.industry}</span>
-        </div>
-        <h1 class="text-4xl sm:text-5xl font-bold text-heading leading-tight mb-4">
-          {study.data.title}
-        </h1>
-        <p class="text-xl text-secondary">{study.data.excerpt}</p>
-      </header>
 
-      {caseStudyImages[study.id] && (
-        <div class="rounded-xl overflow-hidden mb-12 h-72 sm:h-96">
-          <Image
-            src={caseStudyImages[study.id]}
-            alt={study.data.title}
-            class="w-full h-full object-cover"
-            widths={[800, 1200]}
-            sizes="(min-width: 896px) 896px, 100vw"
-          />
-        </div>
-      )}
+  <!-- Hero Header -->
+  <section style="background: #060b17; padding: 140px 0 60px; position: relative; overflow: hidden;">
+    <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.04) 1px,transparent 1px); background-size: 48px 48px;"></div>
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+      <a href="/case-studies" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2 mb-8" style="opacity:0.8; color: #2cb7e8; text-decoration: none;">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+        Case Studies
+      </a>
+      <div class="font-mono text-[10px] tracking-[0.16em] uppercase mb-4" style="color: #1478c8;">{study.data.tag} · {study.data.industry}</div>
+      <h1 class="font-display font-semibold text-white leading-tight mb-6" style="font-size: clamp(28px,4vw,52px); letter-spacing:-0.03em;">{study.data.title}</h1>
+      <p class="text-[17px] leading-relaxed" style="color: rgba(255,255,255,0.65); max-width: 580px;">{study.data.excerpt}</p>
+    </div>
+  </section>
 
-      <!-- Content + Sidebar -->
+  <!-- Hero Image -->
+  {caseStudyImages[study.id] && (
+    <div class="max-w-4xl mx-auto px-6 lg:px-12" style="background: #060b17; margin-top: -1px;">
+      <div class="overflow-hidden" style="height: 320px;">
+        <Image
+          src={caseStudyImages[study.id]}
+          alt={study.data.title}
+          class="w-full h-full object-cover opacity-70"
+          widths={[800, 1200]}
+          sizes="(min-width: 896px) 896px, 100vw"
+        />
+      </div>
+    </div>
+  )}
+
+  <!-- Content + Sidebar -->
+  <section style="background: #0b1322; padding: 80px 0 120px;">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12">
       <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Article prose -->
         <div class="lg:col-span-2">
-          <div class="text-body leading-relaxed [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-heading [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-heading [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-heading [&_code]:bg-base-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono">
+          <div class="prose-dark text-[15px] leading-relaxed [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-white [&_h2]:text-xl [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-white [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:text-white [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:font-mono" style="color: rgba(255,255,255,0.7);">
             <Content />
           </div>
         </div>
 
-        <aside class="space-y-8">
-          <div class="bg-base-alt rounded-xl p-6 border border-border">
-            <h3 class="font-bold text-heading mb-4 text-sm uppercase tracking-wider">Key Outcomes</h3>
-            <ul class="space-y-2 list-none m-0 p-0">
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <!-- Key Outcomes -->
+          <div class="border p-6" style="background: #1a2b4a; border-color: rgba(255,255,255,0.08);">
+            <h3 class="font-mono text-[11px] tracking-[0.16em] uppercase mb-4" style="color: #2cb7e8;">Key Outcomes</h3>
+            <ul class="space-y-3">
               {study.data.outcomes.map(outcome => (
-                <li class="flex items-start gap-2 text-sm text-body">
-                  <span class="text-emerald-500 mt-0.5" aria-hidden="true">✓</span>
+                <li class="flex items-start gap-2 text-[13px]" style="color: rgba(255,255,255,0.65);">
+                  <span class="mt-0.5 flex-none" aria-hidden="true" style="color: #2cb7e8;">✓</span>
                   {outcome}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div class="bg-base-alt rounded-xl p-6 border border-border">
-            <h3 class="font-bold text-heading mb-4 text-sm uppercase tracking-wider">Tech Stack</h3>
+          <!-- Tech Stack -->
+          <div class="border p-6" style="background: #1a2b4a; border-color: rgba(255,255,255,0.08);">
+            <h3 class="font-mono text-[11px] tracking-[0.16em] uppercase mb-4" style="color: #2cb7e8;">Tech Stack</h3>
             <div class="flex flex-wrap gap-2">
               {study.data.tech.map(tech => (
-                <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-base border border-border text-xs font-medium text-body">
-                  {tech}
-                </span>
+                <span class="font-mono text-[10px] tracking-[0.1em] px-2.5 py-1 border" style="border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.65);">{tech}</span>
               ))}
             </div>
           </div>
 
-          <div class="bg-accent rounded-xl p-6 text-white">
-            <h3 class="font-bold mb-2">Ready to see similar results?</h3>
-            <p class="text-accent-muted text-sm mb-4">Talk to our team about your next project.</p>
-            <a
-              href="/contact"
-              class="inline-flex items-center px-4 py-2 bg-base text-accent font-semibold rounded-lg text-sm hover:bg-accent-ghost transition-colors"
-            >
+          <!-- CTA -->
+          <div class="p-6" style="background: #1478c8;">
+            <h3 class="font-semibold text-white mb-2">Ready to see similar results?</h3>
+            <p class="text-[13px] mb-4" style="color: rgba(255,255,255,0.75);">Talk to our team about your project.</p>
+            <a href="/contact" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white border hover:bg-white/10 transition-colors" style="border-color: rgba(255,255,255,0.4); text-decoration: none;">
               Get in Touch
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
             </a>
           </div>
 
-          <time
-            datetime={study.data.date.toISOString().slice(0, 10)}
-            class="text-sm text-subtle block"
-          >
+          <time datetime={study.data.date.toISOString().slice(0, 10)} class="font-mono text-[10px] tracking-[0.12em] uppercase block" style="color: rgba(255,255,255,0.35);">
             Published {formattedDate}
           </time>
         </aside>
       </div>
     </div>
-  </main>
+  </section>
 </Base>
+
+<style>
+  .prose-dark code { background: rgba(255,255,255,0.08); }
+</style>
