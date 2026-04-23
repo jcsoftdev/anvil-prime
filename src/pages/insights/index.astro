@@ -3,61 +3,63 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
-import Badge from '../../components/UI/Badge.astro';
-import ScrollReveal from '../../components/Animations/ScrollReveal.astro';
 import { insightImages } from '../../data/post-images';
 
 const posts = (await getCollection('insights')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-const DELAYS = [0, 100, 200] as const;
 ---
 
 <Base title="Insights" description="Technology insights and engineering perspectives from the Anvil Prime team.">
   <Navbar />
-  <main class="pt-24 pb-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ScrollReveal>
-        <div class="text-center mb-16">
-          <span class="text-accent font-semibold text-sm uppercase tracking-wider">Insights</span>
-          <h1 class="text-4xl sm:text-5xl font-bold text-heading mt-2 mb-4">Thinking From the Field</h1>
-          <p class="text-secondary text-lg max-w-2xl mx-auto">Perspectives on technology, engineering, and building products that last.</p>
+  <main style="background: #060b17;">
+    <!-- Page header -->
+    <section style="background: #060b17; padding: 160px 0 100px; position: relative; overflow: hidden;">
+      <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2.5 mb-6" style="color: #2cb7e8;">
+          <span style="opacity:0.7">04</span>
+          <span class="inline-block w-6 h-px bg-current opacity-50"></span>
+          <span>Insights</span>
         </div>
-      </ScrollReveal>
+        <h1 class="font-display font-semibold text-white" style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0 0 20px;">Thinking From the Field</h1>
+        <p class="text-[17px]" style="color: rgba(255,255,255,0.65);">Perspectives on technology, engineering, and building products that last.</p>
+      </div>
+    </section>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post, i) => (
-          <ScrollReveal delay={DELAYS[i % DELAYS.length]}>
-            <a
-              href={`/insights/${post.id}`}
-              class="block h-full border border-border rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-            >
-              <div class="h-48 relative overflow-hidden">
+    <!-- Card grid -->
+    <section style="background: #0b1322; padding: 80px 0 120px;">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <a href={`/insights/${post.id}`} class="group flex flex-col border transition-transform duration-200 hover:-translate-y-1 relative" style="border-color: rgba(255,255,255,0.08); background: #0b1322; min-height: 460px; text-decoration: none; color: inherit;">
+              <div class="absolute top-0 left-0 h-0.5 transition-all duration-300" style="width: 48px; background: #2cb7e8;" data-accent-bar></div>
+              <div class="h-48 overflow-hidden">
                 {insightImages[post.id] && (
-                  <Image
-                    src={insightImages[post.id]}
-                    alt={post.data.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    widths={[400, 800]}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  />
+                  <Image src={insightImages[post.id]} alt="" aria-hidden="true" widths={[400, 800]} sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,33vw" width={800} height={384} class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300" loading="lazy" />
                 )}
               </div>
-              <div class="p-6">
-                <Badge variant="accent" class="mb-3">{post.data.category}</Badge>
-                <h2 class="text-lg font-bold text-heading mb-2 group-hover:text-accent transition-colors leading-snug">
-                  {post.data.title}
-                </h2>
-                <p class="text-muted text-sm leading-relaxed mb-4">{post.data.excerpt}</p>
-                <div class="flex items-center justify-between text-xs text-subtle">
-                  <span>{post.data.author.name}</span>
-                  <span>{post.data.readTime}</span>
+              <div class="p-7 flex flex-col flex-1">
+                <div class="flex justify-between font-mono text-[10px] tracking-[0.16em] uppercase mb-4">
+                  <span style="color: #1478c8;">{post.data.category}</span>
+                  <span style="color: rgba(255,255,255,0.45);">{post.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
                 </div>
+                <h2 class="font-display font-semibold text-white mb-auto" style="font-size: 22px; letter-spacing: -0.02em; line-height: 1.2;">{post.data.title}</h2>
+                <div class="mt-6 text-[13px]" style="color: rgba(255,255,255,0.5);">— {post.data.author.name}, {post.data.author.role}</div>
               </div>
             </a>
-          </ScrollReveal>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 </Base>
+
+<script>
+  document.querySelectorAll('[data-accent-bar]').forEach(bar => {
+    const card = bar.closest('a');
+    if (!card) return;
+    card.addEventListener('mouseenter', () => { (bar as HTMLElement).style.width = '100%'; });
+    card.addEventListener('mouseleave', () => { (bar as HTMLElement).style.width = '48px'; });
+  });
+</script>

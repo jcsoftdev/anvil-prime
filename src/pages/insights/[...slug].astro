@@ -3,7 +3,6 @@ import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navigation/Navbar.astro';
-import Badge from '../../components/UI/Badge.astro';
 import { insightImages } from '../../data/post-images';
 
 export async function getStaticPaths() {
@@ -42,38 +41,49 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
     })} />
   </Fragment>
   <Navbar />
-  <main class="pt-24 pb-20">
-    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <header class="mb-12">
-        <Badge variant="accent" class="mb-4">{post.data.category}</Badge>
-        <h1 class="text-4xl sm:text-5xl font-bold text-heading leading-tight mb-6">
-          {post.data.title}
-        </h1>
-        {insightImages[post.id] && (
-          <div class="rounded-xl overflow-hidden mb-8 h-64 sm:h-80">
-            <Image
-              src={insightImages[post.id]}
-              alt={post.data.title}
-              class="w-full h-full object-cover"
-              widths={[800, 1200]}
-              sizes="(min-width: 768px) 768px, 100vw"
-            />
-          </div>
-        )}
-        <div class="flex items-center gap-4 text-muted text-sm border-t border-b border-border py-4">
-          <div>
-            <span class="font-semibold text-body">{post.data.author.name}</span>
-            <span class="mx-2">·</span>
-            <span>{post.data.author.role}</span>
-          </div>
-          <time datetime={post.data.date.toISOString().slice(0, 10)} class="ml-auto">{formattedDate}</time>
+  <main style="background: #060b17;">
+    <!-- Hero header -->
+    <section style="background: #060b17; padding: 140px 0 60px; position: relative; overflow: hidden;">
+      <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.04) 1px,transparent 1px); background-size: 48px 48px;"></div>
+      <div class="max-w-3xl mx-auto px-6 lg:px-12 relative">
+        <a href="/insights" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2 mb-8" style="color: #2cb7e8; opacity:0.8;">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+          Insights
+        </a>
+        <div class="font-mono text-[10px] tracking-[0.16em] uppercase mb-4" style="color: #1478c8;">{post.data.category}</div>
+        <h1 class="font-display font-semibold text-white leading-tight mb-6" style="font-size: clamp(28px,4vw,52px); letter-spacing:-0.03em;">{post.data.title}</h1>
+        <!-- Author row -->
+        <div class="flex items-center gap-6 font-mono text-[10px] tracking-[0.12em] uppercase pt-6" style="border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45);">
+          <span>{post.data.author.name} · {post.data.author.role}</span>
+          <time datetime={post.data.date.toISOString().slice(0, 10)}>{formattedDate}</time>
           <span>{post.data.readTime}</span>
         </div>
-      </header>
-
-      <div class="text-body leading-relaxed [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-heading [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-heading [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-heading [&_code]:bg-base-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono">
-        <Content />
       </div>
-    </article>
+    </section>
+
+    <!-- Hero image -->
+    {insightImages[post.id] && (
+      <div class="max-w-3xl mx-auto px-6 lg:px-12" style="margin-top: 40px;">
+        <div class="overflow-hidden" style="height: 280px;">
+          <Image src={insightImages[post.id]} alt={post.data.title} class="w-full h-full object-cover opacity-70" widths={[800, 1200]} sizes="(min-width: 768px) 768px, 100vw" />
+        </div>
+      </div>
+    )}
+
+    <!-- Content section -->
+    <section style="background: #0b1322; padding: 80px 0 120px;">
+      <div class="max-w-3xl mx-auto px-6 lg:px-12">
+        <div class="prose-dark text-[15px] leading-relaxed [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-white [&_h2]:text-xl [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-white [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:text-white" style="color: rgba(255,255,255,0.7);">
+          <Content />
+        </div>
+        <!-- Footer: link back -->
+        <div class="mt-16 pt-8" style="border-top: 1px solid rgba(255,255,255,0.1);">
+          <a href="/insights" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2" style="color: #2cb7e8; opacity:0.8;">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            All Insights
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 </Base>
