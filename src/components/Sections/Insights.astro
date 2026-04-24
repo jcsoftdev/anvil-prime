@@ -25,13 +25,20 @@ const articles = entries.map(entry => ({
 }));
 ---
 
-<section class="relative overflow-hidden" aria-label="Insights and blog" style="background: #101a33; padding: 140px 0;">
-  <!-- Diagonal top divider (from blue stats section) -->
-  <svg class="absolute top-0 left-0 right-0 w-full" style="height: 80px; display: block;" preserveAspectRatio="none" viewBox="0 0 100 10" aria-hidden="true">
-    <polygon points="0,0 100,0 100,10 0,4" fill="#1478c8" />
-  </svg>
+<section class="relative overflow-hidden" aria-label="Insights and blog" style="background: var(--t-bg-section); color: var(--t-heading); padding: 140px 0;">
+  <!-- Diagonal top divider — matches Performance section background with grid textures -->
+  <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 80px; overflow: hidden;">
+    <!-- Base fill -->
+    <svg style="position: absolute; inset: 0; width: 100%; height: 100%;" preserveAspectRatio="none" viewBox="0 0 100 10">
+      <polygon points="0,0 100,0 100,10 0,4" fill="#1478c8" />
+    </svg>
+    <!-- GridLines texture — same as Performance section -->
+    <div data-poly-grid style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 64px 64px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 40%);"></div>
+    <!-- DotMatrix texture — same as Performance section -->
+    <div data-poly-dots style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.12) 1.4px, transparent 1.4px); background-size: 28px 28px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 40%);"></div>
+  </div>
 
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+  <div class="max-w-7xl mx-auto px-5 lg:px-12 relative">
     <!-- Header row -->
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6" style="margin-bottom: 60px;">
       <div>
@@ -41,8 +48,8 @@ const articles = entries.map(entry => ({
           <span>Insights</span>
         </div>
         <h2
-          class="font-display font-semibold text-white leading-tight"
-          style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0;"
+          class="font-display font-semibold leading-tight"
+          style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0; color: var(--t-heading);"
         >
           What we're learning.
         </h2>
@@ -64,7 +71,7 @@ const articles = entries.map(entry => ({
         <a
           href={article.href}
           class="group flex flex-col border transition-transform duration-200 hover:-translate-y-1 relative"
-          style="border-color: rgba(255,255,255,0.08); background: #0b1322; min-height: 460px; text-decoration: none; color: inherit;"
+          style="border-color: var(--t-border); background: var(--t-bg-card); min-height: 460px; text-decoration: none; color: inherit;"
         >
           <!-- Cyan accent bar — expands on hover -->
           <div
@@ -74,7 +81,7 @@ const articles = entries.map(entry => ({
           ></div>
 
           <!-- Image -->
-          <div class="h-48 overflow-hidden relative">
+          <div class="h-48 overflow-hidden relative" data-insight-img-wrap>
             <Image
               src={article.image}
               alt=""
@@ -92,15 +99,15 @@ const articles = entries.map(entry => ({
           <div class="p-7 flex flex-col flex-1">
             <div class="flex justify-between font-mono text-[10px] tracking-[0.16em] uppercase mb-4">
               <span class="text-accent">{article.tag}</span>
-              <span style="color: rgba(255,255,255,0.45);">{article.date}</span>
+              <span style="color: var(--t-muted);">{article.date}</span>
             </div>
             <h3
-              class="font-display font-semibold text-white mb-auto"
-              style="font-size: 22px; letter-spacing: -0.02em; line-height: 1.2;"
+              class="font-display font-semibold mb-auto"
+              style="font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: var(--t-heading);"
             >
               {article.title}
             </h3>
-            <div class="mt-6 text-[13px]" style="color: rgba(255,255,255,0.5);">
+            <div class="mt-6 text-[13px]" style="color: var(--t-muted);">
               — {article.author}
             </div>
           </div>
@@ -117,4 +124,25 @@ const articles = entries.map(entry => ({
     card.addEventListener('mouseenter', () => { bar.style.width = '100%'; });
     card.addEventListener('mouseleave', () => { bar.style.width = '48px'; });
   });
+
+  // Align polygon grid textures with the Performance section grid above.
+  // Both grids use background-size: 64px / 28px. The polygon's background-position
+  // defaults to 0,0 relative to itself — but the Performance section's grid also
+  // starts at its own 0,0. We offset by the distance between sections mod the tile size.
+  (function alignPolyGrid() {
+    const perf = document.querySelector<HTMLElement>('section[aria-label="Company performance"]');
+    const polyGrid = document.querySelector<HTMLElement>('[data-poly-grid]');
+    const polyDots = document.querySelector<HTMLElement>('[data-poly-dots]');
+    if (!perf || !polyGrid) return;
+
+    const perfTop = perf.getBoundingClientRect().top + window.scrollY;
+    const polyTop = polyGrid.getBoundingClientRect().top + window.scrollY;
+    const delta = polyTop - perfTop;
+
+    const gridOff = delta % 64;
+    const dotOff  = delta % 28;
+
+    polyGrid.style.backgroundPositionY = `-${gridOff}px`;
+    if (polyDots) polyDots.style.backgroundPositionY = `-${dotOff}px`;
+  })();
 </script>

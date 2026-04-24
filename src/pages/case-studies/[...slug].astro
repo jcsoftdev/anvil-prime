@@ -26,22 +26,22 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
   <Navbar />
 
   <!-- Hero Header -->
-  <section class="relative overflow-hidden" style="background: #060b17;">
+  <section class="relative overflow-hidden" style="background: var(--t-bg-section);">
     <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.04) 1px,transparent 1px); background-size: 48px 48px;"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 py-28 sm:py-32 lg:py-36">
+    <div class="relative z-10 max-w-4xl mx-auto px-5 lg:px-12 py-28 sm:py-32 lg:py-36">
       <a href="/case-studies" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2 mb-8" style="opacity:0.8; color: #2cb7e8; text-decoration: none;">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
         Case Studies
       </a>
       <div class="font-mono text-[10px] tracking-[0.16em] uppercase mb-4" style="color: #1478c8;">{study.data.tag} · {study.data.industry}</div>
-      <h1 class="font-display font-semibold text-white leading-tight mb-6" style="font-size: clamp(28px,4vw,52px); letter-spacing:-0.03em;">{study.data.title}</h1>
-      <p class="text-[17px] leading-relaxed" style="color: rgba(255,255,255,0.65); max-width: 580px;">{study.data.excerpt}</p>
+      <h1 class="font-display font-semibold leading-tight mb-6" style="font-size: clamp(28px,4vw,52px); letter-spacing:-0.03em; color: var(--t-heading);">{study.data.title}</h1>
+      <p class="text-[17px] leading-relaxed" style="color: var(--t-body); max-width: 580px;">{study.data.excerpt}</p>
     </div>
   </section>
 
   <!-- Hero Image -->
   {caseStudyImages[study.id] && (
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12" style="background: #060b17; margin-top: -1px;">
+    <div class="max-w-4xl mx-auto px-5 lg:px-12" style="background: var(--t-bg-section); margin-top: -1px;">
       <div class="overflow-hidden h-48 sm:h-64 lg:h-80">
         <Image
           src={caseStudyImages[study.id]}
@@ -55,12 +55,12 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
   )}
 
   <!-- Content + Sidebar -->
-  <section class="py-12 sm:py-16 lg:py-20" style="background: #0b1322;">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
+  <section class="py-12 sm:py-16 lg:py-20" style="background: var(--t-bg-card);">
+    <div class="max-w-4xl mx-auto px-5 lg:px-12">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
         <!-- Article prose -->
         <div class="lg:col-span-2">
-          <div class="prose-dark text-[15px] leading-relaxed [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-white [&_h2]:text-xl [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:text-white [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_strong]:text-white [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:font-mono" style="color: rgba(255,255,255,0.7);">
+          <div class="prose-token text-[15px] leading-relaxed [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-xl [&_h2]:mt-8 [&_h2]:mb-4 [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-6 [&_ul]:list-disc [&_li]:mb-1 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:font-mono" style="color: var(--t-body);">
             <Content />
           </div>
         </div>
@@ -68,11 +68,11 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
         <!-- Sidebar -->
         <aside class="space-y-4 sm:space-y-6">
           <!-- Key Outcomes -->
-          <div class="border p-6" style="background: #1a2b4a; border-color: rgba(255,255,255,0.08);">
+          <div class="border p-6" style="background: var(--t-bg-card); border-color: var(--t-border);">
             <h3 class="font-mono text-[11px] tracking-[0.16em] uppercase mb-4" style="color: #2cb7e8;">Key Outcomes</h3>
             <ul class="space-y-3">
               {study.data.outcomes.map(outcome => (
-                <li class="flex items-start gap-2 text-[13px]" style="color: rgba(255,255,255,0.65);">
+                <li class="flex items-start gap-2 text-[13px]" style="color: var(--t-body);">
                   <span class="mt-0.5 flex-none" aria-hidden="true" style="color: #2cb7e8;">✓</span>
                   {outcome}
                 </li>
@@ -81,11 +81,11 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
           </div>
 
           <!-- Tech Stack -->
-          <div class="border p-6" style="background: #1a2b4a; border-color: rgba(255,255,255,0.08);">
+          <div class="border p-6" style="background: var(--t-bg-card); border-color: var(--t-border);">
             <h3 class="font-mono text-[11px] tracking-[0.16em] uppercase mb-4" style="color: #2cb7e8;">Tech Stack</h3>
             <div class="flex flex-wrap gap-2">
               {study.data.tech.map(tech => (
-                <span class="font-mono text-[10px] tracking-[0.1em] px-2.5 py-1 border" style="border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.65);">{tech}</span>
+                <span class="font-mono text-[10px] tracking-[0.1em] px-2.5 py-1 border" style="border-color: var(--t-border); color: var(--t-body);">{tech}</span>
               ))}
             </div>
           </div>
@@ -100,7 +100,7 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
             </a>
           </div>
 
-          <time datetime={study.data.date.toISOString().slice(0, 10)} class="font-mono text-[10px] tracking-[0.12em] uppercase block" style="color: rgba(255,255,255,0.35);">
+          <time datetime={study.data.date.toISOString().slice(0, 10)} class="font-mono text-[10px] tracking-[0.12em] uppercase block" style="color: var(--t-muted);">
             Published {formattedDate}
           </time>
         </aside>
@@ -108,7 +108,3 @@ const formattedDate = study.data.date.toLocaleDateString('en-US', {
     </div>
   </section>
 </Base>
-
-<style>
-  .prose-dark code { background: rgba(255,255,255,0.08); }
-</style>

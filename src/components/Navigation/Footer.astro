@@ -4,20 +4,20 @@ import { SITE_NAME, CONTACT_EMAIL } from '../../utils/constants';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer style="background: #060b17; color: #fff; position: relative; overflow: hidden;">
+<footer style="background: var(--t-bg-section); position: relative; overflow: hidden;">
   <!-- Grid texture background -->
   <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 72px 72px; pointer-events: none;"></div>
 
-  <div style="max-width: 1440px; margin: 0 auto; padding: 80px 48px 32px; position: relative;">
+  <div class="px-5 lg:px-12" style="max-width: 1440px; margin: 0 auto; padding-top: 80px; padding-bottom: 32px; position: relative;">
 
     <!-- Main grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-12 pb-16 border-b" style="border-color: rgba(255,255,255,0.1);">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-12 pb-16 border-b" style="border-color: var(--t-border);">
 
       <!-- Brand column -->
       <div>
-        <a href="/" aria-label="Anvil Prime home" style="display: inline-flex; align-items: center; gap: 10px; color: white; text-decoration: none;">
+        <a href="/" aria-label="Anvil Prime home" style="display: inline-flex; align-items: center; gap: 10px; color: var(--t-heading); text-decoration: none;">
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect x="1" y="1" width="30" height="30" stroke="white" stroke-width="1.5"/>
+            <rect x="1" y="1" width="30" height="30" stroke="currentColor" stroke-width="1.5"/>
             <rect x="6" y="6" width="20" height="20" fill="#1478c8"/>
             <rect x="6" y="6" width="20" height="4" fill="#2cb7e8"/>
             <line x1="1" y1="1" x2="31" y2="31" stroke="#2cb7e8" stroke-width="1" opacity="0.5"/>
@@ -26,7 +26,7 @@ const currentYear = new Date().getFullYear();
             Anvil<span style="color: #2cb7e8;">Prime</span>
           </span>
         </a>
-        <p style="font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.6); max-width: 320px; margin-top: 20px;">
+        <p style="font-size: 14px; line-height: 1.6; color: var(--t-body); max-width: 320px; margin-top: 20px;">
           Enterprise tech consulting with industrial precision. Headquartered in Pittsburgh — operating across 12 offices and 4 continents.
         </p>
       </div>
@@ -35,10 +35,9 @@ const currentYear = new Date().getFullYear();
       <div>
         <h2 style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #2cb7e8; margin-bottom: 20px; margin-top: 0;">Services</h2>
         <nav aria-label="Services links">
-          <a href="/services/ai-data-platforms" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">AI &amp; Data Platforms</a>
-          <a href="/services/cloud-modernization" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Cloud Modernization</a>
-          <a href="/services/digital-engineering" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Digital Engineering</a>
-          <a href="/services/cybersecurity" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Cybersecurity</a>
+          <a href="/services/industry-ai" class="footer-link">Industry AI</a>
+          <a href="/services/workflows-ai" class="footer-link">Workflows AI</a>
+          <a href="/services/sdlc-ai" class="footer-link">SDLC AI</a>
         </nav>
       </div>
 
@@ -46,10 +45,10 @@ const currentYear = new Date().getFullYear();
       <div>
         <h2 style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #2cb7e8; margin-bottom: 20px; margin-top: 0;">Industries</h2>
         <nav aria-label="Industries links">
-          <a href="/industries/financial-services" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Financial Services</a>
-          <a href="/industries/healthcare-life-sciences" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Healthcare</a>
-          <a href="/industries/energy-industrial" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Energy &amp; Industrial</a>
-          <a href="/industries/public-sector" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Public Sector</a>
+          <a href="/industries/banking-financial-services" class="footer-link">Banking &amp; Financial Services</a>
+          <a href="/industries/healthcare-life-sciences" class="footer-link">Healthcare &amp; Life Sciences</a>
+          <a href="/industries/media-entertainment" class="footer-link">Media &amp; Entertainment</a>
+          <a href="/industries/retail-cpg" class="footer-link">Retail &amp; CPG</a>
         </nav>
       </div>
 
@@ -57,10 +56,9 @@ const currentYear = new Date().getFullYear();
       <div>
         <h2 style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #2cb7e8; margin-bottom: 20px; margin-top: 0;">Company</h2>
         <nav aria-label="Company links">
-          <a href="/about" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">About</a>
-          <a href="/leadership" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Leadership</a>
-          <a href="/careers" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Careers <span style="color: rgba(255,255,255,0.4); font-size: 12px;">(87 open)</span></a>
-          <a href="/news" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">News</a>
+          <a href="/about" class="footer-link">About</a>
+          <a href="/careers" class="footer-link">Careers</a>
+          <a href="/insights" class="footer-link">Insights</a>
         </nav>
       </div>
 
@@ -68,23 +66,42 @@ const currentYear = new Date().getFullYear();
       <div>
         <h2 style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #2cb7e8; margin-bottom: 20px; margin-top: 0;">Contact</h2>
         <nav aria-label="Contact links">
-          <a href="/contact" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">New business</a>
-          <a href="/contact" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">Media inquiries</a>
-          <a href={`mailto:${CONTACT_EMAIL}`} style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: color 0.15s;" class="hover:text-white">{CONTACT_EMAIL}</a>
+          <a href="/contact" class="footer-link">New business</a>
+          <a href="/contact" class="footer-link">Media inquiries</a>
+          <a href={`mailto:${CONTACT_EMAIL}`} class="footer-link">{CONTACT_EMAIL}</a>
         </nav>
       </div>
 
     </div>
 
     <!-- Bottom bar -->
-    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 28px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); flex-wrap: wrap; gap: 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 28px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--t-muted); flex-wrap: wrap; gap: 16px;">
       <span>© 2011–{currentYear} {SITE_NAME} Ltd. All rights reserved.</span>
       <div style="display: flex; gap: 32px;">
-        <a href="/privacy" style="color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s;" class="hover:text-white">Privacy</a>
-        <a href="/terms" style="color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s;" class="hover:text-white">Terms</a>
+        <a href="/privacy" class="footer-link-muted">Privacy</a>
+        <a href="/terms" class="footer-link-muted">Terms</a>
         <span>Accessibility · WCAG AA</span>
       </div>
     </div>
 
   </div>
 </footer>
+
+<style>
+  .footer-link {
+    color: var(--t-body);
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.15s;
+  }
+  .footer-link:hover { color: var(--t-heading); }
+
+  .footer-link-muted {
+    color: var(--t-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-link-muted:hover { color: var(--t-heading); }
+</style>

@@ -65,6 +65,14 @@ const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro
       ]
     })} />
 
+    <!-- Anti-FOUC: apply saved theme before first paint -->
+    <script is:inline>
+      (function () {
+        const t = localStorage.getItem('ap-theme');
+        if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      })();
+    </script>
+
     <slot name="head" />
   </head>
   <body>

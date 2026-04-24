@@ -18,7 +18,6 @@ const openRoles = [
 
     <!-- Page Header -->
     <section class="relative overflow-hidden" style="background: #060b17;">
-      <!-- Photo at 12% opacity — texture, not distraction -->
       <Image
         src={careersBg}
         alt=""
@@ -31,12 +30,9 @@ const openRoles = [
         style="opacity: 0.35;"
         loading="eager"
       />
-      <!-- Gradient vignette -->
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(6,11,23,0.15) 0%, rgba(6,11,23,0.55) 100%);"></div>
-      <!-- Grid lines -->
       <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
-      <!-- Content -->
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 py-28 sm:py-36 lg:py-44">
+      <div class="relative z-10 max-w-4xl mx-auto px-5 lg:px-12 py-28 sm:py-36 lg:py-44">
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2.5 mb-6" style="color: #2cb7e8;">
           <span style="opacity:0.7">01</span>
           <span class="inline-block w-6 h-px bg-current opacity-50"></span>
@@ -50,24 +46,24 @@ const openRoles = [
     </section>
 
     <!-- Open Roles -->
-    <section class="relative overflow-hidden py-16 sm:py-20 lg:py-24" style="background: #0b1322;">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
-        <h2 class="font-display font-semibold text-white mb-10" style="font-size: clamp(20px, 2.5vw, 28px); letter-spacing: -0.02em;">Open Roles</h2>
+    <section class="relative overflow-hidden py-16 sm:py-20 lg:py-24" style="background: var(--t-bg-card);">
+      <div class="max-w-4xl mx-auto px-5 lg:px-12">
+        <h2 class="font-display font-semibold mb-10" style="font-size: clamp(20px, 2.5vw, 28px); letter-spacing: -0.02em; color: var(--t-heading);">Open Roles</h2>
 
         <div class="space-y-4">
           {openRoles.map((role) => (
-            <div class="relative border p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style="background: #1a2b4a; border-color: rgba(255,255,255,0.08);">
+            <div class="relative border p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style="background: var(--t-bg-card); border-color: var(--t-border);">
               <div>
-                <h3 class="font-display font-semibold text-white mb-2" style="font-size: 18px;">{role.title}</h3>
+                <h3 class="font-display font-semibold mb-2" style="font-size: 18px; color: var(--t-heading);">{role.title}</h3>
                 <div class="flex flex-wrap gap-2 mt-2">
-                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">{role.team}</span>
-                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">{role.type}</span>
-                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">{role.location}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: var(--t-border); color: var(--t-muted);">{role.team}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: var(--t-border); color: var(--t-muted);">{role.type}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 border" style="border-color: var(--t-border); color: var(--t-muted);">{role.location}</span>
                 </div>
               </div>
               <a href="/contact" aria-label={`Apply for ${role.title}`}
-                class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border text-white hover:bg-white/10 transition-colors shrink-0"
-                style="border-color: rgba(255,255,255,0.3);">
+                class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border transition-colors shrink-0"
+                style="border-color: var(--t-border-strong); color: var(--t-heading);">
                 Apply &rarr;
               </a>
             </div>
@@ -75,8 +71,8 @@ const openRoles = [
         </div>
 
         <div class="mt-12 text-center">
-          <p class="text-[15px] mb-5" style="color: rgba(255,255,255,0.65);">Don't see your role? We're always interested in exceptional people.</p>
-          <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border text-white hover:bg-white/10 transition-colors" style="border-color: rgba(255,255,255,0.3);">
+          <p class="text-[15px] mb-5" style="color: var(--t-body);">Don't see your role? We're always interested in exceptional people.</p>
+          <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border transition-colors" style="border-color: var(--t-border-strong); color: var(--t-heading);">
             Send us your resume
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
           </a>

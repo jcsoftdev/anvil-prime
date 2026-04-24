@@ -5,18 +5,18 @@ import Navbar from '../components/Navigation/Navbar.astro';
 
 <Base title="Page Not Found" noindex>
   <Navbar />
-  <main class="pt-20" style="background: #060b17;">
+  <main class="pt-20" style="background: var(--t-bg-section);">
     <div class="min-h-[calc(100vh-80px)] flex items-center justify-center px-4">
       <div class="max-w-3xl mx-auto text-center w-full">
         <div
           class="font-display font-semibold leading-none mb-8 select-none"
           aria-hidden="true"
-          style="font-size: clamp(100px, 20vw, 280px); background: linear-gradient(to bottom, white, rgba(255,255,255,0.2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+          style="font-size: clamp(100px, 20vw, 280px); color: var(--t-border-strong);"
         >
           404
         </div>
-        <h1 class="font-display font-semibold text-white mb-4" style="font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.02em;">Page not found</h1>
-        <p class="text-[17px] leading-relaxed mb-8 max-w-md mx-auto" style="color: rgba(255,255,255,0.65);">
+        <h1 class="font-display font-semibold mb-4" style="font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.02em; color: var(--t-heading);">Page not found</h1>
+        <p class="text-[17px] leading-relaxed mb-8 max-w-md mx-auto" style="color: var(--t-body);">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <a href="/" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-colors" style="background: #1478c8;">

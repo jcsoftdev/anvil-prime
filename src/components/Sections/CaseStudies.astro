@@ -27,8 +27,8 @@ const cases = entries.map(entry => ({
 }));
 ---
 
-<section class="relative" aria-label="Case studies" id="case-studies-section" style="background: #0b1322; padding: 140px 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+<section class="relative" aria-label="Case studies" id="case-studies-section" style="background: var(--t-bg-section); padding: 140px 0;">
+  <div class="max-w-7xl mx-auto px-5 lg:px-12">
     <!-- Header row -->
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6" style="margin-bottom: 60px;">
       <div>
@@ -38,8 +38,8 @@ const cases = entries.map(entry => ({
           <span>Case studies</span>
         </div>
         <h2
-          class="font-display font-semibold text-white leading-tight"
-          style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0;"
+          class="font-display font-semibold leading-tight"
+          style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0; color: var(--t-heading);"
         >
           Outcomes, not output.
         </h2>
@@ -58,14 +58,14 @@ const cases = entries.map(entry => ({
     <!-- Featured card -->
     <div
       class="border grid grid-cols-1 lg:grid-cols-[1.4fr_1fr]"
-      style="border-color: rgba(255,255,255,0.1); min-height: 520px;"
+      style="border-color: var(--t-border); min-height: 520px;"
       id="cs-featured"
     >
       <!-- Image col -->
-      <div class="relative overflow-hidden min-h-[280px] lg:min-h-auto" style="background: #1478c8;" id="cs-img-col">
+      <div class="relative overflow-hidden min-h-[280px] lg:min-h-auto" style="background: var(--t-bg-image);" id="cs-img-col">
         {cases.map((cs, i) => (
           <div
-            class={`absolute inset-0 transition-opacity duration-300 ${i === 0 ? '' : 'opacity-0'}`}
+            class={`absolute inset-0 transition-opacity duration-500 ${i === 0 ? '' : 'opacity-0'}`}
             data-cs-img={i}
           >
             <Image
@@ -76,12 +76,15 @@ const cases = entries.map(entry => ({
               sizes="(max-width: 1024px) 100vw, 55vw"
               width={1200}
               height={780}
-              class="w-full h-full object-cover opacity-30"
+              class="w-full h-full object-cover opacity-55"
               loading={i === 0 ? 'eager' : 'lazy'}
             />
-            <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 48px 48px;"></div>
+            <!-- Gradient: dark left edge for contrast, subtle blue tint across -->
+            <div class="absolute inset-0" data-cs-img-overlay style="background: linear-gradient(105deg, rgba(6,11,23,0.55) 0%, rgba(20,120,200,0.18) 50%, rgba(6,11,23,0.25) 100%);"></div>
+            <!-- Subtle grid -->
+            <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
             <div class="absolute top-0 left-0 w-0.5 h-20 bg-accent-bright"></div>
-            <div class="absolute bottom-8 left-8 font-mono text-[11px] tracking-[0.18em] uppercase text-white/80">
+            <div class="absolute bottom-8 left-8 font-mono text-[11px] tracking-[0.18em] uppercase text-white/70">
               {cs.tag}
             </div>
           </div>
@@ -89,20 +92,23 @@ const cases = entries.map(entry => ({
       </div>
 
       <!-- Content col -->
-      <div class="flex flex-col justify-between p-10 lg:p-14" style="background: #0b1322;">
-        <div id="cs-content">
+      <div id="cs-content-col" class="flex flex-col justify-between p-10 lg:p-14" style="background: var(--t-bg-card);">
+        <div id="cs-content" style="display: grid;">
           {cases.map((cs, i) => (
-            <div class={i === 0 ? '' : 'hidden'} data-cs-content={i}>
+            <div
+              data-cs-content={i}
+              style={`grid-area: 1 / 1; opacity: ${i === 0 ? 1 : 0}; pointer-events: ${i === 0 ? 'auto' : 'none'};`}
+            >
               <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-accent mb-5">
                 {cs.client}
               </div>
               <h3
-                class="font-display font-semibold text-white mb-6"
-                style="font-size: clamp(24px, 3vw, 38px); letter-spacing: -0.025em; line-height: 1.1;"
+                class="font-display font-semibold mb-6"
+                style="font-size: clamp(24px, 3vw, 38px); letter-spacing: -0.025em; line-height: 1.1; color: var(--t-heading);"
               >
                 {cs.title}
               </h3>
-              <p class="text-[15px] leading-relaxed mb-8" style="color: rgba(255,255,255,0.65);">
+              <p class="text-[15px] leading-relaxed mb-8" style="color: var(--t-body);">
                 {cs.excerpt}
               </p>
             </div>
@@ -110,16 +116,20 @@ const cases = entries.map(entry => ({
         </div>
         <!-- KPI + CTA -->
         <div>
-          <div class="pt-6 mb-7" style="border-top: 1px solid rgba(255,255,255,0.1);">
+          <div class="pt-6 mb-7" style="border-top: 1px solid var(--t-border); display: grid;">
             {cases.map((cs, i) => (
-              <div class={`flex items-baseline gap-4 ${i === 0 ? '' : 'hidden'}`} data-cs-kpi={i}>
+              <div
+                class="flex items-baseline gap-4"
+                data-cs-kpi={i}
+                style={`grid-area: 1 / 1; opacity: ${i === 0 ? 1 : 0}; pointer-events: ${i === 0 ? 'auto' : 'none'};`}
+              >
                 <span
                   class="font-display font-semibold text-accent"
                   style="font-size: 72px; line-height: 0.9; letter-spacing: -0.04em;"
                 >
                   {cs.kpi}
                 </span>
-                <span class="font-mono text-[11px] tracking-[0.14em] uppercase pb-2" style="color: rgba(255,255,255,0.55);">
+                <span class="font-mono text-[11px] tracking-[0.14em] uppercase pb-2" style="color: var(--t-muted);">
                   {cs.kpiLabel}
                 </span>
               </div>
@@ -127,8 +137,8 @@ const cases = entries.map(entry => ({
           </div>
           <a
             href={cases[0]?.href ?? '/case-studies'}
-            class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border text-white hover:bg-white/8 transition-colors rounded-sm"
-            style="border-color: rgba(255,255,255,0.3);"
+            class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border transition-colors rounded-sm"
+            style="border-color: var(--t-border-strong); color: var(--t-heading);"
             id="cs-read-link"
           >
             Read the case
@@ -143,25 +153,27 @@ const cases = entries.map(entry => ({
     <!-- Tab row -->
     <div
       class="grid border-l border-r border-b"
-      style={`grid-template-columns: repeat(${cases.length}, 1fr); border-color: rgba(255,255,255,0.1);`}
+      style={`grid-template-columns: repeat(${cases.length}, 1fr); border-color: var(--t-border);`}
     >
       {cases.map((cs, i) => (
         <button
-          class="text-left border-r last:border-0 transition-colors duration-150 relative"
-          style={`border-color: rgba(255,255,255,0.1); padding: 24px; background: ${i === 0 ? 'rgba(255,255,255,0.04)' : 'transparent'}; cursor: pointer;`}
+          class="text-left border-r last:border-0 transition-all duration-200 relative group"
+          style={`border-color: var(--t-border); padding: 24px 28px; background: ${i === 0 ? 'rgba(20,120,200,0.08)' : 'transparent'}; cursor: pointer;`}
           data-cs-tab={i}
           data-cs-href={cs.href}
           aria-selected={i === 0 ? 'true' : 'false'}
         >
           <div
-            class="absolute top-0 left-0 right-0 h-0.5 bg-accent-bright transition-opacity"
-            style={`opacity: ${i === 0 ? '1' : '0'};`}
+            class="absolute top-0 left-0 right-0 h-px transition-opacity duration-300"
+            style={`background: linear-gradient(90deg, #2cb7e8, #1478c8); opacity: ${i === 0 ? '1' : '0'};`}
             data-cs-tab-bar={i}
           ></div>
-          <div class="font-mono text-[10px] tracking-[0.16em] uppercase mb-2" style="color: rgba(255,255,255,0.5);">
+          <div class="font-mono text-[10px] tracking-[0.16em] uppercase mb-2.5" style={`color: ${i === 0 ? 'rgba(44,183,232,0.8)' : 'var(--t-muted)'}; transition: color 0.2s;`}
+            data-cs-tab-label={i}>
             0{i + 1} · {cs.tag}
           </div>
-          <div class="text-[14px] font-semibold text-white leading-snug">
+          <div class="text-[14px] font-semibold leading-snug" style={`color: ${i === 0 ? 'var(--t-heading)' : 'var(--t-body)'}; transition: color 0.2s;`}
+            data-cs-tab-client={i}>
             {cs.client}
           </div>
         </button>
@@ -171,23 +183,111 @@ const cases = entries.map(entry => ({
 </section>
 
 <script>
+  import { gsap, reducedMotion } from '../../lib/gsap.client';
+
   const tabs = document.querySelectorAll<HTMLElement>('[data-cs-tab]');
   const imgs = document.querySelectorAll<HTMLElement>('[data-cs-img]');
   const contents = document.querySelectorAll<HTMLElement>('[data-cs-content]');
   const kpis = document.querySelectorAll<HTMLElement>('[data-cs-kpi]');
   const bars = document.querySelectorAll<HTMLElement>('[data-cs-tab-bar]');
   const readLink = document.getElementById('cs-read-link') as HTMLAnchorElement | null;
+  const tabLabels = document.querySelectorAll<HTMLElement>('[data-cs-tab-label]');
+  const tabClients = document.querySelectorAll<HTMLElement>('[data-cs-tab-client]');
 
-  function switchTo(idx: number) {
-    imgs.forEach((el, i) => { el.style.opacity = i === idx ? '1' : '0'; });
-    contents.forEach((el, i) => { el.classList.toggle('hidden', i !== idx); });
-    kpis.forEach((el, i) => { el.classList.toggle('hidden', i !== idx); });
+  let current = 0;
+  let busy = false;
+
+  function getTokens() {
+    const cs = getComputedStyle(document.documentElement);
+    return {
+      heading: cs.getPropertyValue('--t-heading').trim(),
+      body:    cs.getPropertyValue('--t-body').trim(),
+      muted:   cs.getPropertyValue('--t-muted').trim(),
+    };
+  }
+
+  function applyTabChrome(idx: number) {
+    const { heading, body, muted } = getTokens();
     bars.forEach((el, i) => { el.style.opacity = i === idx ? '1' : '0'; });
     tabs.forEach((tab, i) => {
-      tab.style.background = i === idx ? 'rgba(255,255,255,0.04)' : 'transparent';
-      tab.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      const active = i === idx;
+      tab.style.background = active ? 'rgba(20,120,200,0.08)' : 'transparent';
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    tabLabels.forEach((el, i) => {
+      el.style.color = i === idx ? 'rgba(44,183,232,0.8)' : muted;
+    });
+    tabClients.forEach((el, i) => {
+      el.style.color = i === idx ? heading : body;
     });
     if (readLink) readLink.href = tabs[idx]?.dataset.csHref ?? '#';
+  }
+
+  // Sync initial colors to current theme (SSR renders dark-mode values)
+  applyTabChrome(current);
+  document.addEventListener('theme-change', () => applyTabChrome(current));
+
+  function switchTo(idx: number) {
+    if (idx === current || busy) return;
+    busy = true;
+
+    const prevIdx = current;
+    current = idx;
+
+    // Image crossfade — CSS transition handles it
+    imgs.forEach((el, i) => { el.style.opacity = i === idx ? '1' : '0'; });
+
+    applyTabChrome(idx);
+
+    const prevContent = contents[prevIdx];
+    const prevKpi = kpis[prevIdx];
+    const nextContent = contents[idx];
+    const nextKpi = kpis[idx];
+
+    if (reducedMotion) {
+      prevContent.style.opacity = '0';
+      prevContent.style.pointerEvents = 'none';
+      prevKpi.style.opacity = '0';
+      prevKpi.style.pointerEvents = 'none';
+      nextContent.style.opacity = '1';
+      nextContent.style.pointerEvents = 'auto';
+      nextKpi.style.opacity = '1';
+      nextKpi.style.pointerEvents = 'auto';
+      busy = false;
+      return;
+    }
+
+    // Disable pointer-events on both during transition
+    [prevContent, prevKpi, nextContent, nextKpi].forEach(el => {
+      el.style.pointerEvents = 'none';
+    });
+
+    // Fade-out current content + KPI
+    gsap.to([prevContent, prevKpi], {
+      opacity: 0,
+      y: -16,
+      duration: 0.22,
+      ease: 'power2.in',
+      onComplete: () => {
+        gsap.set([prevContent, prevKpi], { y: 0 });
+
+        gsap.fromTo(
+          [nextContent, nextKpi],
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: 'power3.out',
+            onComplete: () => {
+              nextContent.style.pointerEvents = 'auto';
+              nextKpi.style.pointerEvents = 'auto';
+              busy = false;
+            },
+          }
+        );
+      },
+    });
   }
 
   tabs.forEach((tab, i) => {

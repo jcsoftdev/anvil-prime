@@ -30,7 +30,7 @@ const solutions = [
       />
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(6,11,23,0.15) 0%, rgba(6,11,23,0.55) 100%);"></div>
       <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 py-28 sm:py-36 lg:py-44">
+      <div class="relative z-10 max-w-4xl mx-auto px-5 lg:px-12 py-28 sm:py-36 lg:py-44">
         <a href="/industries" class="font-mono text-[11px] tracking-[0.14em] uppercase hover:underline flex items-center gap-2 mb-8" style="color: #2cb7e8; opacity: 0.8; text-decoration: none;">
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
           Industries
@@ -42,24 +42,24 @@ const solutions = [
       </div>
     </section>
 
-    <section class="py-16 sm:py-20 lg:py-24" style="background: #0b1322;">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <section class="py-16 sm:py-20 lg:py-24" style="background: var(--t-bg-card);">
+      <div class="max-w-7xl mx-auto px-5 lg:px-12">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {solutions.map((s) => (
-            <div class="border p-8" style="background: #0b1322; border-color: rgba(255,255,255,0.08);">
+            <div class="border p-8" style="background: var(--t-bg-card); border-color: var(--t-border);">
               <div class="h-0.5 mb-6" style="width: 32px; background: #2cb7e8;"></div>
-              <h3 class="font-display font-semibold text-white mb-3" style="font-size: 18px;">{s.title}</h3>
-              <p class="text-[14px] leading-relaxed" style="color: rgba(255,255,255,0.65);">{s.description}</p>
+              <h3 class="font-display font-semibold mb-3" style="font-size: 18px; color: var(--t-heading);">{s.title}</h3>
+              <p class="text-[14px] leading-relaxed" style="color: var(--t-body);">{s.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="py-16 sm:py-20" style="background: #060b17;">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
-        <h2 class="font-display font-semibold text-white mb-4" style="font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.03em;">Ready to build?</h2>
-        <p class="text-[16px] mb-8" style="color: rgba(255,255,255,0.65);">Tell us about your project.</p>
+    <section class="py-16 sm:py-20" style="background: var(--t-bg-section);">
+      <div class="max-w-3xl mx-auto px-5 lg:px-12 text-center">
+        <h2 class="font-display font-semibold mb-4" style="font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.03em; color: var(--t-heading);">Ready to build?</h2>
+        <p class="text-[16px] mb-8" style="color: var(--t-body);">Tell us about your project.</p>
         <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-colors" style="background: #1478c8;">
           Talk to a Retail AI Expert
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>

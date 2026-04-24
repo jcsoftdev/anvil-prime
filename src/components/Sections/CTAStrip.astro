@@ -3,6 +3,7 @@
 
 <section
   aria-label="Start a project"
+  class="cta-section"
   style="background: #1a2b4a; padding: 100px 0; position: relative; overflow: hidden;"
 >
   <!-- GridLines texture -->
@@ -24,25 +25,25 @@
   ></div>
 
   <!-- Content -->
-  <div style="max-width: 1440px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 2;">
-    <div class="cta-inner" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: center;">
+  <div class="cta-wrap">
+    <div class="cta-inner">
 
       <!-- Left column -->
       <div>
         <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #2cb7e8; margin-bottom: 20px;">
           Start a project
         </div>
-        <h2 style="font-family: var(--font-display); font-size: clamp(52px, 6vw, 80px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 0; color: #fff;">
+        <h2 class="cta-heading" style="font-family: var(--font-display); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 0; color: #fff;">
           Have a system<br/>worth building?
         </h2>
       </div>
 
       <!-- Right column -->
-      <div>
+      <div class="cta-body">
         <p style="font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.78); margin-bottom: 32px;">
           Most engagements begin with a 45-minute architecture review at no cost. We'll tell you honestly whether we're the right partner — and who to call if we aren't.
         </p>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <div class="cta-btns" style="display: flex; gap: 12px; flex-wrap: wrap;">
           <a
             href="/contact"
             data-magnetic
@@ -67,10 +68,57 @@
 </section>
 
 <style>
+  .cta-wrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  @media (min-width: 1024px) {
+    .cta-wrap { padding: 0 48px; }
+  }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .cta-heading {
+    font-size: clamp(40px, 6vw, 80px);
+  }
+
+  @media (max-width: 1024px) {
+    .cta-inner {
+      gap: 48px;
+    }
+  }
+
   @media (max-width: 768px) {
+    .cta-section {
+      padding: 64px 0 !important;
+    }
+    .cta-wrap {
+      padding: 0 20px;
+    }
     .cta-inner {
       grid-template-columns: 1fr;
-      gap: 48px;
+      gap: 32px;
+    }
+    .cta-heading {
+      font-size: clamp(36px, 10vw, 52px);
+    }
+    .cta-body p {
+      font-size: 16px !important;
+    }
+    .cta-btns {
+      flex-direction: column !important;
+    }
+    .cta-btns a {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

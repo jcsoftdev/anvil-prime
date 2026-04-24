@@ -40,10 +40,10 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
     const maxDist = Math.sqrt(cx * cx + cy * cy);
     dots.forEach(dot => {
       const dist = Math.sqrt((dot.x - cx) ** 2 + (dot.y - cy) ** 2);
-      const delay = (dist / maxDist) * 2;
+      const delay = (dist / maxDist) * 2.4;
       gsap.to(dot, {
-        alpha: 0.55,
-        duration: 2,
+        alpha: 0.22,
+        duration: 2.4,
         delay,
         repeat: -1,
         yoyo: true,
@@ -57,7 +57,7 @@ export function initHeroCanvas(canvas: HTMLCanvasElement): () => void {
     ctx.fillStyle = 'rgb(44, 183, 232)';
     dots.forEach(dot => {
       ctx.beginPath();
-      ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
+      ctx.arc(dot.x, dot.y, 0.9, 0, Math.PI * 2);
       ctx.globalAlpha = dot.alpha;
       ctx.fill();
     });

@@ -18,10 +18,14 @@ export function initTextScramble(el: HTMLElement): () => void {
 
     let result = '';
     for (let i = 0; i < original.length; i++) {
-      if (original[i] === ' ') {
-        result += ' ';
+      const ch = original[i];
+      // Preserve whitespace (incl. \n) so line-count stays constant during scramble.
+      // Otherwise the heading collapses into one long line, wraps to 3 lines, then
+      // snaps back to 2 — causing layout shift in every element below it.
+      if (ch === ' ' || ch === '\n' || ch === '\t') {
+        result += ch;
       } else if (i / original.length < progress) {
-        result += original[i];
+        result += ch;
       } else {
         result += CHARS[Math.floor(Math.random() * CHARS.length)];
       }

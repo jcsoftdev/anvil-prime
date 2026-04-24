@@ -46,6 +46,126 @@
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
+/* ── Semantic theme tokens ──────────────────────────────────────────────────
+   Dark mode is the default (no data-theme attribute).
+   Light mode activates with data-theme="light" on <html>.
+   Components use --t-* tokens exclusively — never hardcode mode-specific hex. */
+
+:root {
+  /* Text */
+  --t-heading:       #e7eef9;
+  --t-body:          rgba(255,255,255,0.65);
+  --t-muted:         rgba(255,255,255,0.5);
+
+  /* Surfaces */
+  --t-bg-section:    #101a33;
+  --t-bg-card:       #0b1322;
+  --t-bg-card-hover: #0f1a30;
+  --t-bg-image:      #060b17;
+
+  /* Borders */
+  --t-border:        rgba(255,255,255,0.1);
+  --t-border-strong: rgba(255,255,255,0.3);
+
+  /* Nav */
+  --t-nav-scrolled-bg:     rgba(11, 19, 34, 0.88);
+  --t-nav-scrolled-border: rgba(255,255,255,0.1);
+}
+
+html[data-theme="light"] {
+  /* Text */
+  --t-heading:       #1a2b4a;
+  --t-body:          #445870;
+  --t-muted:         #5e7290;
+
+  /* Surfaces */
+  --t-bg-section:    #f2f7fc;
+  --t-bg-card:       #ffffff;
+  --t-bg-card-hover: #e8f1fa;
+  --t-bg-image:      #e8f1fa;
+
+  /* Borders */
+  --t-border:        #c8dff0;
+  --t-border-strong: #a8c8e0;
+
+  /* Nav */
+  --t-nav-scrolled-bg:     rgba(255, 255, 255, 0.95);
+  --t-nav-scrolled-border: rgba(26, 43, 74, 0.1);
+}
+
+
+/* ── Insights cards — light mode image treatment ────────────────────────────
+   opacity-50 looks disabled on light bg; raise it and add a brand-blue tint. */
+html[data-theme="light"] [data-insight-img-wrap] img {
+  opacity: 0.9 !important;
+}
+html[data-theme="light"] .group:hover [data-insight-img-wrap] img {
+  opacity: 1 !important;
+}
+html[data-theme="light"] [data-insight-img-wrap]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(20,120,200,0.28) 0%, rgba(44,183,232,0.12) 100%);
+  pointer-events: none;
+}
+
+/* ── CaseStudies image col — light mode treatment ───────────────────────────
+   Dark mode: low opacity + dark overlay → moody.
+   Light mode: higher opacity + brand-blue overlay → editorial duotone. */
+html[data-theme="light"] #cs-img-col img {
+  opacity: 0.9 !important;
+}
+html[data-theme="light"] [data-cs-img-overlay] {
+  background: linear-gradient(105deg, rgba(20,120,200,0.5) 0%, rgba(44,183,232,0.25) 55%, rgba(20,120,200,0.25) 100%) !important;
+}
+
+/* ── Navbar light mode overrides ────────────────────────────────────────────
+   Two states need dark text in light mode:
+   1. Scrolled (frosted glass bg): always dark regardless of page hero
+   2. Un-scrolled + .light-hero (page has light bg behind navbar): dark text */
+
+/* Scrolled state */
+html[data-theme="light"] #navbar.is-scrolled a,
+html[data-theme="light"] #navbar.is-scrolled button {
+  color: var(--t-heading) !important;
+}
+html[data-theme="light"] #navbar.is-scrolled .logo-mark rect:first-child {
+  stroke: var(--t-heading) !important;
+}
+html[data-theme="light"] #navbar.is-scrolled #theme-toggle,
+html[data-theme="light"] #navbar.is-scrolled [data-nav-secondary] {
+  border-color: var(--t-border) !important;
+}
+html[data-theme="light"] #navbar.is-scrolled {
+  color: var(--t-heading);
+}
+
+/* Un-scrolled on light-background pages (.light-hero class set by JS) */
+html[data-theme="light"] #navbar.light-hero:not(.is-scrolled) a,
+html[data-theme="light"] #navbar.light-hero:not(.is-scrolled) button {
+  color: var(--t-heading) !important;
+}
+html[data-theme="light"] #navbar.light-hero:not(.is-scrolled) .logo-mark rect:first-child {
+  stroke: var(--t-heading) !important;
+}
+html[data-theme="light"] #navbar.light-hero:not(.is-scrolled) #theme-toggle,
+html[data-theme="light"] #navbar.light-hero:not(.is-scrolled) [data-nav-secondary] {
+  border-color: var(--t-border) !important;
+}
+
+/* ── Prose token class — replaces hardcoded dark-mode prose styles ───────────
+   Use class="prose-token" on prose containers instead of encoding dark colors. */
+.prose-token h2,
+.prose-token h3 { color: var(--t-heading); }
+.prose-token strong { color: var(--t-heading); }
+.prose-token code { background: var(--t-border); }
+
+/* ── Grid lines — light mode: make texture faint so it doesn't dominate ─────
+   Dark mode: rgba(255,255,255,0.04) is already very subtle.
+   Light mode: that same white line barely shows on a light bg, which is fine.
+   No override needed — but if pages want a brand-tinted line, add here. */
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;

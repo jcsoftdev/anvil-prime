@@ -12,29 +12,29 @@ const posts = (await getCollection('insights')).sort(
 
 <Base title="Insights" description="Technology insights and engineering perspectives from the Anvil Prime team.">
   <Navbar />
-  <main style="background: #060b17;">
+  <main style="background: var(--t-bg-section);">
     <!-- Page header -->
-    <section class="relative overflow-hidden" style="background: #060b17;">
+    <section class="relative overflow-hidden" style="background: var(--t-bg-section);">
       <div class="absolute inset-0" aria-hidden="true" style="background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-24 sm:py-32 lg:py-40">
+      <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-12 py-24 sm:py-32 lg:py-40">
         <div class="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2.5 mb-6" style="color: #2cb7e8;">
           <span style="opacity:0.7">04</span>
           <span class="inline-block w-6 h-px bg-current opacity-50"></span>
           <span>Insights</span>
         </div>
-        <h1 class="font-display font-semibold text-white" style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0 0 20px;">Thinking From the Field</h1>
-        <p class="text-[17px]" style="color: rgba(255,255,255,0.65);">Perspectives on technology, engineering, and building products that last.</p>
+        <h1 class="font-display font-semibold" style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.035em; margin: 0 0 20px; color: var(--t-heading);">Thinking From the Field</h1>
+        <p class="text-[17px]" style="color: var(--t-body);">Perspectives on technology, engineering, and building products that last.</p>
       </div>
     </section>
 
     <!-- Card grid -->
-    <section class="py-16 sm:py-20 lg:py-24" style="background: #0b1322;">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <section class="py-16 sm:py-20 lg:py-24" style="background: var(--t-bg-card);">
+      <div class="max-w-7xl mx-auto px-5 lg:px-12">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {posts.map((post) => (
-            <a href={`/insights/${post.id}`} class="group flex flex-col border transition-transform duration-200 hover:-translate-y-1 relative" style="border-color: rgba(255,255,255,0.08); background: #0b1322; text-decoration: none; color: inherit;">
+            <a href={`/insights/${post.id}`} class="group flex flex-col border transition-transform duration-200 hover:-translate-y-1 relative" style="border-color: var(--t-border); background: var(--t-bg-card); text-decoration: none; color: inherit;">
               <div class="absolute top-0 left-0 h-0.5 transition-all duration-300" style="width: 48px; background: #2cb7e8;" data-accent-bar></div>
-              <div class="h-40 sm:h-48 overflow-hidden">
+              <div class="h-40 sm:h-48 overflow-hidden" data-insight-img-wrap style="position: relative;">
                 {insightImages[post.id] && (
                   <Image
                     src={insightImages[post.id]}
@@ -52,10 +52,10 @@ const posts = (await getCollection('insights')).sort(
               <div class="p-7 flex flex-col flex-1">
                 <div class="flex justify-between font-mono text-[10px] tracking-[0.16em] uppercase mb-4">
                   <span style="color: #1478c8;">{post.data.category}</span>
-                  <span style="color: rgba(255,255,255,0.45);">{post.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+                  <span style="color: var(--t-muted);">{post.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
                 </div>
-                <h2 class="font-display font-semibold text-white mb-auto" style="font-size: 22px; letter-spacing: -0.02em; line-height: 1.2;">{post.data.title}</h2>
-                <div class="mt-6 text-[13px]" style="color: rgba(255,255,255,0.5);">— {post.data.author.name}, {post.data.author.role}</div>
+                <h2 class="font-display font-semibold mb-auto" style="font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: var(--t-heading);">{post.data.title}</h2>
+                <div class="mt-6 text-[13px]" style="color: var(--t-muted);">— {post.data.author.name}, {post.data.author.role}</div>
               </div>
             </a>
           ))}

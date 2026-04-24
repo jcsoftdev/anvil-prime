@@ -2,12 +2,12 @@
 ---
 
 <header id="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
-  <div style="max-width: 1440px; margin: 0 auto; padding: 0 48px; display: flex; align-items: center; height: 80px;">
+  <div class="px-5 lg:px-12" style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; height: 80px;">
 
     <!-- Logo -->
     <a href="/" aria-label="Anvil Prime home" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none; flex-shrink: 0;">
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="1" y="1" width="30" height="30" stroke="white" stroke-width="1.5"/>
+      <svg class="logo-mark" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" stroke="currentColor" stroke-width="1.5"/>
         <rect x="6" y="6" width="20" height="20" fill="#1478c8"/>
         <rect x="6" y="6" width="20" height="4" fill="#2cb7e8"/>
         <line x1="1" y1="1" x2="31" y2="31" stroke="#2cb7e8" stroke-width="1" opacity="0.5"/>
@@ -34,23 +34,19 @@
           </svg>
         </button>
         <div class="absolute hidden group-hover:block group-focus-within:block" style="top: 100%; left: 0; padding-top: 12px;">
-          <div style="position: relative; background: #0f1a30; border: 1px solid rgba(255,255,255,0.1); min-width: 380px; box-shadow: 0 24px 60px rgba(0,0,0,0.5);">
+          <div style="position: relative; background: var(--t-bg-card); border: 1px solid var(--t-border); min-width: 380px; box-shadow: 0 12px 40px rgba(0,0,0,0.25);">
             <span aria-hidden="true" style="position: absolute; top: -1px; left: 0; width: 48px; height: 2px; background: #2cb7e8;"></span>
-            <a href="/services/ai-data-platforms" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">AI &amp; Data Platforms</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Production LLM systems, MLOps, governance</div>
+            <a href="/services/industry-ai" style="display: block; padding: 12px 14px; color: var(--t-heading); text-decoration: none; border-bottom: 1px solid var(--t-border);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: var(--t-heading);">Industry AI</div>
+              <div style="font-size: 12px; color: var(--t-body); margin-top: 2px; line-height: 1.5;">Transforming industry-specific use cases with applied AI</div>
             </a>
-            <a href="/services/cloud-modernization" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">Cloud Modernization</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Migration, FinOps, platform engineering</div>
+            <a href="/services/workflows-ai" style="display: block; padding: 12px 14px; color: var(--t-heading); text-decoration: none; border-bottom: 1px solid var(--t-border);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: var(--t-heading);">Workflows AI</div>
+              <div style="font-size: 12px; color: var(--t-body); margin-top: 2px; line-height: 1.5;">Agentic systems that unify workflows and multiply performance</div>
             </a>
-            <a href="/services/digital-engineering" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">Digital Engineering</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Product builds, design systems, delivery</div>
-            </a>
-            <a href="/services/cybersecurity" style="display: block; padding: 12px 14px; color: white; text-decoration: none;" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">Cybersecurity</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Zero-trust, compliance, incident response</div>
+            <a href="/services/sdlc-ai" style="display: block; padding: 12px 14px; color: var(--t-heading); text-decoration: none;" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: var(--t-heading);">SDLC AI</div>
+              <div style="font-size: 12px; color: var(--t-body); margin-top: 2px; line-height: 1.5;">Accelerating software engineering with agentic pods</div>
             </a>
           </div>
         </div>
@@ -70,23 +66,23 @@
           </svg>
         </button>
         <div class="absolute hidden group-hover:block group-focus-within:block" style="top: 100%; left: 0; padding-top: 12px;">
-          <div style="position: relative; background: #0f1a30; border: 1px solid rgba(255,255,255,0.1); min-width: 380px; box-shadow: 0 24px 60px rgba(0,0,0,0.5);">
+          <div style="position: relative; background: var(--t-bg-card); border: 1px solid var(--t-border); min-width: 380px; box-shadow: 0 12px 40px rgba(0,0,0,0.25);">
             <span aria-hidden="true" style="position: absolute; top: -1px; left: 0; width: 48px; height: 2px; background: #2cb7e8;"></span>
-            <a href="/industries/financial-services" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">Financial Services</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Banks, insurers, capital markets</div>
+            <a href="/industries/banking-financial-services" style="display: block; padding: 12px 14px; color: var(--t-heading); text-decoration: none; border-bottom: 1px solid var(--t-border);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: var(--t-heading);">Banking &amp; Financial Services</div>
+              <div style="font-size: 12px; color: var(--t-body); margin-top: 2px; line-height: 1.5;">Neo/hybrid banking, document intelligence, financial workflows</div>
             </a>
-            <a href="/industries/healthcare-life-sciences" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">Healthcare &amp; Life Sciences</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Payers, providers, biotech</div>
+            <a href="/industries/healthcare-life-sciences" style="display: block; padding: 12px 14px; color: var(--t-heading); text-decoration: none; border-bottom: 1px solid var(--t-border);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: var(--t-heading);">Healthcare &amp; Life Sciences</div>
+              <div style="font-size: 12px; color: var(--t-body); margin-top: 2px; line-height: 1.5;">Preventative health, diagnostics, research, facility ops</div>
             </a>
-            <a href="/industries/energy-industrial" style="display: block; padding: 12px 14px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">Energy &amp; Industrial</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Utilities, manufacturing, supply chain</div>
+            <a href="/industries/media-entertainment" style="display: block; padding: 12px 14px; color: var(--t-heading); text-decoration: none; border-bottom: 1px solid var(--t-border);" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: var(--t-heading);">Media &amp; Entertainment</div>
+              <div style="font-size: 12px; color: var(--t-body); margin-top: 2px; line-height: 1.5;">Media supply chain, content monetization, audience distribution</div>
             </a>
-            <a href="/industries/public-sector" style="display: block; padding: 12px 14px; color: white; text-decoration: none;" class="hover:bg-[rgba(44,183,232,0.08)]">
-              <div style="font-weight: 600; font-size: 14px; color: white;">Public Sector</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; line-height: 1.5;">Federal, state, defense</div>
+            <a href="/industries/retail-cpg" style="display: block; padding: 12px 14px; color: var(--t-heading); text-decoration: none;" class="hover:bg-[rgba(44,183,232,0.08)]">
+              <div style="font-weight: 600; font-size: 14px; color: var(--t-heading);">Retail &amp; CPG</div>
+              <div style="font-size: 12px; color: var(--t-body); margin-top: 2px; line-height: 1.5;">Supply chain optimization, forecasting, omni-channel retail</div>
             </a>
           </div>
         </div>
@@ -106,8 +102,30 @@
 
     <!-- Right side -->
     <div style="display: flex; align-items: center; gap: 12px; margin-left: auto;">
+      <!-- Theme toggle (desktop) -->
+      <button
+        id="theme-toggle"
+        aria-label="Toggle light/dark mode"
+        class="hidden lg:flex hover:border-white/50 transition-colors"
+        style="background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); width: 36px; height: 36px; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;"
+      >
+        <svg id="theme-icon-moon" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M13 9.5a5.5 5.5 0 01-6.5-6.5 5.5 5.5 0 106.5 6.5z"/>
+        </svg>
+        <svg id="theme-icon-sun" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:none;">
+          <circle cx="8" cy="8" r="3.5" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.2">
+            <line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/>
+            <line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/>
+            <line x1="3" y1="3" x2="4.5" y2="4.5"/><line x1="11.5" y1="11.5" x2="13" y2="13"/>
+            <line x1="3" y1="13" x2="4.5" y2="11.5"/><line x1="11.5" y1="4.5" x2="13" y2="3"/>
+          </g>
+        </svg>
+      </button>
+
       <a
-        href="/client-login"
+        href="/contact"
+        data-nav-secondary
         class="hidden lg:inline-flex hover:text-white hover:border-white/50 transition-colors"
         style="background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 600; padding: 8px 16px; text-decoration: none;"
       >
@@ -122,97 +140,220 @@
         Start a project →
       </a>
 
-      <!-- Hamburger -->
+      <!-- Hamburger / Close -->
       <button
         id="mobile-menu-toggle"
         class="lg:hidden"
-        style="background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer; padding: 8px;"
-        aria-label="Toggle mobile menu"
+        style="background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center;"
+        aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <svg id="nav-icon-hamburger" width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="nav-icon-close" width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
     </div>
 
   </div>
+</header>
 
-  <!-- Mobile menu -->
-  <div
-    id="mobile-menu"
-    class="hidden lg:hidden"
-    style="background: #0b1322; border-top: 1px solid rgba(255,255,255,0.1);"
-    role="navigation"
-    aria-label="Mobile navigation"
-  >
-    <div style="padding: 16px 24px 24px;">
-      <a href="/services" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Services</a>
-      <a href="/services/ai-data-platforms" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">AI &amp; Data Platforms</a>
-      <a href="/services/cloud-modernization" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Cloud Modernization</a>
-      <a href="/services/digital-engineering" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Digital Engineering</a>
-      <a href="/services/cybersecurity" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.06);">Cybersecurity</a>
+<!-- Mobile menu: full-screen overlay, z-40 (header bar stays above at z-50) -->
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile navigation"
+  style="display: none; position: fixed; inset: 0; z-index: 40; background: var(--t-bg-card); overflow-y: auto;"
+>
+  <!-- Grid texture -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none;"></div>
 
-      <a href="/industries" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Industries</a>
-      <a href="/industries/financial-services" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Financial Services</a>
-      <a href="/industries/healthcare-life-sciences" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Healthcare &amp; Life Sciences</a>
-      <a href="/industries/energy-industrial" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;">Energy &amp; Industrial</a>
-      <a href="/industries/public-sector" style="display: block; padding: 10px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.06);">Public Sector</a>
+  <!-- Content offset below 80px navbar bar -->
+  <div style="position: relative; padding-top: 80px; min-height: 100%;">
+    <div style="border-top: 1px solid var(--t-border); padding: 28px 20px 64px;">
 
-      <a href="/case-studies" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Case Studies</a>
-      <a href="/insights" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">Insights</a>
-      <a href="/about" style="display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06);">About</a>
-
-      <div style="margin-top: 20px;">
-        <a
-          href="/contact"
-          style="display: block; width: 100%; text-align: center; background: #2cb7e8; color: white; font-size: 15px; font-weight: 600; padding: 14px 20px; text-decoration: none; border-radius: 2px; box-sizing: border-box;"
-        >
-          Start a project →
-        </a>
+      <!-- Services section -->
+      <div class="mobile-nav-group">
+        <span class="mobile-nav-label">Services</span>
+        <a href="/services/industry-ai" class="mobile-nav-link">Industry AI</a>
+        <a href="/services/workflows-ai" class="mobile-nav-link">Workflows AI</a>
+        <a href="/services/sdlc-ai" class="mobile-nav-link">SDLC AI</a>
       </div>
+
+      <!-- Industries section -->
+      <div class="mobile-nav-group">
+        <span class="mobile-nav-label">Industries</span>
+        <a href="/industries/banking-financial-services" class="mobile-nav-link">Banking &amp; Financial Services</a>
+        <a href="/industries/healthcare-life-sciences" class="mobile-nav-link">Healthcare &amp; Life Sciences</a>
+        <a href="/industries/media-entertainment" class="mobile-nav-link">Media &amp; Entertainment</a>
+        <a href="/industries/retail-cpg" class="mobile-nav-link">Retail &amp; CPG</a>
+      </div>
+
+      <!-- Primary links -->
+      <div class="mobile-nav-group" style="margin-bottom: 36px;">
+        <a href="/case-studies" class="mobile-nav-primary">Case Studies</a>
+        <a href="/insights" class="mobile-nav-primary">Insights</a>
+        <a href="/about" class="mobile-nav-primary">About</a>
+      </div>
+
+      <!-- CTAs -->
+      <a href="/contact" style="display: block; text-align: center; background: #1478c8; color: white; font-size: 15px; font-weight: 600; padding: 15px 20px; text-decoration: none; margin-bottom: 10px; letter-spacing: 0.01em;">
+        Start a project →
+      </a>
+      <a href="/contact" style="display: block; text-align: center; border: 1px solid var(--t-border); color: var(--t-body); font-size: 14px; font-weight: 500; padding: 13px 20px; text-decoration: none;">
+        Client login
+      </a>
+
     </div>
   </div>
-</header>
+</div>
+
+<style>
+  /* Mobile menu link styles */
+  .mobile-nav-group { margin-bottom: 24px; }
+
+  .mobile-nav-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #2cb7e8;
+    padding-bottom: 10px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid var(--t-border);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 13px 0;
+    color: var(--t-body);
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 1px solid var(--t-border);
+    transition: color 0.15s;
+  }
+  .mobile-nav-link:hover { color: var(--t-heading); }
+
+  .mobile-nav-primary {
+    display: block;
+    padding: 16px 0;
+    color: var(--t-heading);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid var(--t-border);
+    transition: color 0.15s;
+  }
+  .mobile-nav-primary:hover { color: #2cb7e8; }
+
+  /* Force header legible over open menu in any theme */
+  #navbar.menu-open a,
+  #navbar.menu-open button { color: var(--t-heading) !important; }
+  #navbar.menu-open .logo-mark rect:first-child { stroke: var(--t-heading) !important; }
+</style>
 
 <script>
   const navbar = document.getElementById('navbar');
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('nav-icon-hamburger');
+  const closeIcon = document.getElementById('nav-icon-close');
 
   if (navbar) {
     const onScroll = () => {
       const scrolled = window.scrollY > 20;
-      navbar.style.background = scrolled ? 'rgba(11, 19, 34, 0.88)' : 'transparent';
+      navbar.classList.toggle('is-scrolled', scrolled);
+      navbar.style.background = scrolled ? 'var(--t-nav-scrolled-bg)' : 'transparent';
       navbar.style.backdropFilter = scrolled ? 'blur(14px)' : 'none';
       (navbar.style as CSSStyleDeclaration & { WebkitBackdropFilter: string }).WebkitBackdropFilter = scrolled ? 'blur(14px)' : 'none';
-      navbar.style.borderBottom = scrolled ? '1px solid rgba(255,255,255,0.1)' : '1px solid transparent';
+      navbar.style.borderBottom = scrolled ? '1px solid var(--t-nav-scrolled-border)' : '1px solid transparent';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    function updateNavHeroMode() {
+      const isLight = document.documentElement.dataset.theme === 'light';
+      if (!isLight) { navbar.classList.remove('light-hero'); return; }
+      const firstSection = document.querySelector<HTMLElement>('main > section:first-child, section:first-of-type');
+      if (!firstSection) { navbar.classList.add('light-hero'); return; }
+      const bg = getComputedStyle(firstSection).backgroundColor;
+      const nums = bg.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
+      const avg = (nums[0] + nums[1] + nums[2]) / 3;
+      navbar.classList.toggle('light-hero', avg > 80);
+    }
+    updateNavHeroMode();
+    document.addEventListener('theme-change', updateNavHeroMode);
   }
 
-  if (toggle && menu) {
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const moon = document.getElementById('theme-icon-moon');
+  const sun = document.getElementById('theme-icon-sun');
+
+  function applyTheme(theme: string) {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      if (moon) moon.style.display = 'none';
+      if (sun) sun.style.display = '';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (moon) moon.style.display = '';
+      if (sun) sun.style.display = 'none';
+    }
+    localStorage.setItem('ap-theme', theme);
+    document.dispatchEvent(new Event('theme-change'));
+  }
+
+  if (localStorage.getItem('ap-theme') === 'light') {
+    if (moon) moon.style.display = 'none';
+    if (sun) sun.style.display = '';
+  }
+
+  themeToggle?.addEventListener('click', () => {
+    const current = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  });
+
+  // Mobile menu open/close
+  if (toggle && menu && navbar) {
     let open = false;
-    toggle.addEventListener('click', () => {
-      open = !open;
-      menu.classList.toggle('hidden', !open);
-      toggle.setAttribute('aria-expanded', String(open));
-    });
+
+    function openMenu() {
+      open = true;
+      menu.style.display = 'block';
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+      if (hamburgerIcon) hamburgerIcon.style.display = 'none';
+      if (closeIcon) closeIcon.style.display = '';
+      navbar.classList.add('menu-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      open = false;
+      menu.style.display = 'none';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      if (hamburgerIcon) hamburgerIcon.style.display = '';
+      if (closeIcon) closeIcon.style.display = 'none';
+      navbar.classList.remove('menu-open');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', () => { open ? closeMenu() : openMenu(); });
+
     menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        open = false;
-        menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', closeMenu);
     });
+
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && open) {
-        open = false;
-        menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
+      if (e.key === 'Escape' && open) closeMenu();
     });
   }
 </script>

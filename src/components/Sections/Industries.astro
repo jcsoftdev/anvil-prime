@@ -2,13 +2,13 @@
 import { industries } from '../../data/industries';
 ---
 
-<section class="relative" style="background: #fff; padding: 140px 0 120px; overflow: hidden;" aria-label="Industries we serve">
+<section class="relative" style="background: var(--t-bg-section); padding: 140px 0 120px; overflow: hidden;" aria-label="Industries we serve">
   <!-- Diagonal divider from dark section above -->
   <svg style="position: absolute; top: -1px; left: 0; right: 0; width: 100%; height: 80px; display: block;" preserveAspectRatio="none" viewBox="0 0 100 10" aria-hidden="true">
-    <polygon points="0,0 100,0 100,4 0,10" fill="#fff"/>
+    <polygon points="0,0 100,0 100,4 0,10" style="fill: var(--t-bg-section)"/>
   </svg>
 
-  <div style="max-width: 1440px; margin: 0 auto; padding: 0 48px; position: relative;">
+  <div class="px-5 lg:px-12" style="max-width: 1440px; margin: 0 auto; position: relative;">
     <!-- Header 2-col -->
     <div class="ind-header" style="align-items: end; margin-bottom: 72px;">
       <div>
@@ -18,41 +18,41 @@ import { industries } from '../../data/industries';
           <span style="width: 24px; height: 1px; background: currentColor; opacity: 0.5; display: inline-block;"></span>
           <span>Industries</span>
         </div>
-        <h2 style="font-family: var(--font-display); font-size: 64px; line-height: 1; letter-spacing: -0.035em; font-weight: 600; margin: 0; color: #1a2b4a;">
+        <h2 style="font-family: var(--font-display); font-size: 64px; line-height: 1; letter-spacing: -0.035em; font-weight: 600; margin: 0; color: var(--t-heading);">
           Six sectors.<br/>One standard.
         </h2>
       </div>
-      <p style="font-size: 17px; line-height: 1.6; color: #445870; max-width: 560px;">
+      <p style="font-size: 17px; line-height: 1.6; color: var(--t-body); max-width: 560px;">
         We don't serve every market — we serve the ones where engineering discipline creates compounding advantage.
         Below are the industries where Anvil Prime teams are embedded today, running production systems for the companies that define them.
       </p>
     </div>
 
     <!-- 3-col grid using border-as-gap technique -->
-    <div id="industries-grid" class="ind-grid" style="gap: 0; border: 1px solid #c8dff0; background: #c8dff0;">
+    <div id="industries-grid" class="ind-grid" style="gap: 0; border: 1px solid var(--t-border); background: var(--t-border);">
       {industries.map((industry) => (
-        <div data-industry-card style="background: #fff; padding: 40px; position: relative; min-height: 320px; opacity: 0; transform: translateY(24px);">
+        <div data-industry-card style="padding: 40px; position: relative; min-height: 320px; opacity: 0; transform: translateY(24px);">
           <!-- Top cyan hover bar -->
           <div data-ap-hover style="position: absolute; top: 0; left: 0; width: 48px; height: 2px; background: #2cb7e8; opacity: 0;"></div>
 
           <!-- Num + arrow row -->
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 28px;">
             <span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: #1478c8;">{industry.num}</span>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="color: var(--t-heading);">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
             </svg>
           </div>
 
           <!-- h3 name -->
-          <h3 style="font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 16px; color: #1a2b4a;">{industry.name}</h3>
+          <h3 style="font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 16px; color: var(--t-heading);">{industry.name}</h3>
 
           <!-- p description -->
-          <p style="font-size: 14px; line-height: 1.55; color: #445870; margin: 0 0 36px;">{industry.description}</p>
+          <p style="font-size: 14px; line-height: 1.55; color: var(--t-body); margin: 0 0 36px;">{industry.description}</p>
 
           <!-- Stat row -->
-          <div style="border-top: 1px solid #e2f2fb; padding-top: 20px; display: flex; align-items: baseline; gap: 12px;">
+          <div style="border-top: 1px solid var(--t-border); padding-top: 20px; display: flex; align-items: baseline; gap: 12px;">
             <span style="font-family: var(--font-display); font-size: 40px; font-weight: 600; color: #1478c8; letter-spacing: -0.03em; line-height: 1;">{industry.stat}</span>
-            <span style="font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #445870;">{industry.statLabel}</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--t-muted);">{industry.statLabel}</span>
           </div>
         </div>
       ))}
@@ -69,6 +69,10 @@ import { industries } from '../../data/industries';
   .ind-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+  /* Card background lives in CSS so GSAP inline override can be cleanly removed on theme-change */
+  [data-industry-card] {
+    background: var(--t-bg-card);
   }
   @media (max-width: 1024px) {
     .ind-grid { grid-template-columns: repeat(2, 1fr); }
@@ -88,7 +92,6 @@ import { industries } from '../../data/industries';
   const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-industry-card]'));
 
   if (reducedMotion) {
-    // cards are pre-hidden via inline style — show immediately
     cards.forEach(card => { card.style.opacity = '1'; card.style.transform = 'none'; });
   } else {
     const trigger = ScrollTrigger.create({
@@ -124,7 +127,8 @@ import { industries } from '../../data/industries';
         card.addEventListener('mouseenter', () => {
           card.style.willChange = 'transform';
           if (hoverBar) gsap.to(hoverBar, { opacity: 1, duration: 0.2 });
-          gsap.to(card, { backgroundColor: '#e8f1fa', duration: 0.2 });
+          const hoverBg = getComputedStyle(document.documentElement).getPropertyValue('--t-bg-card-hover').trim();
+          gsap.to(card, { backgroundColor: hoverBg, duration: 0.2 });
         }, { signal });
 
         card.addEventListener('mousemove', (e) => {
@@ -136,10 +140,11 @@ import { industries } from '../../data/industries';
 
         card.addEventListener('mouseleave', () => {
           if (hoverBar) gsap.to(hoverBar, { opacity: 0, duration: 0.2 });
+          const defaultBg = getComputedStyle(document.documentElement).getPropertyValue('--t-bg-card').trim();
           gsap.to(card, {
             rotateX: 0,
             rotateY: 0,
-            backgroundColor: '#ffffff',
+            backgroundColor: defaultBg,
             duration: 0.5,
             ease: 'power2.out',
             onComplete: () => { card.style.willChange = 'auto'; },
@@ -149,6 +154,16 @@ import { industries } from '../../data/industries';
 
       document.addEventListener('astro:before-swap', () => {
         controllers.forEach(ac => ac.abort());
+      }, { once: true });
+
+      // When theme toggles, GSAP's previously-set inline backgroundColor gets stuck.
+      // Clear it so the CSS var(--t-bg-card) takes over with the new theme value.
+      const resetCardBgs = () => {
+        cards.forEach(card => card.style.removeProperty('background-color'));
+      };
+      document.addEventListener('theme-change', resetCardBgs);
+      document.addEventListener('astro:before-swap', () => {
+        document.removeEventListener('theme-change', resetCardBgs);
       }, { once: true });
     }
   }
