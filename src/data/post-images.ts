@@ -1,7 +1,6 @@
 import type { ImageMetadata } from 'astro';
-
-import csFintechImg from '../assets/images/cs-fintech.jpg';
 import csCloudImg from '../assets/images/cs-cloud.jpg';
+import csFintechImg from '../assets/images/cs-fintech.jpg';
 import csHealthcareImg from '../assets/images/cs-healthcare.jpg';
 import insightAiImg from '../assets/images/insight-ai-enterprise.jpg';
 import insightCloudImg from '../assets/images/insight-cloud-native.jpg';

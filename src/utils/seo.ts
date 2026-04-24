@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from './constants';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from './constants';
 
 export interface SEOProps {
   title?: string;

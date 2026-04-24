@@ -32,8 +32,16 @@ export function initCarousel(
   wrapperEl.addEventListener('mouseenter', stop);
   wrapperEl.addEventListener('mouseleave', start);
 
-  document.getElementById(opts.prevId)?.addEventListener('click', () => { stop(); embla.scrollPrev(); start(); });
-  document.getElementById(opts.nextId)?.addEventListener('click', () => { stop(); embla.scrollNext(); start(); });
+  document.getElementById(opts.prevId)?.addEventListener('click', () => {
+    stop();
+    embla.scrollPrev();
+    start();
+  });
+  document.getElementById(opts.nextId)?.addEventListener('click', () => {
+    stop();
+    embla.scrollNext();
+    start();
+  });
 
   embla.on('destroy', stop);
   start();

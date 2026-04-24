@@ -266,26 +266,27 @@
   const closeIcon = document.getElementById('nav-icon-close');
 
   if (navbar) {
+    const nav = navbar;
     const onScroll = () => {
       const scrolled = window.scrollY > 20;
-      navbar.classList.toggle('is-scrolled', scrolled);
-      navbar.style.background = scrolled ? 'var(--t-nav-scrolled-bg)' : 'transparent';
-      navbar.style.backdropFilter = scrolled ? 'blur(14px)' : 'none';
-      (navbar.style as CSSStyleDeclaration & { WebkitBackdropFilter: string }).WebkitBackdropFilter = scrolled ? 'blur(14px)' : 'none';
-      navbar.style.borderBottom = scrolled ? '1px solid var(--t-nav-scrolled-border)' : '1px solid transparent';
+      nav.classList.toggle('is-scrolled', scrolled);
+      nav.style.background = scrolled ? 'var(--t-nav-scrolled-bg)' : 'transparent';
+      nav.style.backdropFilter = scrolled ? 'blur(14px)' : 'none';
+      (nav.style as CSSStyleDeclaration & { WebkitBackdropFilter: string }).WebkitBackdropFilter = scrolled ? 'blur(14px)' : 'none';
+      nav.style.borderBottom = scrolled ? '1px solid var(--t-nav-scrolled-border)' : '1px solid transparent';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
     function updateNavHeroMode() {
       const isLight = document.documentElement.dataset.theme === 'light';
-      if (!isLight) { navbar.classList.remove('light-hero'); return; }
+      if (!isLight) { nav.classList.remove('light-hero'); return; }
       const firstSection = document.querySelector<HTMLElement>('main > section:first-child, section:first-of-type');
-      if (!firstSection) { navbar.classList.add('light-hero'); return; }
+      if (!firstSection) { nav.classList.add('light-hero'); return; }
       const bg = getComputedStyle(firstSection).backgroundColor;
       const nums = bg.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
       const avg = (nums[0] + nums[1] + nums[2]) / 3;
-      navbar.classList.toggle('light-hero', avg > 80);
+      nav.classList.toggle('light-hero', avg > 80);
     }
     updateNavHeroMode();
     document.addEventListener('theme-change', updateNavHeroMode);
@@ -322,33 +323,36 @@
 
   // Mobile menu open/close
   if (toggle && menu && navbar) {
+    const btn = toggle;
+    const overlay = menu;
+    const nav = navbar;
     let open = false;
 
     function openMenu() {
       open = true;
-      menu.style.display = 'block';
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Close menu');
+      overlay.style.display = 'block';
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Close menu');
       if (hamburgerIcon) hamburgerIcon.style.display = 'none';
       if (closeIcon) closeIcon.style.display = '';
-      navbar.classList.add('menu-open');
+      nav.classList.add('menu-open');
       document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
       open = false;
-      menu.style.display = 'none';
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open menu');
+      overlay.style.display = 'none';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
       if (hamburgerIcon) hamburgerIcon.style.display = '';
       if (closeIcon) closeIcon.style.display = 'none';
-      navbar.classList.remove('menu-open');
+      nav.classList.remove('menu-open');
       document.body.style.overflow = '';
     }
 
-    toggle.addEventListener('click', () => { open ? closeMenu() : openMenu(); });
+    btn.addEventListener('click', () => { open ? closeMenu() : openMenu(); });
 
-    menu.querySelectorAll('a').forEach(link => {
+    overlay.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMenu);
     });
 

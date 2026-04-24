@@ -5,7 +5,7 @@ const AUTO_MS = 7000;
 export function initHeroCarousel(root: HTMLElement): () => void {
   const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-hero-slide]'));
   const bgs = Array.from(root.querySelectorAll<HTMLElement>('[data-hero-bg]'));
-  const bgInners = bgs.map(bg => bg.querySelector<HTMLElement>('[data-hero-bg-inner]'));
+  const bgInners = bgs.map((bg) => bg.querySelector<HTMLElement>('[data-hero-bg-inner]'));
   const dotFills = Array.from(root.querySelectorAll<HTMLElement>('[data-hero-dot-fill]'));
   const counter = root.querySelector<HTMLElement>('#hero-counter');
   const prevBtn = root.querySelector<HTMLButtonElement>('#hero-prev');
@@ -26,7 +26,9 @@ export function initHeroCarousel(root: HTMLElement): () => void {
     if (reducedMotion) return;
     const els = revealElementsOf(idx);
     gsap.set(els, { opacity: 0, y: 24, force3D: true });
-    els.forEach(el => { el.style.willChange = 'opacity, transform'; });
+    els.forEach((el) => {
+      el.style.willChange = 'opacity, transform';
+    });
     const rule = slides[idx].querySelector<HTMLElement>('[data-kpi-rule]');
     if (rule) gsap.set(rule, { width: '0%' });
     const words = Array.from(slides[idx].querySelectorAll<HTMLElement>('.hero-word'));
@@ -36,11 +38,17 @@ export function initHeroCarousel(root: HTMLElement): () => void {
   const playReveal = (idx: number, delay = 0) => {
     if (reducedMotion) {
       const els = revealElementsOf(idx);
-      els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      els.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
       const rule = slides[idx].querySelector<HTMLElement>('[data-kpi-rule]');
       if (rule) rule.style.width = '62%';
       const words = Array.from(slides[idx].querySelectorAll<HTMLElement>('.hero-word'));
-      words.forEach(w => { w.style.opacity = '1'; w.style.transform = 'none'; });
+      words.forEach((w) => {
+        w.style.opacity = '1';
+        w.style.transform = 'none';
+      });
       return;
     }
     const els = revealElementsOf(idx);
@@ -53,7 +61,9 @@ export function initHeroCarousel(root: HTMLElement): () => void {
       ease: 'power3.out',
       force3D: true,
       onComplete: () => {
-        els.forEach(el => { el.style.willChange = 'auto'; });
+        els.forEach((el) => {
+          el.style.willChange = 'auto';
+        });
       },
     });
     const rule = slides[idx].querySelector<HTMLElement>('[data-kpi-rule]');
@@ -106,12 +116,17 @@ export function initHeroCarousel(root: HTMLElement): () => void {
       scaleX: 1,
       duration: AUTO_MS / 1000,
       ease: 'none',
-      onComplete: () => { if (!isChanging) next(); },
+      onComplete: () => {
+        if (!isChanging) next();
+      },
     });
   };
 
   const stopProgress = () => {
-    if (autoTween) { autoTween.kill(); autoTween = null; }
+    if (autoTween) {
+      autoTween.kill();
+      autoTween = null;
+    }
   };
 
   const resetAllFills = () => {
@@ -144,7 +159,8 @@ export function initHeroCarousel(root: HTMLElement): () => void {
     slides[current].style.display = '';
 
     // Counter text
-    if (counter) counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    if (counter)
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
 
     // Animate entry — text reveal overlaps with bg crossfade (0.2s internal delay)
     startKenBurns(current);
@@ -156,12 +172,18 @@ export function initHeroCarousel(root: HTMLElement): () => void {
   const next = () => goTo(current + 1);
   const prev = () => goTo(current - 1);
 
-  prevBtn?.addEventListener('click', () => { prev(); });
-  nextBtn?.addEventListener('click', () => { next(); });
+  prevBtn?.addEventListener('click', () => {
+    prev();
+  });
+  nextBtn?.addEventListener('click', () => {
+    next();
+  });
 
   dotFills.forEach((_, i) => {
     const btn = dotFills[i].parentElement as HTMLButtonElement | null;
-    btn?.addEventListener('click', () => { goTo(i); });
+    btn?.addEventListener('click', () => {
+      goTo(i);
+    });
   });
 
   // Pause auto-advance on hover
@@ -184,7 +206,9 @@ export function initHeroCarousel(root: HTMLElement): () => void {
   // Double-RAF ensures the opacity:0 state is painted before the reveal tween
   // starts — otherwise set() and to() can collapse into the same frame and the
   // user never sees the hidden state (i.e. "no animation").
-  slides.forEach((_, i) => setRevealInitial(i));
+  slides.forEach((_, i) => {
+    setRevealInitial(i);
+  });
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       playReveal(0);

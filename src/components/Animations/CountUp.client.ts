@@ -27,7 +27,7 @@ export function initCountUp(section: HTMLElement): () => void {
   const statCards = Array.from(section.querySelectorAll<HTMLElement>('[data-perf-stat]'));
 
   if (reducedMotion) {
-    statCards.forEach(card => {
+    statCards.forEach((card) => {
       card.style.opacity = '1';
       card.style.transform = 'none';
       const bar = card.querySelector<HTMLElement>('[data-perf-bar]');
@@ -89,8 +89,8 @@ export function initCountUp(section: HTMLElement): () => void {
           // (different char count → different line wrapping → height change → content below jumps).
           const h = counter.offsetHeight;
           const w = counter.offsetWidth;
-          if (h) counter.style.minHeight = h + 'px';
-          if (w) counter.style.width = w + 'px';
+          if (h) counter.style.minHeight = `${h}px`;
+          if (w) counter.style.width = `${w}px`;
           // overflow:hidden clips anything that momentarily exceeds the locked width
           counter.style.overflow = 'hidden';
 
@@ -116,5 +116,9 @@ export function initCountUp(section: HTMLElement): () => void {
     })
   );
 
-  return () => triggers.forEach(t => t.kill());
+  return () => {
+    triggers.forEach((t) => {
+      t.kill();
+    });
+  };
 }
