@@ -144,7 +144,7 @@ html[data-theme="light"] #navbar.is-scrolled {
 /* Logo mark: shadow so silver 'A' is legible on light backgrounds */
 html[data-theme="light"] #navbar.is-scrolled .navbar-logo-mark,
 html[data-theme="light"] #navbar.light-hero .navbar-logo-mark {
-  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 8px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 0 3px #1478c8) drop-shadow(0 0 8px #2cb7e8);
 }
 
 /* Un-scrolled on light-background pages (.light-hero class set by JS) */
