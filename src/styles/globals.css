@@ -141,12 +141,10 @@ html[data-theme="light"] #navbar.is-scrolled {
   color: var(--t-heading);
 }
 
-/* Logo mark: dark pill so silver 'A' is legible on light backgrounds */
+/* Logo mark: shadow so silver 'A' is legible on light backgrounds */
 html[data-theme="light"] #navbar.is-scrolled .navbar-logo-mark,
 html[data-theme="light"] #navbar.light-hero .navbar-logo-mark {
-  background: #0f1623;
-  border-radius: 6px;
-  padding: 4px 6px;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 8px rgba(0, 0, 0, 0.15));
 }
 
 /* Un-scrolled on light-background pages (.light-hero class set by JS) */
