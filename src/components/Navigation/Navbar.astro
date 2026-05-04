@@ -6,7 +6,7 @@
 
     <!-- Logo -->
     <a href="/" aria-label="Anvil Prime home" style="display: flex; align-items: center; gap: 10px; color: white; text-decoration: none; flex-shrink: 0;">
-      <img src="/favicon.png" alt="" height="36" width="56" aria-hidden="true" style="display: block; flex-shrink: 0; object-fit: contain;" />
+      <img src="/favicon.png" alt="" height="36" width="56" aria-hidden="true" class="navbar-logo-mark" style="display: block; flex-shrink: 0; object-fit: contain;" />
       <span style="font-family: var(--font-display); font-size: 19px; font-weight: 600; letter-spacing: -0.02em; line-height: 1;">
         Anvil<span style="color: #2cb7e8;">Prime</span>
       </span>
@@ -356,3 +356,11 @@
     });
   }
 </script>
+
+<style>
+  [data-theme="light"] .navbar-logo-mark {
+    background: #0f1623;
+    border-radius: 6px;
+    padding: 4px 6px;
+  }
+</style>
