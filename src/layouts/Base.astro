@@ -2,7 +2,7 @@
 import '../styles/globals.css';
 import { buildSEO } from '../utils/seo';
 import type { SEOProps } from '../utils/seo';
-import { SITE_NAME } from '../utils/constants';
+import { SITE_NAME, SITE_TWITTER } from '../utils/constants';
 import Footer from '../components/Navigation/Footer.astro';
 
 interface Props extends SEOProps {}
@@ -24,14 +24,19 @@ const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro
 
     <!-- Open Graph -->
     <meta property="og:type" content={seo.ogType} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
     <meta property="og:image" content={seo.image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={seo.title} />
     <meta property="og:url" content={seo.canonical} />
     <meta property="og:site_name" content={SITE_NAME} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={SITE_TWITTER} />
     <meta name="twitter:title" content={seo.title} />
     <meta name="twitter:description" content={seo.description} />
     <meta name="twitter:image" content={seo.image} />
@@ -45,15 +50,17 @@ const seo = buildSEO({ ...Astro.props, canonical: Astro.props.canonical ?? Astro
     />
     <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#1478c8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Anvil Prime",
       "url": "https://anvilprime.com",
-      "logo": "https://anvilprime.com/logo.png",
+      "logo": "https://anvilprime.com/favicon.png",
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "hello@anvilprime.com",

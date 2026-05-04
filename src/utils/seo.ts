@@ -12,7 +12,7 @@ export interface SEOProps {
 export function buildSEO(props: SEOProps = {}) {
   const title = props.title ? `${props.title} | ${SITE_NAME}` : SITE_NAME;
   const description = props.description ?? SITE_DESCRIPTION;
-  const image = props.image ?? `${SITE_URL}/favicon.svg`;
+  const image = props.image ?? `${SITE_URL}/og.png`;
   const canonical = props.canonical ?? SITE_URL;
 
   return {
