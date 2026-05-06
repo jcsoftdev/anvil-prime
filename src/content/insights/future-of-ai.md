@@ -5,8 +5,8 @@ excerpt: How large language models are reshaping how enterprises build internal 
 date: "2026-04-15"
 readTime: 8 min read
 author:
-  name: Sofia Reyes
-  role: Head of AI Practice
+  name: Anvil Prime
+  role: Engineering Team
 ---
 
 The era of AI as a bolt-on feature is over. The teams winning in 2026 are those treating AI as a first-class architectural concern — not a plugin.

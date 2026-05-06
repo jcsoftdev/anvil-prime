@@ -55,9 +55,9 @@ export function initHeroCarousel(root: HTMLElement): () => void {
     gsap.to(els, {
       opacity: 1,
       y: 0,
-      duration: 0.85,
+      duration: total === 1 ? 1.1 : 0.85,
       delay,
-      stagger: 0.1,
+      stagger: total === 1 ? 0.16 : 0.1,
       ease: 'power3.out',
       force3D: true,
       onComplete: () => {
@@ -82,9 +82,9 @@ export function initHeroCarousel(root: HTMLElement): () => void {
       gsap.to(words, {
         opacity: 1,
         y: 0,
-        duration: 0.55,
-        stagger: 0.055,
-        delay: delay + 0.3,
+        duration: total === 1 ? 0.75 : 0.55,
+        stagger: total === 1 ? 0.07 : 0.055,
+        delay: delay + (total === 1 ? 0.45 : 0.3),
         ease: 'power3.out',
         force3D: true,
       });
@@ -97,13 +97,26 @@ export function initHeroCarousel(root: HTMLElement): () => void {
     if (!inner) return;
     if (kbTween) kbTween.kill();
     gsap.set(inner, { scale: 1.0, xPercent: 0, yPercent: 0 });
-    kbTween = gsap.to(inner, {
-      scale: 1.12,
-      xPercent: -2.2,
-      yPercent: -1.4,
-      duration: 12,
-      ease: 'none',
-    });
+    if (total === 1) {
+      // Single slide: slow yoyo loop so the image always breathes
+      kbTween = gsap.to(inner, {
+        scale: 1.1,
+        xPercent: -2,
+        yPercent: -1.2,
+        duration: 20,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      });
+    } else {
+      kbTween = gsap.to(inner, {
+        scale: 1.12,
+        xPercent: -2.2,
+        yPercent: -1.4,
+        duration: 12,
+        ease: 'none',
+      });
+    }
   };
 
   const startProgress = () => {
@@ -213,7 +226,7 @@ export function initHeroCarousel(root: HTMLElement): () => void {
     requestAnimationFrame(() => {
       playReveal(0);
       startKenBurns(0);
-      startProgress();
+      if (total > 1) startProgress();
     });
   });
 

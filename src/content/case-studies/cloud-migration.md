@@ -1,9 +1,9 @@
 ---
 title: Zero-Downtime Cloud Migration
-client: Enterprise Retailer
+client: E-Commerce Retailer
 industry: E-Commerce
 tag: Cloud
-excerpt: Migrated a monolithic e-commerce platform to microservices with zero downtime and 60% infrastructure cost reduction.
+excerpt: Migrated a legacy monolith to microservices on AWS with zero downtime and a 60% drop in infrastructure costs.
 date: "2026-01-10"
 outcomes:
   - Zero downtime during migration
@@ -23,15 +23,15 @@ tech:
 
 ## Challenge
 
-A $500M enterprise retailer was running its entire e-commerce platform on a 10-year-old monolith deployed to physical servers. Scaling for peak events like Black Friday required weeks of manual provisioning. Deployments took 4 hours and caused 30-minute downtime windows.
+An e-commerce retailer was running its entire platform on an aging monolith deployed to physical servers. Scaling for peak events like promotional sales required weeks of manual provisioning. Deployments took hours and caused downtime windows that hurt revenue.
 
 ## What We Built
 
-We designed a phased migration strategy using the strangler fig pattern — incrementally extracting services from the monolith while keeping the existing system live. Each extracted service was deployed to AWS ECS with Terraform-managed infrastructure and full Datadog observability.
+We designed a phased migration strategy using the strangler fig pattern — incrementally extracting services from the monolith while keeping the existing system live at all times. Each extracted service was deployed to AWS ECS with Terraform-managed infrastructure and full Datadog observability from day one.
 
 ## Outcome
 
-- Zero downtime across the entire 9-month migration
+- Zero downtime across the entire migration
 - Infrastructure costs dropped 60% through right-sizing and reserved instances
-- Deployments went from 4 hours + downtime to 12 minutes with zero downtime
-- Team now ships to production 10x more frequently
+- Deployments went from hours with downtime to minutes with zero downtime
+- The team now ships to production 10x more frequently than before

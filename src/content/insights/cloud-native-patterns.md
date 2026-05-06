@@ -5,8 +5,8 @@ excerpt: Platform engineering, eBPF, and WebAssembly — the infrastructure patt
 date: "2026-04-10"
 readTime: 6 min read
 author:
-  name: Marcus Chen
-  role: Principal Cloud Architect
+  name: Anvil Prime
+  role: Engineering Team
 ---
 
 Platform engineering isn't a trend — it's the acknowledgment that developer experience is a product. In 2026, the infrastructure teams winning are those treating their internal platform like a product with customers.

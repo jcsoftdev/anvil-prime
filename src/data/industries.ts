@@ -9,50 +9,50 @@ export interface Industry {
 export const industries: Industry[] = [
   {
     num: '01',
-    name: 'Financial Services',
+    name: 'Banking & Financial Services',
     description:
-      'Capital markets, retail banking, payments, insurance. $1.8T in assets under management on our platforms.',
-    stat: '14',
-    statLabel: 'top-50 banks',
+      'Real-time payment systems, fraud detection, risk platforms, and compliance-ready financial data infrastructure built for regulated environments.',
+    stat: 'PCI-DSS',
+    statLabel: 'compliant by design',
   },
   {
     num: '02',
     name: 'Healthcare & Life Sciences',
     description:
-      'Payers, providers, biotech, devices. AI-assisted diagnostics and claims at population scale.',
-    stat: '220M',
-    statLabel: 'patient records',
+      'HIPAA-compliant patient platforms, HL7 FHIR integrations, clinical AI, and secure data pipelines built for health systems.',
+    stat: 'HIPAA',
+    statLabel: 'compliant by design',
   },
   {
     num: '03',
-    name: 'Energy & Industrial',
+    name: 'Media & Entertainment',
     description:
-      'Grid, manufacturing, logistics, supply chain. Edge compute and predictive operations across four continents.',
-    stat: '4.2K',
-    statLabel: 'substations live',
+      'Content pipelines, streaming infrastructure, ad tech platforms, and high-throughput media workflows where latency is never an excuse.',
+    stat: 'Sub-50ms',
+    statLabel: 'delivery target',
   },
   {
     num: '04',
-    name: 'Public Sector',
+    name: 'Retail & CPG',
     description:
-      'Federal, state, defense. FedRAMP High, IL-5, and classified-capable infrastructure for mission teams.',
-    stat: '87',
-    statLabel: 'agency engagements',
+      'Supply chain optimization, demand forecasting, omnichannel platforms, and AI-driven personalization that moves the margin needle.',
+    stat: 'D2C · B2B',
+    statLabel: 'omnichannel ready',
   },
   {
     num: '05',
-    name: 'Technology & Media',
+    name: 'Energy & Utilities',
     description:
-      'Platform scaling, content pipelines, developer experience. Where the product is the business.',
-    stat: '2.1B',
-    statLabel: 'monthly users served',
+      'Sensor data pipelines, predictive maintenance, grid analytics, and edge compute for operations where downtime has a real cost.',
+    stat: 'IIoT · Edge',
+    statLabel: 'data ready',
   },
   {
     num: '06',
-    name: 'Retail & Consumer',
+    name: 'Technology & SaaS',
     description:
-      'Omnichannel, supply chain resilience, loyalty systems, AI personalization that actually converts.',
-    stat: '38%',
-    statLabel: 'avg. margin lift',
+      'Multi-tenant platform engineering, developer tooling, internal platforms, and the data infrastructure that keeps B2B SaaS competitive.',
+    stat: 'Multi-tenant',
+    statLabel: 'SaaS architecture',
   },
 ];

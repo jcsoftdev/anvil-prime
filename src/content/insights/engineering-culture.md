@@ -5,8 +5,8 @@ excerpt: What separates engineering organizations that stay productive at 500 en
 date: "2026-04-05"
 readTime: 10 min read
 author:
-  name: Amara Okonkwo
-  role: VP of Engineering
+  name: Anvil Prime
+  role: Engineering Team
 ---
 
 Most engineering organizations hit a wall somewhere between 40 and 80 engineers. Velocity that felt effortless at 20 people becomes painful coordination overhead. The teams that push through this wall share a common thread: they treat culture as infrastructure.

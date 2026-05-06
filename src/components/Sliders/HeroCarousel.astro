@@ -7,6 +7,10 @@ import heroEnergyImg from '../../assets/images/hero-cloud.jpg';
 interface HeroSlide {
   kpi: string;
   kpiLabel: string;
+  kpiSmall?: boolean;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  specLabels?: [string, string, string, string];
   eyebrowNum: string;
   sector: string;
   title: string;
@@ -20,44 +24,23 @@ interface HeroSlide {
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    kpi: '$2.4B',
-    kpiLabel: 'in client value delivered since 2019',
+    kpi: 'AI-READY\nENGINEERING PODS',
+    kpiSmall: true,
+    kpiLabel: '',
     eyebrowNum: '01',
-    sector: 'Financial services',
-    title: 'We build the systems\nthat run the enterprise.',
-    sub: 'Anvil Prime is the partner Fortune 500 teams call when the stakes are existential and the timeline is impossible. AI platforms, cloud migrations, and digital engineering — delivered with industrial precision.',
-    client: 'Northgate Bank',
-    result: '38% reduction in settlement latency across 14 markets.',
-    duration: '18 months, 2 phases',
-    team: '36 engineers · 6 leads',
+    sector: 'Nearshore Engineering for U.S. Teams',
+    ctaPrimaryLabel: 'Explore services',
+    ctaPrimaryHref: '/services',
+    specLabels: ['FOCUS', 'DELIVERY MODEL', 'COLLABORATION', 'ENGAGEMENT'],
+    title: 'We help U.S. teams build reliable digital systems faster.',
+    sub: 'AnvilPrime helps companies scale their engineering capabilities with senior LATAM pods. We support modern data platforms, backend APIs, frontend applications, analytics pipelines, and AI-ready workflows — with real-time collaboration and strong delivery ownership.',
+    client: 'Data Engineering, Backend APIs, Frontend Apps, AI-Ready Platforms',
+    result: 'Senior LATAM Pods',
+    duration: 'Aligned with U.S. Time Zones',
+    team: 'Flexible Pods, Clear Ownership',
     image: heroFinancialImg,
   },
-  {
-    kpi: '340M',
-    kpiLabel: 'transactions/day on platforms we built',
-    eyebrowNum: '02',
-    sector: 'Healthcare',
-    title: 'Forge what the\nmarket cannot copy.',
-    sub: 'Proprietary advantage takes more than slides. It takes hardened platforms, measured outcomes, and teams who ship. We spend 6–18 months embedded — then leave it running.',
-    client: 'Meridian Health',
-    result: 'Claims triage AI reviewing 1.2M records per hour.',
-    duration: '9 months, 1 phase',
-    team: '24 engineers · 4 leads',
-    image: heroHealthcareImg,
-  },
-  {
-    kpi: '99.997%',
-    kpiLabel: 'uptime across 47 mission-critical systems',
-    eyebrowNum: '03',
-    sector: 'Energy & industrial',
-    title: 'Precision engineering\nfor the AI era.',
-    sub: 'Edge compute, LLM orchestration, zero-trust security. We operate where uptime is measured in nines and compliance is a contract, not a slogan.',
-    client: 'Cascade Grid',
-    result: 'Predictive outage model across 4,200 substations.',
-    duration: '14 months, 3 phases',
-    team: '38 engineers · 8 leads',
-    image: heroEnergyImg,
-  },
+  // Add more slides here when needed
 ];
 ---
 
@@ -101,8 +84,8 @@ const HERO_SLIDES: HeroSlide[] = [
   <!-- Canvas dot grid (animation, positioned above textures, below content) -->
   <canvas id="hero-canvas" aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;"></canvas>
 
-  <!-- Slides container -->
-  <div style="position: relative; z-index: 2; min-height: 720px;">
+  <!-- Slides container — fixed height so swapping slides never causes layout shift -->
+  <div style="position: relative; z-index: 2; height: 820px;">
     {HERO_SLIDES.map((slide, i) => {
       const Heading = i === 0 ? 'h1' : 'h2';
       return (
@@ -111,7 +94,7 @@ const HERO_SLIDES: HeroSlide[] = [
           role="group"
           aria-label={`Slide ${i + 1} of ${HERO_SLIDES.length}`}
           aria-roledescription="slide"
-          style={i === 0 ? '' : 'display: none;'}
+          style={`position: absolute; inset: 0; overflow: hidden;${i === 0 ? '' : ' display: none;'}`}
         >
           <div class="px-5 lg:px-12" style="max-width: 1440px; margin: 0 auto; padding-top: 80px; padding-bottom: 60px;">
             <!-- Top row: eyebrow + metadata -->
@@ -121,15 +104,11 @@ const HERO_SLIDES: HeroSlide[] = [
                 <span style="width: 24px; height: 1px; background: currentColor; opacity: 0.5; display: inline-block;"></span>
                 <span>{slide.sector}</span>
               </div>
-              <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-align: right; line-height: 1.6;">
-                Case 04 of 47<br/>
-                <span style="color: #2cb7e8;">Live engagement</span>
-              </div>
             </div>
 
             <!-- Massive KPI number -->
             <div data-kpi data-reveal="1" style="position: relative; margin-bottom: 24px;">
-              <div style="font-family: var(--font-display); font-size: clamp(140px, 22vw, 380px); line-height: 0.82; letter-spacing: -0.06em; font-weight: 600; background: linear-gradient(180deg, #fff 0%, #fff 60%, #2cb7e8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; white-space: nowrap;" aria-hidden="true">
+              <div style={`font-family: var(--font-display); font-size: ${slide.kpiSmall ? 'clamp(56px, 8vw, 120px)' : 'clamp(140px, 22vw, 380px)'}; line-height: ${slide.kpiSmall ? '1.0' : '0.82'}; letter-spacing: -0.06em; font-weight: 600; background: linear-gradient(180deg, #fff 0%, #fff 60%, #2cb7e8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; white-space: ${slide.kpiSmall ? 'pre-line' : 'nowrap'};`} aria-hidden="true">
                 {slide.kpi}
               </div>
               <!-- cyan rule under number -->
@@ -153,8 +132,8 @@ const HERO_SLIDES: HeroSlide[] = [
               <div data-reveal="3">
                 <p style="font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.78); margin-bottom: 28px;">{slide.sub}</p>
                 <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                  <a href="/case-studies" class="hero-cta-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: #2cb7e8; color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 15px; text-decoration: none; border-radius: 2px; border: 1.5px solid #2cb7e8; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;">
-                    See our work
+                  <a href={slide.ctaPrimaryHref ?? '/case-studies'} class="hero-cta-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: #2cb7e8; color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 15px; text-decoration: none; border-radius: 2px; border: 1.5px solid #2cb7e8; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;">
+                    {slide.ctaPrimaryLabel ?? 'See our work'}
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
                   </a>
                   <a href="/contact" class="hero-cta-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: transparent; color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 15px; text-decoration: none; border-radius: 2px; border: 1.5px solid rgba(255,255,255,0.35); transition: background 0.2s, border-color 0.2s;">
@@ -166,22 +145,12 @@ const HERO_SLIDES: HeroSlide[] = [
 
             <!-- Spec row -->
             <div data-reveal="4" class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12" style="margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55);">
-              <div>
-                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; CLIENT</span><br/>
-                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.client}</span>
-              </div>
-              <div>
-                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; OUTCOME</span><br/>
-                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.result}</span>
-              </div>
-              <div>
-                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; DURATION</span><br/>
-                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.duration}</span>
-              </div>
-              <div>
-                <span style="color: #2cb7e8; margin-right: 10px;">&#9658; TEAM</span><br/>
-                <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide.team}</span>
-              </div>
+              {(['client','result','duration','team'] as const).map((key, idx) => (
+                <div>
+                  <span style="color: #2cb7e8; margin-right: 10px;">&#9658; {slide.specLabels?.[idx] ?? ['CLIENT','OUTCOME','DURATION','TEAM'][idx]}</span><br/>
+                  <span style="color: #fff; font-size: 13px; text-transform: none; letter-spacing: 0.02em; margin-top: 6px; display: inline-block;">{slide[key]}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -189,7 +158,8 @@ const HERO_SLIDES: HeroSlide[] = [
     })}
   </div>
 
-  <!-- Slide controls (bottom-right) -->
+  <!-- Slide controls (bottom-right) — only rendered when there are multiple slides -->
+  {HERO_SLIDES.length > 1 && (
   <div style="position: absolute; bottom: 32px; right: 48px; z-index: 5; display: flex; align-items: center; gap: 20px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.7);">
     <span id="hero-counter">01 / 03</span>
     <div style="display: flex; gap: 10px;" aria-label="Slide indicators">
@@ -215,6 +185,7 @@ const HERO_SLIDES: HeroSlide[] = [
       </button>
     </div>
   </div>
+  )}
 
   <!-- SVG draw decoration (shown on slide 0 only) -->
   <svg

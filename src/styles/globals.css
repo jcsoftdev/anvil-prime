@@ -70,6 +70,11 @@
   /* Nav */
   --t-nav-scrolled-bg:     rgba(11, 19, 34, 0.88);
   --t-nav-scrolled-border: rgba(255,255,255,0.1);
+
+  /* Illustration SVG tokens (dark default) */
+  --illu-bg:      #050d1a;
+  --illu-surface: #0a1628;
+  --illu-frame:   #07111f;
 }
 
 html[data-theme="light"] {
@@ -91,6 +96,11 @@ html[data-theme="light"] {
   /* Nav */
   --t-nav-scrolled-bg:     rgba(255, 255, 255, 0.95);
   --t-nav-scrolled-border: rgba(26, 43, 74, 0.1);
+
+  /* Illustration SVG tokens (light) */
+  --illu-bg:      #ddeef9;
+  --illu-surface: #b8d8ef;
+  --illu-frame:   #cce6f7;
 }
 
 

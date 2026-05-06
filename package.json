@@ -16,9 +16,11 @@
     "format": "biome format --write src/"
   },
   "dependencies": {
+    "@astrojs/node": "^10.0.6",
     "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.1.8",
     "embla-carousel": "^8.6.0",
+    "esbuild": "^0.28.0",
     "gsap": "^3.15.0"
   },
   "devDependencies": {

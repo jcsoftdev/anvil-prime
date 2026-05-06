@@ -7,6 +7,22 @@ import contactBg from '../assets/images/contact.jpg';
 
 const industries = ['Media & Entertainment', 'Banking, Financial Services & Insurance', 'Healthcare & Life Sciences', 'Retail & CPG', 'Other'];
 const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation', 'Advisory / Strategy', 'Not sure yet'];
+
+const autofill = Astro.url.searchParams.get('autofill') === 'true';
+const prefill = autofill ? {
+  first_name: 'Jane',
+  last_name:  'Smith',
+  email:      'jane.smith@acmecorp.com',
+  company:    'Acme Corp',
+  job_title:  'VP of Engineering',
+  country:    'United States',
+  industry:   'Healthcare & Life Sciences',
+  interest:   'SDLC AI',
+  notes:      'We are looking to accelerate our development lifecycle using AI tooling. Currently running 4 squads and shipping every 2 weeks.',
+} : {
+  first_name: '', last_name: '', email: '', company: '',
+  job_title: '', country: '', industry: '', interest: '', notes: '',
+};
 ---
 
 <Base title="Contact" description="Talk to the Anvil Prime team about your next AI project.">
@@ -52,13 +68,13 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="first-name" style="color: var(--t-muted);">First Name <span style="color: #2cb7e8;">*</span></label>
-              <input id="first-name" name="first_name" type="text" required placeholder="Jane"
+              <input id="first-name" name="first_name" type="text" required placeholder="Jane" value={prefill.first_name}
                 class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
                 style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);" />
             </div>
             <div>
               <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="last-name" style="color: var(--t-muted);">Last Name <span style="color: #2cb7e8;">*</span></label>
-              <input id="last-name" name="last_name" type="text" required placeholder="Smith"
+              <input id="last-name" name="last_name" type="text" required placeholder="Smith" value={prefill.last_name}
                 class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
                 style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);" />
             </div>
@@ -66,7 +82,7 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
 
           <div>
             <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="email" style="color: var(--t-muted);">Email <span style="color: #2cb7e8;">*</span></label>
-            <input id="email" name="email" type="email" required placeholder="jane@company.com"
+            <input id="email" name="email" type="email" required placeholder="jane@company.com" value={prefill.email}
               class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
               style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);" />
           </div>
@@ -74,13 +90,13 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="country" style="color: var(--t-muted);">Country</label>
-              <input id="country" name="country" type="text" placeholder="United States"
+              <input id="country" name="country" type="text" placeholder="United States" value={prefill.country}
                 class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
                 style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);" />
             </div>
             <div>
               <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="company" style="color: var(--t-muted);">Company</label>
-              <input id="company" name="company" type="text" placeholder="Acme Corp"
+              <input id="company" name="company" type="text" placeholder="Acme Corp" value={prefill.company}
                 class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
                 style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);" />
             </div>
@@ -88,7 +104,7 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
 
           <div>
             <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="job-title" style="color: var(--t-muted);">Job Title</label>
-            <input id="job-title" name="job_title" type="text" placeholder="VP of Engineering"
+            <input id="job-title" name="job_title" type="text" placeholder="VP of Engineering" value={prefill.job_title}
               class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
               style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);" />
           </div>
@@ -99,7 +115,7 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
               class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
               style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);">
               <option value="" style="background: var(--t-bg-card);">Select your industry...</option>
-              {industries.map(ind => <option value={ind} style="background: var(--t-bg-card);">{ind}</option>)}
+              {industries.map(ind => <option value={ind} selected={prefill.industry === ind} style="background: var(--t-bg-card);">{ind}</option>)}
             </select>
           </div>
 
@@ -109,7 +125,7 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
               class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8]"
               style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);">
               <option value="" style="background: var(--t-bg-card);">Select a service...</option>
-              {interests.map(i => <option value={i} style="background: var(--t-bg-card);">{i}</option>)}
+              {interests.map(i => <option value={i} selected={prefill.interest === i} style="background: var(--t-bg-card);">{i}</option>)}
             </select>
           </div>
 
@@ -117,7 +133,7 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
             <label class="block text-[11px] font-mono tracking-[0.14em] uppercase mb-2" for="notes" style="color: var(--t-muted);">Additional Notes</label>
             <textarea id="notes" name="notes" rows="4" placeholder="What are you building? What's the challenge? What have you tried?"
               class="w-full px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#2cb7e8] resize-none"
-              style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);" />
+              style="color: var(--t-heading); background: var(--t-bg-section); border: 1px solid var(--t-border);">{prefill.notes}</textarea>
           </div>
 
           <div class="flex items-start gap-3">
@@ -147,14 +163,38 @@ const interests = ['Industry AI', 'Workflows AI', 'SDLC AI', 'Staff Augmentation
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  form?.addEventListener('submit', (e) => {
+  const btn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!form || !btn) return;
+
     const data = new FormData(form);
-    const name = `${data.get('first_name') || ''} ${data.get('last_name') || ''}`.trim();
-    const interest = data.get('interest') || '';
-    const notes = data.get('notes') || '';
-    const subject = encodeURIComponent(`Inquiry from ${name}`);
-    const body = encodeURIComponent(`Interest: ${interest}\n\n${notes}`);
-    window.location.href = `mailto:hello@anvilprime.com?subject=${subject}&body=${body}`;
+    const payload = Object.fromEntries(data.entries());
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        form.reset();
+        btn.textContent = 'Message sent!';
+        btn.style.background = '#16a34a';
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.style.background = '#dc2626';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Network error — try again';
+      btn.style.background = '#dc2626';
+      btn.disabled = false;
+    }
   });
 </script>

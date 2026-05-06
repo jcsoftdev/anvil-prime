@@ -2,10 +2,13 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 import { EnumChangefreq } from 'sitemap';
 
 export default defineConfig({
   site: 'https://anvilprime.com',
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
   integrations: [
     sitemap({
       filter: (page) =>
