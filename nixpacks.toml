@@ -5,4 +5,4 @@ cmds = ["bun install --frozen-lockfile"]
 cmds = ["bun run build"]
 
 [start]
-cmd = "bun run preview -- --host 0.0.0.0 --port ${PORT:-4321}"
+cmd = "node dist/server/entry.mjs"
