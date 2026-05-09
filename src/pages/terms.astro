@@ -1,9 +1,10 @@
 ---
+export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navigation/Navbar.astro';
 ---
 
-<Base title="Terms of Service" description="Terms of Service for Anvil Prime.">
+<Base title="Terms of Service" description="Terms of Service for Anvil Prime." noindex>
   <Navbar />
   <main class="pt-20" style="background: var(--t-bg-section);">
 
